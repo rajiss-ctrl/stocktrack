@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/stocktrack/static/css/main.2dfe06d0.css",
+    "main.js": "/stocktrack/static/js/main.75bec42c.js",
+    "static/js/787.21409dba.chunk.js": "/stocktrack/static/js/787.21409dba.chunk.js",
+    "static/media/login.svg": "/stocktrack/static/media/login.c6defa285a23333ab02d2139245b46eb.svg",
+    "index.html": "/stocktrack/index.html",
+    "static/media/index.cjs": "/stocktrack/static/media/index.cd351d7c31d0d3fccf96.cjs",
+    "main.2dfe06d0.css.map": "/stocktrack/static/css/main.2dfe06d0.css.map",
+    "main.75bec42c.js.map": "/stocktrack/static/js/main.75bec42c.js.map",
+    "787.21409dba.chunk.js.map": "/stocktrack/static/js/787.21409dba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2dfe06d0.css",
+    "static/js/main.75bec42c.js"
+  ]
+}
