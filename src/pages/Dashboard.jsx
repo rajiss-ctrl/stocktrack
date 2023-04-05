@@ -13,6 +13,7 @@ import Editbuz from "./pages-components/Editbuz";
 import {
   FaArrowCircleLeft,
   FaArrowCircleRight,
+  FaEdit,
   FaTrash,
   FaUpload,
 } from "react-icons/fa";
@@ -88,7 +89,7 @@ const Dashnoard = () => {
         onClick={toggle}
         className={`${
           isVisible ? "left-[0px]" : "hidden"
-        } fixed text-[green] text-[18px] block md:hidden shadow`}
+        } fixed text-[green] z-[8] text-[18px] block md:hidden shadow`}
       >
         <FaArrowCircleRight />
       </div>
@@ -96,7 +97,7 @@ const Dashnoard = () => {
         onClick={toggle}
         className={`${
           isVisible ? "hidden" : "left-[90px]"
-        } text-[red] fixed text-[18px] block md:hidden shadow `}
+        } text-[red] fixed text-[18px] z-[8] block md:hidden shadow `}
       >
         <FaArrowCircleLeft />
       </div>
@@ -160,13 +161,13 @@ const Dashnoard = () => {
           <table className="static md:relative w-[100%] p-[30px] border border-[rgb(255,_101,_132)]  border-solid">
             <thead className="border border-[rgb(255,_101,_132)]  border-solid">
               <tr>
-                <th className="border border-[rgb(255,_101,_132)]  border-solid">
+                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
                   Name
                 </th>
-                <th className="border border-[rgb(255,_101,_132)]  border-solid">
+                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
                   Quantity
                 </th>
-                <th className="border border-[rgb(255,_101,_132)]  border-solid">
+                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
                   Actions
                 </th>
               </tr>
@@ -185,11 +186,11 @@ const Dashnoard = () => {
                       <div className="flex justify-between">
                         <button
                           onClick={() => handleEdit(index)}
-                          className="w-[50%] bg-[green] text-[#ffffff]"
+                          className="w-[50%] cursor-pointer flex justify-center items-center  text-[green]"
                         >
-                          <FaUpload />
+                          <FaEdit />
                         </button>
-                        <div className="cursor-pointer w-[50%] flex justify-center items-center bg-[black] text-[#ffffff]">
+                        <div className="cursor-pointer w-[50%] flex justify-center items-center  text-[red]">
                           <span onClick={() => handleConfirmPromt(index)}>
                             <FaTrash />
                           </span>
@@ -229,14 +230,6 @@ const Dashnoard = () => {
             </tbody>
           </table>
         )}
-        {/* <form onSubmit={event => {
-        event.preventDefault();
-        handleAddItem({
-          name: event.target.name.value,
-          quantity: parseInt(event.target.quantity.value)
-        });
-      }}> */}
-
         <Outlet />
       </div>
     </div>

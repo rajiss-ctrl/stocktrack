@@ -23,7 +23,7 @@ const Editbuz = ({ handleBuzProfileEdit }) => {
   };
 
   return (
-    <div className="z-[4] p-[30px] absolute left-[250px] w-[20%] top-[80px] shadow bg-[#FFFFFF]">
+    <div className="z-[4] p-[30px] absolute lefy-[10px] md:left-[250px] w-[90%] md:w-[20%] top-[80px] shadow bg-[#FFFFFF]">
       {buzData?.map((item) => {
         return (
           <div

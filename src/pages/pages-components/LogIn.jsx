@@ -29,7 +29,7 @@ const LogIn = () => {
 
   return (
     <main className="w-full flex flex-col items-center justify-center mt-[60px]">
-      <div className="w-[100%] md:w-[80%] p-[20px] shadow">
+      <div className="w-[90%] md:w-[80%] p-[20px] shadow">
         <p>Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
@@ -42,8 +42,8 @@ const LogIn = () => {
             className="w-2/3 mb-3  
                     border bg-[rgb(250,_228,_232)]
                     outline-[0] border-[none] 
-                    rounded-[8px] w-[100%] h-[54px] 
-                    text-[#808080] text-[18px] 
+                    rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
+                    text-[#808080] text-[14px] lg:text-[18px]
                     font-[200] p-[13px] 
                     leading-[24px]"
             required
@@ -57,8 +57,8 @@ const LogIn = () => {
             className="w-2/3 mb-3  
                     border bg-[rgb(250,_228,_232)]
                     outline-[0] border-[none] 
-                    rounded-[8px] w-[100%] h-[54px] 
-                    text-[#808080] text-[18px] 
+                    rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
+                    text-[#808080] text-[14px] lg:text-[18px] 
                     font-[200] p-[13px] 
                     leading-[24px]"
             required
