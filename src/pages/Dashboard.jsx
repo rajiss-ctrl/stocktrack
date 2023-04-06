@@ -211,7 +211,7 @@ const Dashnoard = () => {
                       <div
                         className={`${
                           stockEdit === index ? "block" : "hidden"
-                        } absolute w-[80%] md:w-[28%] top-[20px] right-[15px] md:right-[0] bg-[#ffffff] shadow`}
+                        } absolute w-[90%] lg:w-[40%] top-[20px] right-[10px] md:right-[0] bg-[#ffffff] shadow`}
                       >
                         <StockEdit
                           handleAddItem={handleAddItem}
