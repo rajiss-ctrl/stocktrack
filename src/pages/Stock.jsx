@@ -24,7 +24,7 @@ const Stock = () => {
         ) : (
           product?.map((item, index) => {
             return (
-              <div key={item.id} className="w-[100%]">
+              <div key={item.id} className="w-[100%] p-[15px]">
                 <Product
                   handleClick={handleClick}
                   item={item}
