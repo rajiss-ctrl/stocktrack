@@ -26,10 +26,8 @@ const Home = () => {
               <p className="text-[#343534] mt-[20px] text-[15px] less_sm:text-[16px] md:text-[17px] px-[15px] less_sm:px-[24px] lg:p-[0_20%_0_0]  font-[Kumbh Sans, sans-serif]">
                 Are you constantly worried about stockouts, overstocking, or
                 slow-moving items affecting your business performance? Our{" "}
-                <span className="text-[rgb(255,_101,_132)]">
-                  stock control app
-                </span>{" "}
-                is the solution you've been searching for!
+                <span className="text-[#b0f328]">stock control app</span> is the
+                solution you've been searching for!
               </p>
             </div>
           </div>

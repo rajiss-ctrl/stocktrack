@@ -1,14 +1,16 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import {
-  FaStore,
-  FaOpencart,
-  FaAngleDown,
-  FaEdit,
-  FaArrowCircleRight,
-} from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { FaStore, FaEdit, FaSignOutAlt } from "react-icons/fa";
 
 const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
+  // async function handleLogout() {
+  //   try {
+  //     await logOut();
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
   return (
     <div className="w-[100%] mt-[20px]">
       <div className="text-center text-[14px] md:text-[28px] text-[#ffffff] px-[8px]">
@@ -48,6 +50,17 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
           </div>
         </li>
       </ul>
+      <button
+        // onClick={handleLogout}
+        className="px-[8px] md:px-[25px] mt-[200px] z-[10] mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]"
+      >
+        <div className="flex items-center">
+          <span className="hidden md:block">
+            <FaSignOutAlt />
+          </span>
+          <NavLink to="/stock">log Out</NavLink>
+        </div>
+      </button>
     </div>
   );
 };

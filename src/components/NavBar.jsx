@@ -1,6 +1,7 @@
 // import React from 'react'
 import { FaStore, FaOpencart, FaTimes, FaBars } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import Logo from "../assets/images/logo.png";
 import { useToggle } from "../custom-hooks/useToggle";
 
 const NavBar = () => {
@@ -11,16 +12,17 @@ const NavBar = () => {
       <div
         className={`${
           isVisible ? "h-[200px]" : "h-[auto]"
-        } relative md:static  md:h-[auto] flex md:items-center justify-between px-[16px] py-[5px] md:py-[0]`}
+        } relative md:static  flex md:items-center justify-between px-[16px] py-[5px] md:py-[0]`}
       >
-        <h1 className="text-[#000000] font-[200] md:font-[700] text-[20px] md:text-[1.8rem]">
-          <NavLink to="/">
-            <span className="text-[red]">
+        <NavLink to="/">
+          <div className="pt-[12.6px] sm:pt-[0]">
+            <img className="w-[80px] sm:w-[150px]" src={Logo} alt="logo" />
+          </div>
+          {/* <span className="text-[red]">
               S<span className="text-[#b0f328]">to</span>ck
             </span>
-            <span className="text-[#b0f328]">Track</span>
-          </NavLink>
-        </h1>
+            <span className="text-[#b0f328]">Track</span> */}
+        </NavLink>
         <ul
           className={`${
             isVisible ? "block" : "hidden"
@@ -42,7 +44,7 @@ const NavBar = () => {
               <FaStore />
             </NavLink>
           </div>
-          <div className="cursor-[pointer] text-[rgb(255,_101,_132)]">
+          <div className="cursor-[pointer] text-[#b0f328]">
             <FaOpencart />
           </div>
         </div>

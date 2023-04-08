@@ -30,7 +30,7 @@ const LogIn = () => {
   return (
     <main className="w-full flex flex-col items-center justify-center mt-[60px]">
       <div className="w-[90%] md:w-[80%] p-[20px] shadow">
-        <p>Log in to your dashboard</p>
+        <p className="text-[#b0f328]">Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
@@ -40,12 +40,11 @@ const LogIn = () => {
             type="email"
             placeholder="Email"
             className="w-2/3 mb-3  
-                    border bg-[rgb(250,_228,_232)]
+                    border bg-[#edf6d9]
                     outline-[0] border-[none] 
                     rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
                     text-[#808080] text-[14px] lg:text-[18px]
-                    font-[200] p-[13px] 
-                    leading-[24px]"
+                    p-[13px]"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -55,12 +54,12 @@ const LogIn = () => {
             type="password"
             placeholder="Password"
             className="w-2/3 mb-3  
-                    border bg-[rgb(250,_228,_232)]
+                    border bg-[#edf6d9]
                     outline-[0] border-[none] 
                     rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
                     text-[#808080] text-[14px] lg:text-[18px] 
-                    font-[200] p-[13px] 
-                    leading-[24px]"
+                    p-[13px] 
+                    "
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -68,7 +67,11 @@ const LogIn = () => {
 
           <button
             type="submit"
-            className="w-[200px] h-[45px] rounded bg-[rgb(255,_101,_132)] text-white"
+            className="w-[200px] h-[45px] 
+                    rounded  
+                    hover:bg-[#b0f328] text-white
+                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
+                    "
           >
             SIGN IN
           </button>

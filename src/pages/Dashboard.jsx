@@ -115,7 +115,7 @@ const Dashnoard = () => {
       <div
         className={`${
           isVisible ? "hidden" : "block"
-        } fixed z-[6] top-[0] md:static  w-[90px] md:w-[200px] bg-[rgb(255,_101,_132)] min-h-[500px] md:h-[100vh]`}
+        } fixed z-[6] top-[0] md:static  w-[90px] md:w-[200px]  bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  min-h-[500px] md:h-[100vh]`}
       >
         {buzData.length === 0 ? (
           <div className="w-[100%] flex flex-col justify-center items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
@@ -158,31 +158,30 @@ const Dashnoard = () => {
             To update store to stock your products.
           </h1>
         ) : (
-          <table className="static md:relative w-[100%] p-[30px] border border-[rgb(255,_101,_132)]  border-solid">
-            <thead className="border border-[rgb(255,_101,_132)]  border-solid">
+          <table className="static md:relative w-[100%] p-[30px] ">
+            <thead className="shadow-md rounded h-[40px] sm:h-[50px] bg-white">
               <tr>
-                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
+                <th className="text-[12px] text-[#FFFFFF] bg-[#e3e1e1] md:text-[16px]">
                   Name
                 </th>
-                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
+                <th className="text-[12px] text-[#FFFFFF] bg-[#b9cfb9] md:text-[16px] ">
                   Quantity
                 </th>
-                <th className="border border-[rgb(255,_101,_132)] text-[12px] md:text-[16px] border-solid">
+                <th className="text-[12px] text-[#FFFFFF] bg-[#f6c3c3] md:text-[16px] ">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {product.map((item, index) => {
                 return (
-                  <tr key={item.id} className="">
-                    <td className="pl-[15px] border border-[rgb(255,_101,_132)]  border-solid">
-                      {item?.product_name}
-                    </td>
-                    <td className="pl-[15px] border border-[rgb(255,_101,_132)]  border-solid">
-                      {Number(item?.product_Qty)}
-                    </td>
-                    <td className=" border border-[rgb(255,_101,_132)]  border-solid">
+                  <tr
+                    key={item.id}
+                    className=" shadow-md hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
+                  >
+                    <td className="pl-[15px]">{item?.product_name}</td>
+                    <td className="pl-[15px]">{Number(item?.product_Qty)}</td>
+                    <td className="  ">
                       <div className="flex justify-between">
                         <button
                           onClick={() => handleEdit(index)}

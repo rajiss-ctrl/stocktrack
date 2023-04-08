@@ -8,22 +8,19 @@ const Product = ({ index, item, visible }) => {
       <div
         className={`${
           visible === index ? "flex" : "hidden"
-        } w-[100%] flex-col justify-center lg:flex-row lg:py-[40px]`}
+        } w-[100%] ] flex-col  justify-center items-center lg:items-start lg:flex-row p-[20px_0px] less_sm:p-[20px_30px] lg:py-[40px] `}
       >
-        <div className="w-[100%] lg:w-[30%]  flex justify-center items-center bg-[#da5098] rounded-[10px]">
+        <div className="w-[100%]  shadow-[0_10px_20px_rgb(255,_101,_132)] lg:w-[40%]  flex justify-center items-center rounded-[10px] p-[10px]">
           <img
-            className="drop-shadow-[7px_5px_3px_white] w-[90%] lg:w[100%] min-[360px]:w-[320px] min-[390px]:w-[340px] min-[400px]:w-[360px] h-[260px] sm:w-[290px] sm:h-[290px] md:w-[290px] md:h-[300px]  xl:w-[400px] xl:h-[350px] lg:h-[400px] "
+            className="drop-shadow-[7px_5px_3px_white] lg:w[100%] h-[260px] sm:w-[290px] sm:h-[290px] lg:w-[290px] lg:h-[300px]   "
             src={item?.img}
             alt="product"
           />
         </div>
-        <div className="lg:pl-[20px] w-[100%] sm:w-[30%]">
+        <div className="lg:pl-[20px] mt-[20px] lg:mt-[0] w-[100%] lg:w-[30%]">
           <h1 className="text-[16px] sm:text-[25px] mt-[20px] md:mt-[0] font-[400] sm:font-[600] text-[#da5098]">
             {item?.product_name}
           </h1>
-          <p className="text-[14px] sm:text-[16px]">
-            {item?.product_description}
-          </p>
           <p className="text-[14px] flex gap-[10px] font-[400] sm:font-[400] sm:text-[16px]">
             <span className="">Quantity :- </span>
             <span
@@ -33,6 +30,9 @@ const Product = ({ index, item, visible }) => {
             >
               {item?.product_Qty}
             </span>
+          </p>
+          <p className="text-[14px] sm:text-[16px]">
+            {item?.product_description}
           </p>
         </div>
       </div>
