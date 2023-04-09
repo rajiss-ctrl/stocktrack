@@ -1,10 +1,10 @@
 import React from "react";
+import Err from "../assets/images/error.png";
 
 const Error = () => {
   return (
-    <div className=" text-[red] flex items-center">
-      <h1>OOOoops!</h1>
-      <h1>This page can not be found</h1>
+    <div className="h-[100vh] text-[red] flex justify-center flex-col items-center">
+      <img src={Err} alt="404 error" />
     </div>
   );
 };

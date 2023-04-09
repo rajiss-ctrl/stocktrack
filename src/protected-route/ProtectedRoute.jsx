@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ProtectedRoute = () => {
   const user = useSelector((state) => state.user.user);
-  return user ? <Outlet /> : <Navigate to={"/"} />;
+  console.log(user);
+
+  return !user.id ? <Navigate to={"/"} /> : <Outlet />;
 };
 
 export default ProtectedRoute;

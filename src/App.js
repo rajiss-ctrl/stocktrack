@@ -11,8 +11,8 @@ import { fetchData } from "./features/product/productSlice";
 import Dashboard from "./pages/Dashboard";
 import BusinessProfile from "./pages/BusinessProfile";
 import ProtectedRoute from "./protected-route/ProtectedRoute";
-import Error from "./protected-route/Error";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
+import Error from "./protected-route/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function App() {
 
   // stock Data
   useEffect(() => {
-    if (!user.id) return navigate("/");
+    // if (!user.id) return navigate("/");
 
     try {
       const qRef = collection(db, "stock");
@@ -44,7 +44,7 @@ function App() {
 
   // business profile data
   useEffect(() => {
-    if (!user.id) return navigate("/");
+    // if (!user.id) return navigate("/");
 
     try {
       const qRef = collection(db, "businesses");
@@ -69,6 +69,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path={"*"} element={<Error />} />
           <Route element={<ProtectedRoute />}>
             <Route path={"updatestock"} element={<UpdateStock />} />
             <Route path={"stock"} element={<Stock />} />
@@ -77,7 +78,6 @@ function App() {
             </Route>
           </Route>
           {/*All*/}
-          <Route path={"*"} element={<Error />} />
         </Route>
       </Routes>
     </div>
