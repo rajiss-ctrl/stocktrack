@@ -1,16 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaStore, FaEdit, FaSignOutAlt } from "react-icons/fa";
+import { signOut } from "firebase/auth";
+import { auth } from "../db/firebase";
 
 const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
-  // async function handleLogout() {
-  //   try {
-  //     await logOut();
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="w-[100%] mt-[20px]">
       <div className="text-center text-[14px] md:text-[28px] text-[#ffffff] px-[8px]">
@@ -51,7 +55,7 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
         </li>
       </ul>
       <button
-        // onClick={handleLogout}
+        onClick={handleLogout}
         className="px-[8px] md:px-[25px] mt-[200px] z-[10] mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]"
       >
         <div className="flex items-center">

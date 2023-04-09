@@ -115,7 +115,8 @@ const Dashnoard = () => {
       <div
         className={`${
           isVisible ? "hidden" : "block"
-        } fixed z-[6] top-[0] md:static  w-[90px] md:w-[200px]  bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  min-h-[500px] md:h-[100vh]`}
+        } fixed z-[6] top-[0] md:static  w-[90px] md:w-[200px]  
+        bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  min-h-[500px] md:h-[100vh]`}
       >
         {buzData.length === 0 ? (
           <div className="w-[100%] flex flex-col justify-center items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">

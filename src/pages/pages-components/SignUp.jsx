@@ -50,13 +50,12 @@ const SignUp = () => {
   return (
     <main className="w-full  flex flex-col items-center justify-center mt-[60px] ">
       <div className="w-[90%] md:w-[80%] p-[20px] shadow">
-        <p className="text-[#b0f328]">Register here</p>
+        <p className="text-[rgb(255,_101,_132)]">Register here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
         >
           <input
-            id="email"
             type="email"
             className="w-2/3 mb-3  
                     border bg-[#edf6d9]
@@ -70,7 +69,6 @@ const SignUp = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            id="password"
             type="password"
             className="w-2/3 mb-3  
                     border bg-[#edf6d9]
@@ -83,7 +81,6 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            id="password"
             type="password"
             className="w-2/3 mb-3  
                     border bg-[#edf6d9]

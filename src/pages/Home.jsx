@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import login from "../assets/images/login.svg";
 import SignUp from "./pages-components/SignUp";
 import LogIn from "./pages-components/LogIn";
@@ -6,6 +6,7 @@ import { useToggle } from "../custom-hooks/useToggle";
 
 const Home = () => {
   const [isVisible, toggle] = useToggle();
+  useEffect(() => {}, [isVisible, toggle]);
 
   return (
     <div className="w-[100%] mt-[50px] px-[0] less_sm:px-[40px] sm:px-[24px] xl:px-[128px] flex flex-col justify-center items-center">
@@ -37,7 +38,7 @@ const Home = () => {
         </div>
         <div className="w-[100%] flex flex-col justify-center">
           {!isVisible ? <LogIn /> : <SignUp />}
-          <button onClick={toggle} className="mt-[15px]">
+          <button onClick={toggle} className="outline-[none] mt-[15px]">
             {isVisible ? (
               <p>
                 Already registered? <span className="text-[blue]">Log In!</span>{" "}

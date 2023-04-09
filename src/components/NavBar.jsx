@@ -12,11 +12,11 @@ const NavBar = () => {
       <div
         className={`${
           isVisible ? "h-[200px]" : "h-[auto]"
-        } relative md:static  flex md:items-center justify-between px-[16px] py-[5px] md:py-[0]`}
+        } relative md:static  flex md:items-center justify-between px-[16px] py-[5px] sm:py-[0]`}
       >
         <NavLink to="/">
           <div className="pt-[12.6px] sm:pt-[0]">
-            <img className="w-[80px] sm:w-[150px]" src={Logo} alt="logo" />
+            <img className="w-[80px] sm:w-[100px]" src={Logo} alt="logo" />
           </div>
           {/* <span className="text-[red]">
               S<span className="text-[#b0f328]">to</span>ck

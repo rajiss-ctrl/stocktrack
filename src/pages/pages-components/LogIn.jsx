@@ -30,7 +30,7 @@ const LogIn = () => {
   return (
     <main className="w-full flex flex-col items-center justify-center mt-[60px]">
       <div className="w-[90%] md:w-[80%] p-[20px] shadow">
-        <p className="text-[#b0f328]">Log in to your dashboard</p>
+        <p className="text-[rgb(255,_101,_132)]">Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
@@ -69,7 +69,7 @@ const LogIn = () => {
             type="submit"
             className="w-[200px] h-[45px] 
                     rounded  
-                    hover:bg-[#b0f328] text-white
+                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] text-[#FFFFFF]
                     bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
                     "
           >
