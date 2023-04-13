@@ -4,7 +4,12 @@ import Logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="flex flex-col less_sm:flex-row less_sm:justify-between mt-[50px] p-[20px] sm:p-[20px_60px] text-[#FFFFFF] w-[100%] min-h-[250px] bg-[black]">
+    <div
+      className="flex flex-col less_sm:flex-row 
+                less_sm:justify-between mt-[50px]
+                p-[20px] sm:p-[20px_45px] text-[#FFFFFF]
+                w-[100%] min-h-[250px] bg-[black]"
+    >
       <Link to="/">
         <img
           className="w-[150px] h-[30px] sm:w-[200px] sm:h-[50px]"
@@ -32,7 +37,7 @@ const Footer = () => {
       </div>
 
       <div className="w-[100%] mt-[15px] less_sm:mt-[0] text-[12px] sm:text-[16px] less_sm:w-[22%]">
-        <p> Copyrighta 2023 rajiss-ctrl</p>
+        <p> Copyright 2023 rajiss-ctrl</p>
         <h1>Front-End Developer</h1>
         <ul className="w-[100%] font-['Kumbh Sans']">
           <li className="text-[#FFFFFF]">HTML</li>

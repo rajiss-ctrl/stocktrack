@@ -36,7 +36,7 @@ const Home = () => {
             <img className="w-[100%]  " src={login} alt="" />
           </div>
         </div>
-        <div className="w-[100%] flex flex-col justify-center">
+        <div id="login" className="w-[100%] flex flex-col justify-center">
           {!isVisible ? <LogIn /> : <SignUp />}
           <button onClick={toggle} className="outline-[none] mt-[15px]">
             {isVisible ? (

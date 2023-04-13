@@ -69,7 +69,6 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path={"*"} element={<Error />} />
           <Route element={<ProtectedRoute />}>
             <Route path={"updatestock"} element={<UpdateStock />} />
             <Route path={"stock"} element={<Stock />} />
@@ -78,6 +77,7 @@ function App() {
             </Route>
           </Route>
           {/*All*/}
+          <Route path={"*"} element={<Error />} />
         </Route>
       </Routes>
     </div>

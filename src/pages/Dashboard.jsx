@@ -83,7 +83,7 @@ const Dashnoard = () => {
   };
 
   return (
-    <div className=" relative flex">
+    <div className="h-[100vh] relative flex">
       {/* Side bar toggle */}
       <div
         onClick={toggle}

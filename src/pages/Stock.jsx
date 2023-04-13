@@ -17,7 +17,7 @@ const Stock = () => {
   };
 
   return (
-    <div className="">
+    <div className="min-h-[100vh]">
       {product.length === 0 ? (
         <p>Loading....</p>
       ) : (
@@ -35,7 +35,7 @@ const Stock = () => {
         })
       )}
 
-      <div className="w-[100%] flex gap-[20px] flex-wrap p-[18px] items-center mt-[0] lg:mt-[35px] lg:px-[18%] ">
+      <div className="w-[100%] flex gap-[20px] flex-wrap p-[18px] less_sm:px-[40px] items-center mt-[0] lg:mt-[35px] lg:px-[18%] ">
         {product?.map((btn, index) => {
           return (
             <div key={btn.id}>

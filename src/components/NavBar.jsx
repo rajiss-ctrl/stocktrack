@@ -2,9 +2,11 @@
 import { FaStore, FaOpencart, FaTimes, FaBars } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.png";
+import { useSelector } from "react-redux";
 import { useToggle } from "../custom-hooks/useToggle";
 
 const NavBar = () => {
+  const user = useSelector((store) => store.user.user);
   const [isVisible, toggle] = useToggle();
   //style={({isActive})=> isActive ? {borderBottom:'2px solid red'} : {borderBottom:'none'} }
   return (
@@ -23,6 +25,7 @@ const NavBar = () => {
             </span>
             <span className="text-[#b0f328]">Track</span> */}
         </NavLink>
+
         <ul
           className={`${
             isVisible ? "block" : "hidden"
@@ -32,10 +35,18 @@ const NavBar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li className="list-[none] w-[100%] md:w-[auto] border-b-4 border-[transparent] hover:border-b-[1.5px] md:hover:border-b-4 hover:border-[rgb(255,_101,_132)] hover:text-[#0e0f0e] py-[6px] md:py-[24px]">
-            <NavLink to="/updatestock">Update Store</NavLink>
+            {user.id ? (
+              <NavLink to="/updatestock">Update Store</NavLink>
+            ) : (
+              <a href="#login">Sign Up</a>
+            )}
           </li>
           <li className="list-[none] w-[100%] md:w-[auto] border-b-4 border-[transparent] hover:border-b-[1.5px] md:hover:border-b-4 hover:border-[rgb(255,_101,_132)] hover:text-[#0e0f0e] py-[6px] md:py-[24px]">
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            {user.id ? (
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            ) : (
+              <a href="#login">SignIn</a>
+            )}
           </li>
         </ul>
         <div className="flex h-[40px] md:h-[auto] items-center gap-[18px]">

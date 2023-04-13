@@ -109,7 +109,13 @@ const BusinessProfile = () => {
           </div>
         </div>
 
-        <button className="bg-[rgb(255,_101,_132)] text-[14px] md:text-[16px] text-gray-100 w-full p-[10px] md:p-5 rounded my-6">
+        <button
+          className="hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] text-[#FFFFFF]
+                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
+                        text-[14px] 
+                        md:text-[16px] text-gray-100 w-full p-[10px] 
+                        md:p-5 rounded my-6"
+        >
           COMPLETE PROFILE
         </button>
       </form>

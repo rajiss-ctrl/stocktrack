@@ -10,10 +10,10 @@ const Error = () => {
     setTimeout(() => {
       navigate("/");
     }, 3000);
-  }, []);
+  }, [navigate]);
   return (
     <div className="h-[100vh] text-[red] flex justify-center flex-col items-center">
-      <img src={Err} alt="404 error" />
+      <img className="w-[80%]" src={Err} alt="404 error" />
       <Link to="/">Go back</Link>
     </div>
   );

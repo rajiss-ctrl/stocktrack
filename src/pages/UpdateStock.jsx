@@ -87,7 +87,10 @@ const UpdateStock = () => {
   };
 
   return (
-    <div className="w-full md:p-8 md:w-2/3 md:shadow mx-auto mt-8 rounded p-3 my-8">
+    <div
+      className="w-full md:p-8 md:w-2/3 md:shadow 
+                    mx-auto mt-8 rounded p-3 my-8 h-[100vh]"
+    >
       <h3 className="text-center font-bold text-xl mb-6">create stock</h3>
 
       <form className="w-full mx-auto flex flex-col" onSubmit={handleSubmit}>
