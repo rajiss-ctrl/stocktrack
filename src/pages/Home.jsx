@@ -38,7 +38,7 @@ const Home = () => {
         </div>
         <div id="login" className="w-[100%] flex flex-col justify-center">
           {!isVisible ? <LogIn /> : <SignUp />}
-          <button onClick={toggle} className="outline-[none] mt-[15px]">
+          <button onClick={toggle} className="outline-none border-0 mt-[15px]">
             {isVisible ? (
               <p>
                 Already registered? <span className="text-[blue]">Log In!</span>{" "}

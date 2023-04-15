@@ -28,7 +28,7 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
             alt=""
           />
         </div>
-        <h1 className="text-[#e0d7d7] text-center w-[70px] md:w-[150px]  text-[14px]">
+        <h1 className="text-[#e0d7d7] md:p-[5px] text-center w-[70px] md:w-[150px]  text-[14px]">
           {" "}
           {item?.businessAddress}
         </h1>
@@ -56,7 +56,7 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
       </ul>
       <button
         onClick={handleLogout}
-        className="px-[8px] md:px-[25px] mt-[200px] z-[10] mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]"
+        className="px-[8px] md:px-[25px] m-[80px_0_15px_0] lg:m-[150px_0_0_0] z-[10] text-[#ffffff] hover:text-[#e0d7d7]"
       >
         <div className="flex items-center">
           <span className="hidden md:block">

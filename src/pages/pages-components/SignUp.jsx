@@ -49,7 +49,7 @@ const SignUp = () => {
 
   return (
     <main className="w-full  flex flex-col items-center justify-center mt-[60px] ">
-      <div className="w-[90%] md:w-[80%] p-[20px] shadow">
+      <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] shadow">
         <p className="text-[rgb(255,_101,_132)]">Register here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
@@ -57,12 +57,13 @@ const SignUp = () => {
         >
           <input
             type="email"
-            className="w-2/3 mb-3  
+            className="w-[100%] mb-3  
                     border bg-[#edf6d9]
                     outline-[0] border-[none] 
-                    rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
-                    text-[#808080] text-[14px] lg:text-[18px]
-                    p-[13px]"
+                    rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
+                    text-[#808080] text-[14px] lg:text-[18px] 
+                    p-[13px] 
+                    "
             placeholder="Business Email"
             required
             value={email}
@@ -70,24 +71,26 @@ const SignUp = () => {
           />
           <input
             type="password"
-            className="w-2/3 mb-3  
+            className="w-[100%] mb-3  
                     border bg-[#edf6d9]
                     outline-[0] border-[none] 
-                    rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
-                    text-[#808080] text-[14px] lg:text-[18px]
-                    p-[13px]"
+                    rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
+                    text-[#808080] text-[14px] lg:text-[18px] 
+                    p-[13px] 
+                    "
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="password"
-            className="w-2/3 mb-3  
+            className="w-[100%] mb-3  
                     border bg-[#edf6d9]
                     outline-[0] border-[none] 
-                    rounded-[8px] w-[100%] h-[48px] sm:h-[54px] 
-                    text-[#808080] text-[14px] lg:text-[18px]
-                    p-[13px]"
+                    rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
+                    text-[#808080] text-[14px] lg:text-[18px] 
+                    p-[13px] 
+                    "
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -98,11 +101,11 @@ const SignUp = () => {
           </div>
           <button
             type="submit"
-            className="
-                  w-[200px] h-[45px] rounded 
-                  text-white
-                  bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
-                  "
+            className="w-[200px] h-[40px] less_sm:h-[45px] 
+                    rounded  
+                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] text-[#FFFFFF]
+                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
+                    "
           >
             REGISTER
           </button>

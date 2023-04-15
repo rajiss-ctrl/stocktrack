@@ -29,6 +29,13 @@ const Product = ({ index, item, visible }) => {
               }  font-[400]`}
             >
               {item?.product_Qty}
+              <span>
+                {item?.product_Qty <= 1 ? (
+                  <span> {item?.size}</span>
+                ) : (
+                  <span> {item?.size}s</span>
+                )}
+              </span>
             </span>
           </p>
           <p className="text-[14px] sm:text-[16px]">

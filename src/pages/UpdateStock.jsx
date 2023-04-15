@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { db, storage } from "../db/firebase";
-import {
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-  uploadString,
-} from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
@@ -15,6 +10,7 @@ const UpdateStock = () => {
   const initialState = {
     product_name: "",
     product_Qty: Number(0),
+    size: "",
     product_description: "",
   };
   const [data, setData] = useState(initialState);
@@ -23,7 +19,7 @@ const UpdateStock = () => {
   const [error, setError] = useState({});
   const [file, setFile] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
-
+  console.log(data);
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
@@ -65,7 +61,6 @@ const UpdateStock = () => {
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  console.log(data);
 
   const validates = () => {
     const error = {};
@@ -91,6 +86,10 @@ const UpdateStock = () => {
       className="w-full md:p-8 md:w-2/3 md:shadow 
                     mx-auto mt-8 rounded p-3 my-8 h-[100vh]"
     >
+      <div
+        className={`${progress !== null && progress < 100 ? "block" : "hidden"}
+        h-[5px] bg-[green] w-[${progress}%]`}
+      ></div>
       <h3 className="text-center font-bold text-xl mb-6">create stock</h3>
 
       <form className="w-full mx-auto flex flex-col" onSubmit={handleSubmit}>
@@ -115,6 +114,24 @@ const UpdateStock = () => {
           onChange={handleChange}
           placeholder="Quantity"
         />
+        <select
+          value={data.size}
+          onChange={handleChange}
+          className="signup__form-input select
+          w-full h-[50px] rounded-lg p-2 border
+          outline-none mb-6 form-select
+          border-0 bg-[rgb(250,_228,_232)]"
+          name="size"
+          id="size"
+        >
+          <option defaultValue>--Choose an option--</option>
+          <option>Pack</option>
+          <option>Carton</option>
+          <option>peice</option>
+          <option>Sachet</option>
+          <option>Bag</option>
+        </select>
+
         <input
           type="text"
           required
