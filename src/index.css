@@ -14,3 +14,9 @@
 body{
 font-family: 'Kumbh Sans', sans-serif;
 }
+input:invalid[focused="true"]{
+  border: 1px solid #fb8a8a;
+}
+input:invalid[focused="true"] ~ span{
+  display: block;
+}

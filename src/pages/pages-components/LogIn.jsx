@@ -33,7 +33,7 @@ const LogIn = () => {
                     justify-center mt-[60px]"
     >
       <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] shadow">
-        <p className="text-[rgb(255,_101,_132)]">Log in to your dashboard</p>
+        <p className="text-[#000007]">Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
@@ -43,11 +43,12 @@ const LogIn = () => {
             type="email"
             placeholder="Email"
             className="w-[100%] mb-3  
-                    border bg-[#edf6d9]
-                    outline-[0] border-[none] 
-                    rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
-                    text-[#808080] text-[14px] lg:text-[18px]
-                    p-[13px]"
+            border border-[#e7e6e6]           
+            outline-[0] border-[none] 
+            rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
+            text-[#808080] text-[14px] lg:text-[18px] 
+            p-[13px] 
+            "
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -57,12 +58,12 @@ const LogIn = () => {
             type="password"
             placeholder="Password"
             className="w-[100%] mb-3  
-                    border bg-[#edf6d9]
-                    outline-[0] border-[none] 
-                    rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
-                    text-[#808080] text-[14px] lg:text-[18px] 
-                    p-[13px] 
-                    "
+            border border-[#e7e6e6]           
+            outline-[0] border-[none] 
+            rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
+            text-[#808080] text-[14px] lg:text-[18px] 
+            p-[13px] 
+            "
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}

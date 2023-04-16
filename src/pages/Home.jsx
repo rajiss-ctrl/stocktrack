@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {}, [isVisible, toggle]);
 
   return (
-    <div className="w-[100%] mt-[50px] px-[0] less_sm:px-[40px] sm:px-[24px] xl:px-[128px] flex flex-col justify-center items-center">
+    <div className="w-[100%] mt-[50px] px-[0]  less_sm:px-[40px] sm:px-[24px] xl:px-[128px] flex flex-col justify-center items-center">
       <div className=" lg:px-[120px] w-[100%] ">
         <h1 className="text-center px-[15px] md:px-[0] text-[20px] less_sm:text-[24px] md:text-[30px] mb-[0] md:mb-[25px]">
           Take Control of Your Inventory with Ease - Streamline Your Business

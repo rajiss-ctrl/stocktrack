@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { db, storage } from "../db/firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
@@ -13,6 +14,7 @@ const UpdateStock = () => {
     size: "",
     product_description: "",
   };
+  const navigate = useNavigate();
   const [data, setData] = useState(initialState);
   const { company_name } = data;
   const [progress, setProgress] = useState({});
@@ -79,6 +81,7 @@ const UpdateStock = () => {
       ...data,
       // timeStamp:sererTimestamp()
     });
+    navigate("/dashboard");
   };
 
   return (

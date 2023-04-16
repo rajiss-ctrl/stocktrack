@@ -20,10 +20,6 @@ const NavBar = () => {
           <div className="pt-[12.6px] sm:pt-[0]">
             <img className="w-[80px] sm:w-[100px]" src={Logo} alt="logo" />
           </div>
-          {/* <span className="text-[red]">
-              S<span className="text-[#b0f328]">to</span>ck
-            </span>
-            <span className="text-[#b0f328]">Track</span> */}
         </NavLink>
 
         <ul
