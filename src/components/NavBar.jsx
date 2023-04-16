@@ -17,7 +17,7 @@ const NavBar = () => {
         } relative md:static  flex md:items-center justify-between px-[16px] py-[5px] sm:py-[0]`}
       >
         <NavLink to="/">
-          <div className="pt-[12.6px] sm:pt-[0]">
+          <div className="pt-[12.6px] lg:pt-[0]">
             <img className="w-[80px] sm:w-[100px]" src={Logo} alt="logo" />
           </div>
         </NavLink>
