@@ -43,7 +43,7 @@ const Sidebar = ({ item, toggle, isVisible, handleBuzProfileEdit }) => {
             alt=""
           />
         </div>
-        <h1 className="text-[#e0d7d7] text-center mt-2 w-[100px] md:w-[160px]  text-[14px]">
+        <h1 className="text-[#e0d7d7] text-center mt-2 w-[140px] md:w-[160px]  text-[14px]">
           {" "}
           {item?.businessAddress}
         </h1>
