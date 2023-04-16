@@ -89,18 +89,11 @@ const Dashnoard = () => {
         onClick={toggle}
         className={`${
           isVisible ? "left-[0px]" : "hidden"
-        } fixed text-[green] z-[8] text-[18px] block md:hidden shadow`}
+        } fixed top-[0] bg-[green] text-[white] z-[8] text-[18px] block md:hidden shadow-lg`}
       >
         <FaArrowCircleRight />
       </div>
-      <div
-        onClick={toggle}
-        className={`${
-          isVisible ? "hidden" : "left-[90px]"
-        } text-[red] fixed text-[18px] z-[8] block md:hidden shadow `}
-      >
-        <FaArrowCircleLeft />
-      </div>
+      {/* SideBar Items */}
       {showEdit ? (
         <div
           className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
@@ -115,8 +108,10 @@ const Dashnoard = () => {
       <div
         className={`${
           isVisible ? "hidden" : "block"
-        } fixed z-[6] top-[0] md:static  w-[90px] less_sm:w-[150px] lg:w-[200px]  
-        bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  md:h-[100vh]`}
+        } fixed z-[6] top-[0] md:static  
+        w-[120px] less_sm:w-[180px] lg:w-[200px]  
+        bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  
+        `}
       >
         {buzData.length === 0 ? (
           <div className="w-[100%] flex flex-col justify-center items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
@@ -142,6 +137,8 @@ const Dashnoard = () => {
                   item={item}
                   user={user}
                   handleBuzProfileEdit={handleBuzProfileEdit}
+                  toggle={toggle}
+                  isVisible={isVisible}
                 />
               </div>
             );
@@ -182,10 +179,10 @@ const Dashnoard = () => {
                     key={item.id}
                     className=" shadow-md hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] lg:text-[18px] font-600">
+                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] text-[12px] lg:text-[18px] font-600">
                       {item?.product_name}
                     </td>
-                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] lg:text-[18px] font-600">
+                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] text-[12px] lg:text-[18px] font-600">
                       {Number(item?.product_Qty)}{" "}
                       <span>
                         {item?.product_Qty <= 1 ? (
@@ -199,11 +196,11 @@ const Dashnoard = () => {
                       <div className="flex justify-between">
                         <button
                           onClick={() => handleEdit(index)}
-                          className="w-[50%] cursor-pointer flex justify-center items-center  text-[green]"
+                          className="w-[50%] text-[12px] sm:text-[15px] cursor-pointer flex justify-center items-center  text-[green]"
                         >
                           <FaEdit />
                         </button>
-                        <div className="cursor-pointer w-[50%] flex justify-center items-center  text-[red]">
+                        <div className="cursor-pointer text-[12px] sm:text-[15px] w-[50%] flex justify-center items-center  text-[red]">
                           <span onClick={() => handleConfirmPromt(index)}>
                             <FaTrash />
                           </span>

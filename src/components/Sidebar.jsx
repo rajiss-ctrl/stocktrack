@@ -1,10 +1,15 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FaStore, FaEdit, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaStore,
+  FaEdit,
+  FaSignOutAlt,
+  FaArrowCircleLeft,
+} from "react-icons/fa";
 import { signOut } from "firebase/auth";
 import { auth } from "../db/firebase";
 
-const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
+const Sidebar = ({ item, toggle, isVisible, handleBuzProfileEdit }) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -17,6 +22,16 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
 
   return (
     <div className="w-[100%] mt-[20px]">
+      <div
+        onClick={toggle}
+        className={`${
+          isVisible ? "hidden" : "block"
+        } text-[#ffffff] fixed top-[5px] 
+        left-[98px] less_sm:left-[158px] 
+        text-[18px] z-[8] block md:hidden shadow `}
+      >
+        <FaArrowCircleLeft />
+      </div>
       <div className="text-center text-[14px] md:text-[28px] text-[#ffffff] px-[8px]">
         {item?.businessName}
       </div>
@@ -28,7 +43,7 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
             alt=""
           />
         </div>
-        <h1 className="text-[#e0d7d7] md:p-[5px] text-center w-[70px] md:w-[150px]  text-[14px]">
+        <h1 className="text-[#e0d7d7] text-center mt-2 w-[100px] md:w-[160px]  text-[14px]">
           {" "}
           {item?.businessAddress}
         </h1>
@@ -36,7 +51,9 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
       <ul className="w-[100%] text-[12px] md:text-[16px] px-[8px] md:px-[25px] mt-[50px] justify-center flex flex-col">
         <li
           onClick={handleBuzProfileEdit}
-          className="z-[10] mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]"
+          className="z-[10] mt-[15px] text-[#ffffff] 
+                      text-[12px] less_sm:text-[16px]
+                      hover:text-[#e0d7d7]"
         >
           <button className="flex justify-center items-center">
             <span className="hidden md:block">
@@ -45,7 +62,12 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
             <span>Edit Profile</span>
           </button>
         </li>
-        <li className="z-[10] mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
+        <li
+          className="z-[10] mt-[15px] text-[#ffffff] 
+                    hover:text-[#e0d7d7]
+                    text-[12px] less_sm:text-[16px]
+                    "
+        >
           <div className="flex items-center">
             <span className="hidden md:block">
               <FaStore />
@@ -56,7 +78,7 @@ const Sidebar = ({ item, user, handleBuzProfileEdit }) => {
       </ul>
       <button
         onClick={handleLogout}
-        className="px-[8px] md:px-[25px] m-[80px_0_15px_0] lg:m-[150px_0_0_0] z-[10] text-[#ffffff] hover:text-[#e0d7d7]"
+        className="text-[12px] less_sm:text-[16px] px-[8px] md:px-[25px] m-[80px_0_15px_0] lg:m-[150px_0_0_0] z-[10] text-[#ffffff] hover:text-[#e0d7d7]"
       >
         <div className="flex items-center">
           <span className="hidden md:block">

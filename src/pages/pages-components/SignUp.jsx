@@ -10,10 +10,6 @@ import { useRef } from "react";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
-
   const [values, setValues] = useState({
     email: "",
     password: "",
