@@ -18,10 +18,11 @@ const UpdateStock = () => {
   const [data, setData] = useState(initialState);
   const { company_name } = data;
   const [progress, setProgress] = useState({});
-  const [error, setError] = useState({});
+
   const [file, setFile] = useState(null);
-  const [isSubmit, setIsSubmit] = useState(false);
   console.log(data);
+  const [disAble, setDisAble] = useState(false);
+
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
@@ -61,27 +62,25 @@ const UpdateStock = () => {
   /* The handleFileReader function converts the business logo (image file) to base64 */
 
   const handleChange = (e) => {
+    if (data.length === 0) {
+      setDisAble(true);
+    } else {
+      setDisAble(false);
+    }
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const validates = () => {
-    const error = {};
-    if (!company_name) {
-      error.company_name = "Company Name is required.";
-    }
-    return error;
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // let errors = validates()
-    // if(Object.keys(errors.length)) return setError(errors)
-    setIsSubmit(true);
+    setData(initialState);
+    setFile(null);
+
     await addDoc(collection(db, "stock"), {
       user_id: user.id,
       ...data,
       // timeStamp:sererTimestamp()
     });
-    navigate("/dashboard");
+    // navigate("/dashboard");
   };
 
   return (
@@ -172,7 +171,14 @@ const UpdateStock = () => {
           hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] 
           text-[14px] md:text-[16px] 
            text-gray-100 w-full p-[10px] md:p-5 rounded my-6"
-          disabled={progress !== null && progress < 100}
+          disabled={
+            data.product_Qty <= 0 ||
+            data.product_description === "" ||
+            data.product_name === "" ||
+            data.size === ""
+              ? !disAble
+              : disAble || (progress !== null && progress < 100)
+          }
         >
           CREATE STOCK
         </button>

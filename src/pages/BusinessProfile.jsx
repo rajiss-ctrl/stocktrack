@@ -37,6 +37,8 @@ const BusinessProfile = () => {
       businessName,
       businessAddress,
     });
+    setBusinessAddress("");
+    setBusinessName("");
 
     const imageRef = ref(storage, `businesses/${docRef.id}/image`);
 
@@ -53,10 +55,9 @@ const BusinessProfile = () => {
         });
 
         //Alerts the user that the process was successful
-        alert("Congratulations, you've just created a business profile!");
+        // alert("Congratulations, you've just created a business profile!");
+        navigate("/dashboard");
       });
-
-      navigate("/dashboard");
     }
   };
 

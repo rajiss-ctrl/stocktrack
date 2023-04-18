@@ -83,7 +83,7 @@ const Dashnoard = () => {
   };
 
   return (
-    <div className="h-[100vh] relative flex">
+    <div className="h-[100%] relative flex">
       {/* Side bar toggle */}
       <div
         onClick={toggle}
@@ -114,9 +114,20 @@ const Dashnoard = () => {
         `}
       >
         {buzData.length === 0 ? (
-          <div className="w-[100%] flex flex-col justify-center items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
+          <div className="w-[100%] h-[600px] flex flex-col items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
+            <div
+              onClick={toggle}
+              className={`${
+                isVisible ? "hidden" : "block"
+              } text-[#ffffff] fixed top-[5px] 
+        left-[98px] less_sm:left-[158px] 
+        text-[18px] z-[8] block md:hidden shadow `}
+            >
+              <FaArrowCircleLeft />
+            </div>
+
             <Link to="businessprofile">
-              <h1 className="text-center text-[10px] md:text-[12px]">
+              <h1 className="text-center p-2 md:text-[18px]">
                 Update Business Profile
               </h1>
               <div className="flex justify-center items-center">
@@ -149,7 +160,7 @@ const Dashnoard = () => {
         <div className="p-[10px_10px] md:p-[20px_20px] mt-[0] md:mt-[30px] w-[100%] md:w-[45%] ">
           <Notification />
         </div>
-        <h1 className="font-[Kumbh Sans, sans-serif] font-[400] m-[10px_0]">
+        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] tracking-wide m-[10px_0]">
           Inventory Management
         </h1>
         {product.length === 0 ? (
@@ -161,13 +172,17 @@ const Dashnoard = () => {
           <table className="static md:relative w-[100%] p-[30px] ">
             <thead className="shadow-md rounded h-[40px] sm:h-[50px] bg-white">
               <tr>
-                <th className=" font-[Kumbh Sans, sans-serif] text-[12px] text-[#FFFFFF] bg-[#e3e1e1] md:text-[16px] lg:text-[18px] font-800">
+                <th
+                  className=" font-[Kumbh Sans, sans-serif] 
+                text-[12px] text-[#FFFFFF] bg-[#c2bdbd] shadow-xl 
+                md:text-[16px] lg:text-[18px] font-[800]"
+                >
                   Items
                 </th>
-                <th className=" font-[Kumbh Sans, sans-serif] text-[12px] text-[#FFFFFF] bg-[#b9cfb9] md:text-[16px] lg:text-[18px] font-800 ">
+                <th className="shadow-xl  text-[12px] text-[#FFFFFF] bg-[#b9cfb9] md:text-[16px] lg:text-[18px] font-[800] ">
                   Quantity
                 </th>
-                <th className=" font-[Kumbh Sans, sans-serif] text-[12px] text-[#FFFFFF] bg-[#f6c3c3] md:text-[16px] lg:text-[18px] font-800 ">
+                <th className="shadow-xl  text-[12px] text-[#FFFFFF] bg-[#f6c3c3] md:text-[16px] lg:text-[18px] font-[800] ">
                   Actions
                 </th>
               </tr>
@@ -179,10 +194,10 @@ const Dashnoard = () => {
                     key={item.id}
                     className=" shadow-md hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] text-[12px] lg:text-[18px] font-600">
+                    <td className=" font-[400] pl-[15px] text-[12px] lg:text-[18px] font-600">
                       {item?.product_name}
                     </td>
-                    <td className=" font-[Kumbh Sans, sans-serif] pl-[15px] text-[12px] lg:text-[18px] font-600">
+                    <td className="font-[400]  pl-[15px] text-[12px] lg:text-[18px] font-600">
                       {Number(item?.product_Qty)}{" "}
                       <span>
                         {item?.product_Qty <= 1 ? (

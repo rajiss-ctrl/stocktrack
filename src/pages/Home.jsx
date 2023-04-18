@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="w-[100%] mt-[50px] px-[0]  less_sm:px-[40px] sm:px-[24px] xl:px-[128px] flex flex-col justify-center items-center">
       <div className=" lg:px-[120px] w-[100%] ">
-        <h1 className="text-center px-[15px] md:px-[0] text-[20px] less_sm:text-[24px] md:text-[30px] mb-[0] md:mb-[25px]">
+        <h1 className="text-center px-[15px] md:px-[0] text-[25px] less_sm:text-[34px] mb-[0] md:mb-[25px]">
           Take Control of Your Inventory with Ease - Streamline Your Business
           with Our Stock Control App
         </h1>
@@ -19,12 +19,12 @@ const Home = () => {
         <div className="flex flex-col lg:flex-row lg:justify-between w-[100%] mt-[50px] md:mt-[100px]">
           <div className="w-[100%] lg:w-[55%]  flex items-center">
             <div className=" ">
-              <h2 className="text-[rgb(255,_101,_132)] less_sm:text-[20px] text-[18px] px-[15px] less_sm:px-[24px] lg:px-[0] md:text-[24px] font-[Kumbh Sans, sans-serif]">
+              <h2 className="text-[rgb(255,_101,_132)]  text-[18px] less_sm:text-[24px] px-[15px] less_sm:px-[24px] lg:px-[0] md:text-[24px] font-[Kumbh Sans, sans-serif]">
                 {" "}
                 Are you tired of constantly struggling with inventory tracking,
                 stock levels, and supply chain management?
               </h2>
-              <p className="text-[#343534] mt-[20px] text-[15px] less_sm:text-[16px] md:text-[17px] px-[15px] less_sm:px-[24px] lg:p-[0_20%_0_0]  font-[Kumbh Sans, sans-serif]">
+              <p className="text-[#343534] mt-[20px] text-[15px] less_sm:text-[18px] px-[15px] less_sm:px-[24px] lg:p-[0_20%_0_0]  font-[Kumbh Sans, sans-serif]">
                 Are you constantly worried about stockouts, overstocking, or
                 slow-moving items affecting your business performance? Our{" "}
                 <span className="text-[#b0f328]">stock control app</span> is the

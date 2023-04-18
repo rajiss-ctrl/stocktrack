@@ -5,6 +5,13 @@ import {
   FaEdit,
   FaSignOutAlt,
   FaArrowCircleLeft,
+  FaAddressCard,
+  FaAddressBook,
+  FaRegAddressBook,
+  FaRegAddressCard,
+  FaSearchLocation,
+  FaHome,
+  FaShopware,
 } from "react-icons/fa";
 import { signOut } from "firebase/auth";
 import { auth } from "../db/firebase";
@@ -32,10 +39,10 @@ const Sidebar = ({ item, toggle, isVisible, handleBuzProfileEdit }) => {
       >
         <FaArrowCircleLeft />
       </div>
-      <div className="text-center text-[14px] md:text-[28px] text-[#ffffff] px-[8px]">
+      <div className="text-center font-[800] tracking-wide text-[18px] less_sm:text-[28px] text-[#ffffff] px-[8px]">
         {item?.businessName}
       </div>
-      <div className="w-[100%] text-center justify-center items-center flex flex-col">
+      <div className="w-[100%]  text-center justify-center items-center flex flex-col">
         <div className="w-[70px] md:w-[150px] h-[70px] md:h-[150px] md:shadow justify-center items-center flex rounded-[50%]">
           <img
             className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] drop-shadow-[7px_5px_3px_#FFFFFF] rounded-[50%]"
@@ -43,20 +50,20 @@ const Sidebar = ({ item, toggle, isVisible, handleBuzProfileEdit }) => {
             alt=""
           />
         </div>
-        <h1 className="text-[#e0d7d7] text-center mt-2 w-[140px] md:w-[160px]  text-[14px]">
-          {" "}
+
+        <h1 className="text-white font-[400] tracking-wide text-center mt-2 w-[100%] less_sm:px-[6px]  less_sm:text-[18px]">
           {item?.businessAddress}
         </h1>
       </div>
-      <ul className="w-[100%] text-[12px] md:text-[16px] px-[8px] md:px-[25px] mt-[50px] justify-center flex flex-col">
+      <ul className="w-[100%] less_sm:text-[18px] px-[8px] md:px-[25px] mt-[50px] justify-center flex flex-col">
         <li
           onClick={handleBuzProfileEdit}
           className="z-[10] mt-[15px] text-[#ffffff] 
-                      text-[12px] less_sm:text-[16px]
+                      less_sm:text-[18px]
                       hover:text-[#e0d7d7]"
         >
-          <button className="flex justify-center items-center">
-            <span className="hidden md:block">
+          <button className="flex font-[400] tracking-wide gap-[5px] justify-center less_sm:text-[18px] items-center">
+            <span className="hidden text-green-300 md:block">
               <FaEdit />
             </span>
             <span>Edit Profile</span>
@@ -65,23 +72,67 @@ const Sidebar = ({ item, toggle, isVisible, handleBuzProfileEdit }) => {
         <li
           className="z-[10] mt-[15px] text-[#ffffff] 
                     hover:text-[#e0d7d7]
-                    text-[12px] less_sm:text-[16px]
+                    less_sm:text-[18px]
                     "
         >
-          <div className="flex items-center">
-            <span className="hidden md:block">
+          <div
+            className="flex gap-[5px] items-center 
+                          font-[400]
+                          less_sm:text-[18px]
+                          tracking-wide
+                          "
+          >
+            <span className="hidden text-green-300 less_sm:block">
               <FaStore />
             </span>
             <NavLink to="/stock">Stock</NavLink>
           </div>
         </li>
+        <li
+          className="z-[10] mt-[15px] text-[#ffffff] 
+                    hover:text-[#e0d7d7]
+                    less_sm:text-[18px]
+                    "
+        >
+          <div
+            className="flex gap-[5px] items-center 
+                          font-[400]
+                          less_sm:text-[18px]
+                          tracking-wide
+                          "
+          >
+            <span className="hidden text-green-300 less_sm:block">
+              <FaHome />
+            </span>
+            <NavLink to="/">Home</NavLink>
+          </div>
+        </li>
+        <li
+          className="z-[10] mt-[15px] text-[#ffffff] 
+                    hover:text-[#e0d7d7]
+                    less_sm:text-[18px]
+                    "
+        >
+          <div
+            className="flex gap-[5px] items-center 
+                          font-[400]
+                          less_sm:text-[18px]
+                          tracking-wide
+                          "
+          >
+            <span className="hidden text-green-300 less_sm:block">
+              <FaShopware />
+            </span>
+            <NavLink to="/">Update Stock</NavLink>
+          </div>
+        </li>
       </ul>
       <button
         onClick={handleLogout}
-        className="text-[12px] less_sm:text-[16px] px-[8px] md:px-[25px] m-[80px_0_15px_0] lg:m-[150px_0_0_0] z-[10] text-[#ffffff] hover:text-[#e0d7d7]"
+        className="less_sm:text-[18px] px-[8px] md:px-[25px] m-[80px_0_15px_0] lg:m-[150px_0_20px_0] z-[10] text-[#ffffff] hover:text-[#e0d7d7]"
       >
-        <div className="flex items-center">
-          <span className="hidden md:block">
+        <div className="flex font-[400] tracking-wide gap-[5px] items-center">
+          <span className="hidden text-[red] less_sm:block">
             <FaSignOutAlt />
           </span>
           <NavLink to="/stock">log Out</NavLink>

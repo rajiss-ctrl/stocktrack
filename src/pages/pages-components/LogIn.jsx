@@ -33,7 +33,7 @@ const LogIn = () => {
                     justify-center mt-[60px]"
     >
       <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] shadow">
-        <p className="text-[#000007]">Log in to your dashboard</p>
+        <p className="text-[#000007] text-[18px]">Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}

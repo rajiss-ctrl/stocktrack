@@ -8,13 +8,14 @@ import FormInput from "../../components/FormInput";
 import { useRef } from "react";
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [values, setValues] = useState({
+  const initialState = {
     email: "",
     password: "",
     confirmPassword: "",
-  });
+  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [values, setValues] = useState(initialState);
 
   const inputs = [
     {
@@ -78,6 +79,7 @@ const SignUp = () => {
 
         // ..
       });
+    setValues(initialState);
   };
 
   const onChange = (e) => {
@@ -87,7 +89,7 @@ const SignUp = () => {
   return (
     <main className="w-full  flex flex-col items-center justify-center mt-[60px] ">
       <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] bg-[#ffffff] shadow">
-        <p className="text-[#000007]">Register here</p>
+        <p className="text-[#000007] text-[18px]">Register here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
