@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/stocktrack/static/css/main.05dc525b.css",
-    "main.js": "/stocktrack/static/js/main.4e968e07.js",
+    "main.css": "/stocktrack/static/css/main.fa1819c4.css",
+    "main.js": "/stocktrack/static/js/main.a62e02a0.js",
     "static/js/787.21409dba.chunk.js": "/stocktrack/static/js/787.21409dba.chunk.js",
     "static/media/error.png": "/stocktrack/static/media/error.c2945f0186d1b6c59b77.png",
     "static/media/login.svg": "/stocktrack/static/media/login.c6defa285a23333ab02d2139245b46eb.svg",
     "index.html": "/stocktrack/index.html",
-    "main.05dc525b.css.map": "/stocktrack/static/css/main.05dc525b.css.map",
-    "main.4e968e07.js.map": "/stocktrack/static/js/main.4e968e07.js.map",
+    "main.fa1819c4.css.map": "/stocktrack/static/css/main.fa1819c4.css.map",
+    "main.a62e02a0.js.map": "/stocktrack/static/js/main.a62e02a0.js.map",
     "787.21409dba.chunk.js.map": "/stocktrack/static/js/787.21409dba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.05dc525b.css",
-    "static/js/main.4e968e07.js"
+    "static/css/main.fa1819c4.css",
+    "static/js/main.a62e02a0.js"
   ]
 }
