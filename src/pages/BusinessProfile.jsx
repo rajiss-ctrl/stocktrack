@@ -31,14 +31,15 @@ const BusinessProfile = () => {
   /* The handleSubmit function sends the form details to Firestore */
   const handleSubmit = async (e) => {
     e.preventDefault(); //prevents the page from refreshing
+    setBusinessAddress("");
+    setBusinessName("");
+    navigate("/dashboard");
 
     const docRef = await addDoc(collection(db, "businesses"), {
       user_id: user.id,
       businessName,
       businessAddress,
     });
-    setBusinessAddress("");
-    setBusinessName("");
 
     const imageRef = ref(storage, `businesses/${docRef.id}/image`);
 
@@ -56,7 +57,6 @@ const BusinessProfile = () => {
 
         //Alerts the user that the process was successful
         // alert("Congratulations, you've just created a business profile!");
-        navigate("/dashboard");
       });
     }
   };

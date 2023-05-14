@@ -1,10 +1,10 @@
 import React from "react";
 import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import Logo from "../assets/images/logo.png";
+import Logo from "../assets/images/stock.jpg";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="w-[100%] font-[200] min-h-[250px] bg-[black]">
+    <div className="w-[100%] mt-[0] font-[200] bg-[#d4b974]">
       <div
         className="flex flex-col less_sm:flex-row 
                 less_sm:justify-between mt-[50px]
@@ -12,7 +12,7 @@ const Footer = () => {
       >
         <Link to="/">
           <img
-            className="w-[130px] h-[30px] sm:w-[200px] sm:h-[50px]"
+            className="w-[70px] h-[30px] sm:w-[100px] sm:h-[50px]"
             src={Logo}
             alt="logo"
           />

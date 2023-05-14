@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { db } from "../db/firebase";
-import Logo from "../assets/images/default-logo.png";
+
 import { useToggle } from "../custom-hooks/useToggle";
 import Sidebar from "../components/Sidebar";
 import StockEdit from "../components/StockEdit";
@@ -13,10 +13,12 @@ import Editbuz from "./pages-components/Editbuz";
 import {
   FaArrowCircleLeft,
   FaArrowCircleRight,
+  FaBars,
   FaEdit,
   FaTrash,
   FaUpload,
 } from "react-icons/fa";
+import DashboardBar from "../components/DashboardBar";
 // https://dev.to/shashannkbawa/deploying-vite-app-to-github-pages-3ane
 
 const Dashnoard = () => {
@@ -32,6 +34,7 @@ const Dashnoard = () => {
   const [showPrompt, setShowPrompt] = useState(-1);
   //for business profile edit
   const [showEdit, setShowEdit] = useState(false);
+  const [open, setOpen] = useState(false);
   const handleBuzProfileEdit = () => {
     setShowEdit(!showEdit);
   };
@@ -81,20 +84,15 @@ const Dashnoard = () => {
     }
     setShowPrompt(index);
   };
-
+  // open and close sidebar
+  const handleOpen = () => {
+    setOpen(!open);
+  };
   return (
-    <div className="h-[100%] relative flex">
-      {/* Side bar toggle */}
-      <div
-        onClick={toggle}
-        className={`${
-          isVisible ? "left-[0px]" : "hidden"
-        } fixed top-[0] bg-[green] text-[white] z-[8] text-[18px] block md:hidden shadow-lg`}
-      >
-        <FaArrowCircleRight />
-      </div>
+    <div className="min-h-[600px] bg-[#f6f6f6] relative flex">
       {/* SideBar Items */}
-      {showEdit ? (
+
+      {/* {showEdit ? (
         <div
           className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
         >
@@ -102,15 +100,15 @@ const Dashnoard = () => {
         </div>
       ) : (
         <></>
-      )}
+      )} */}
 
       {/* If the user had not update his profile the sidebar should look like this */}
-      <div
+      {/* <div
         className={`${
           isVisible ? "hidden" : "block"
         } fixed z-[6] top-[0] md:static  
         w-[120px] less_sm:w-[180px] lg:w-[200px]  
-        bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]  
+        bg-[#000904]  
         `}
       >
         {buzData.length === 0 ? (
@@ -139,29 +137,61 @@ const Dashnoard = () => {
               </div>
             </Link>
           </div>
-        ) : (
-          //  when the user had updated the business profile the sidebar should have this
-          buzData.map((item) => {
-            return (
-              <div key={item.id} className=" flex flex-col">
-                <Sidebar
-                  item={item}
-                  user={user}
-                  handleBuzProfileEdit={handleBuzProfileEdit}
-                  toggle={toggle}
-                  isVisible={isVisible}
-                />
-              </div>
-            );
-          })
-        )}
+        ) : ( */}
+      {/* when the user had updated the business profile the sidebar should have this */}
+      {/* buzData.map((item) => {
+          return (
+             <div key={item.id} className=" flex flex-col">
+               <Sidebar
+                 item={item}
+                 user={user}
+                 handleBuzProfileEdit={handleBuzProfileEdit}
+                   toggle={toggle}
+               isVisible={isVisible}
+                 />
+               </div>
+             );
+           })
+         )}
+       </div> */}
+
+      {showEdit ? (
+        <div
+          className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
+        >
+          <Editbuz handleBuzProfileEdit={handleBuzProfileEdit} />
+        </div>
+      ) : (
+        <></>
+      )}
+
+      <div
+        className={`${
+          open ? " md:w-20" : " w-[60%] md:w-72"
+        } h-[100%] absolute top-0 left-0 md:static`}
+      >
+        <Sidebar
+          user={user}
+          handleBuzProfileEdit={handleBuzProfileEdit}
+          handleOpen={handleOpen}
+          open={open}
+          setOpen={setOpen}
+          isVisible={isVisible}
+        />
       </div>
-      <div className="w-[100%] md:w-[80%] px-[5%]">
-        <div className="p-[10px_10px] md:p-[20px_20px] mt-[0] md:mt-[30px] w-[100%] md:w-[45%] ">
+
+      <div
+        className={`${
+          open ? "w-full md:w-[95%]" : "w-full md:w-[90%]"
+        }  px-[5%]`}
+      >
+        <DashboardBar />
+
+        <div className="  mt-[0] md:mt-[30px] w-full ">
           <Notification />
         </div>
-        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] tracking-wide m-[10px_0]">
-          Inventory Management
+        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] tracking-wide text-lg text-dark-purple m-[10px_0]">
+          Dashboard
         </h1>
         {product.length === 0 ? (
           <h1 className="text-[green]">
@@ -174,30 +204,30 @@ const Dashnoard = () => {
               <tr>
                 <th
                   className=" font-[Kumbh Sans, sans-serif] 
-                text-[12px] text-[#FFFFFF] bg-[#c2bdbd] shadow-xl 
-                md:text-[16px] lg:text-[18px] font-[800]"
+                 text-[#FFFFFF] bg-[#c2bdbd] shadow-xl 
+                text-sm sm:text-lg font-[800]"
                 >
                   Items
                 </th>
-                <th className="shadow-xl  text-[12px] text-[#FFFFFF] bg-[#b9cfb9] md:text-[16px] lg:text-[18px] font-[800] ">
+                <th className="shadow-xl text-sm sm:text-lg text-[#FFFFFF] bg-[#b9cfb9] font-[800] ">
                   Quantity
                 </th>
-                <th className="shadow-xl  text-[12px] text-[#FFFFFF] bg-[#f6c3c3] md:text-[16px] lg:text-[18px] font-[800] ">
+                <th className="shadow-xl text-sm sm:text-lg text-[#FFFFFF] bg-[#f6c3c3] font-[800] ">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="">
+            <tbody className="text-sm sm:text-[1rem]">
               {product.map((item, index) => {
                 return (
                   <tr
                     key={item.id}
                     className=" shadow-md hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className=" font-[400] pl-[15px] text-[12px] lg:text-[18px] font-600">
+                    <td className=" font-[00] pl-[15px] text-sm sm:text-[1rem]  font-600">
                       {item?.product_name}
                     </td>
-                    <td className="font-[400]  pl-[15px] text-[12px] lg:text-[18px] font-600">
+                    <td className="font-[400]  pl-[15px] text-sm sm:text-[1rem] font-600">
                       {Number(item?.product_Qty)}{" "}
                       <span>
                         {item?.product_Qty <= 1 ? (
@@ -207,15 +237,15 @@ const Dashnoard = () => {
                         )}
                       </span>
                     </td>
-                    <td className=" font-[Kumbh Sans, sans-serif] lg:text-[18px] font-600">
+                    <td className=" font-[Kumbh Sans, sans-serif] font-600">
                       <div className="flex justify-between">
                         <button
                           onClick={() => handleEdit(index)}
-                          className="w-[50%] text-[12px] sm:text-[15px] cursor-pointer flex justify-center items-center  text-[green]"
+                          className="w-[50%] cursor-pointer flex justify-center items-center  text-[green]"
                         >
                           <FaEdit />
                         </button>
-                        <div className="cursor-pointer text-[12px] sm:text-[15px] w-[50%] flex justify-center items-center  text-[red]">
+                        <div className="cursor-pointer w-[50%] flex justify-center items-center  text-[red]">
                           <span onClick={() => handleConfirmPromt(index)}>
                             <FaTrash />
                           </span>

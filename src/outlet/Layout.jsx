@@ -5,8 +5,8 @@ import NavBar from "../components/NavBar";
 
 const Layout = () => {
   return (
-    <div className="h-[100%]">
-      <NavBar />
+    <div className="flex flex-col justify-center min-[100vh]">
+      {/* <NavBar /> */}
       <Outlet />
       <Footer />
     </div>

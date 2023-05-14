@@ -65,7 +65,7 @@ function App() {
   }, [user.id]);
 
   return (
-    <div className="font-[Kumbh Sans] h-[100%]">
+    <div className="font-[Kumbh Sans]">
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route index element={<Home />} />

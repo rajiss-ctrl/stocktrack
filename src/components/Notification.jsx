@@ -24,35 +24,60 @@ const Notification = () => {
     <div
       className={`${
         isNotificationVisible === true ? "hidden" : "block"
-      } bg-[#c9eec9] w-[100%] px-[10px] md:p-[10px]`}
+      } w-full bg-transparent flex flex-col md:flex-row items-center gap-4`}
     >
-      <div className="flex justify-between">
-        <h1 className="text-[red] p-[10px] font-[800]">NOTIFICATION</h1>
-        <button
-          onClick={handleCloseNotification}
-          className={` text-[red] p-[10px]`}
-        >
-          <FaTimes />
-        </button>
-      </div>
-      {product.map((item) => {
+      {product.map((item, index) => {
         return (
-          <div key={item.id} className=" ">
-            <div className="">
-              <h1 className="text-[red] font-[600] ">
-                {item?.product_Qty < 20 ? (
-                  <p>
-                    {" "}
-                    <span className="font-[800] text-[#646cff]">
+          <div
+            key={item.id}
+            className={`shadow rounded bg-white w-[100%] md:w-[25%] lg:w-[22%] cursor-pointer p-[.8rem_.5rem]  ${
+              item?.product_Qty < 20
+                ? "border-l-[0.2em] border-[red]"
+                : "border-l-[0.2em] border-[yellow]"
+            } ${item?.product_Qty >= 100 && "hidden"} `}
+          >
+            <h1 className="text-[red] font-[400] ">
+              {item?.product_Qty <= 50 && (
+                <div className="">
+                  <div className="flex items-center gap-[3px]">
+                    <img
+                      className="w-[1.8rem] h-[1.8rem] rounded-[50%]"
+                      src={item.img}
+                      alt="product"
+                    />
+                    <span className="font-[400] text-[#000]">
                       {item?.product_name}
-                    </span>{" "}
-                    is running low! [{item?.product_Qty}]{" "}
+                    </span>
+                  </div>
+                  <p>
+                    <span>
+                      {item?.product_Qty === 0 ? (
+                        <span className="text-sm">is empty</span>
+                      ) : (
+                        <span className="text-sm">is running low</span>
+                      )}{" "}
+                    </span>
+                    <span
+                      className={`${
+                        item?.product_Qty < 20
+                          ? "text-white  bg-[red]"
+                          : "text-[#000] bg-[yellow]"
+                      } shadow-sm md:shadow-lg text-sm p-[0.2rem_0.3rem] rounded font-[400]`}
+                    >
+                      {item?.product_Qty <= 1 ? (
+                        <span>
+                          {item?.product_Qty} {item?.size}
+                        </span>
+                      ) : (
+                        <span>
+                          {item?.product_Qty} {item?.size}s
+                        </span>
+                      )}
+                    </span>
                   </p>
-                ) : (
-                  <></>
-                )}
-              </h1>
-            </div>
+                </div>
+              )}
+            </h1>
           </div>
         );
       })}

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../db/firebase";
 import { setUser } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
+import { FaAt, FaEye, FaVoicemail } from "react-icons/fa";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -32,49 +33,75 @@ const LogIn = () => {
       className="w-full flex flex-col items-center 
                     justify-center mt-[60px]"
     >
-      <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] shadow">
+      <div className="w-[90%] md:w-[80%] p-[10px] less_sm:p-[20px]">
         <p className="text-[#000007] text-[18px]">Log in to your dashboard</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
         >
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            className="w-[100%] mb-3  
-            border border-[#e7e6e6]           
-            outline-[0] border-[none] 
-            rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
-            text-[#808080] text-[14px] lg:text-[18px] 
+          <div
+            className=" mb-3 flex 
+             border-b-[1px] border-[#93b4a1]           
+            outline-none
+            w-[100%] h-[42px] sm:h-[54px] 
+            text-[#000] text-[14px] lg:text-[18px] 
             p-[13px] 
             "
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            id="password"
-            type="password"
-            placeholder="Password"
-            className="w-[100%] mb-3  
-            border border-[#e7e6e6]           
-            outline-[0] border-[none] 
-            rounded less_sm:rounded-[8px] w-[100%] h-[42px] sm:h-[54px] 
-            text-[#808080] text-[14px] lg:text-[18px] 
+          >
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              className=" mb-3  
+             border-none          
+            outline-none
+            w-[100%] h-[98%]  
+            text-[#000] text-[14px] lg:text-[18px] 
             p-[13px] 
             "
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <span className="text-[#93b4a1]">
+              <FaAt />
+            </span>
+          </div>
+          <div
+            className=" mb-3 flex 
+             border-b-[1px] border-[#93b4a1]           
+            outline-none
+            w-[100%] h-[42px] sm:h-[54px] 
+            text-[#000] text-[14px] lg:text-[18px] 
+            p-[13px] 
+            "
+          >
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              className=" mb-3  
+             border-none          
+            outline-none
+            w-[100%] h-[98%]  
+            text-[#000] text-[14px] lg:text-[18px] 
+            p-[13px] 
+            "
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span className="text-[#93b4a1]">
+              <FaEye />
+            </span>
+          </div>
 
           <button
             type="submit"
-            className="w-[200px] h-[40px] less_sm:h-[45px] 
+            className="w-[100%] less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
                     rounded  
-                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] text-[#FFFFFF]
-                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
+                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#000_-56.25deg,_#fff_37.5deg,_#f7c100_191.25deg,_#000_303.75deg,_#f7c100_397.5deg)] text-[#FFFFFF]
+                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f7c100_-56.25deg,_#f7c100_37.5deg,_#000_191.25deg,_#f7c100_303.75deg,_#000_397.5deg)]
                     "
           >
             SIGN IN
