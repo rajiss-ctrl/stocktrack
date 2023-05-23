@@ -40,6 +40,7 @@ const Dashnoard = () => {
   };
   // function to add to stcok
   const handleMinus = async (id, qty) => {
+    setNewStock("");
     const newFileds = { product_Qty: Number(qty) - Number(newStock) };
     const taskDocRef = doc(db, "stock", id);
     try {
@@ -50,6 +51,7 @@ const Dashnoard = () => {
   };
   // function to minus to stcok
   const handleAddItem = async (id, qty) => {
+    setNewStock("");
     const newFileds = { product_Qty: Number(qty) + Number(newStock) };
     const taskDocRef = doc(db, "stock", id);
     try {
@@ -60,6 +62,7 @@ const Dashnoard = () => {
   };
   // delete from stock
   const handleDeleteItem = async (id) => {
+    setNewStock("");
     const taskDocRef = doc(db, "stock", id);
     try {
       await deleteDoc(taskDocRef);
@@ -159,7 +162,7 @@ const Dashnoard = () => {
         <div
           className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
         >
-          <Editbuz handleBuzProfileEdit={handleBuzProfileEdit} />
+          <Editbuz handleBuzProfileEdit={handleBuzProfileEdit} open={open} />
         </div>
       ) : (
         <></>
@@ -168,7 +171,7 @@ const Dashnoard = () => {
       <div
         className={`${
           open ? " md:w-20" : " w-[60%] md:w-72"
-        } h-[100%] absolute top-0 left-0 md:static`}
+        } duration-300 h-[100%] absolute top-0 left-0 md:static`}
       >
         <Sidebar
           user={user}
@@ -182,21 +185,27 @@ const Dashnoard = () => {
 
       <div
         className={`${
-          open ? "w-full md:w-[95%]" : "w-full md:w-[90%]"
-        }  px-[5%]`}
+          open ? "w-full md:w-[95%] " : "w-full md:w-[90%]"
+        } px-[5%]`}
       >
         <DashboardBar />
 
         <div className="  mt-[0] md:mt-[30px] w-full ">
           <Notification />
         </div>
-        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] tracking-wide text-lg text-dark-purple m-[10px_0]">
+        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] text-2xl text-dark-purple m-[10px_0]">
           Dashboard
         </h1>
         {product.length === 0 ? (
-          <h1 className="text-[green]">
+          <h1 className="text-[#2c5b2c] text-sm md:text-xl">
             Welcome <span className="text-[red]">{user.email}</span>! Navigate
-            To update store to stock your products.
+            To{" "}
+            <Link className="text-[blue]" to="/updatestock">
+              {" "}
+              Stock update
+            </Link>{" "}
+            to stock your products and click on left top logo icon to update
+            your business profile.
           </h1>
         ) : (
           <table className="static md:relative w-[100%] p-[30px] ">

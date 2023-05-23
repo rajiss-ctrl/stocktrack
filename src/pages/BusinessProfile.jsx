@@ -62,8 +62,8 @@ const BusinessProfile = () => {
   };
 
   return (
-    <div className="w-[100%] md:w-[400px] md:h-[500px]  md:p-8 md:w-2/3 md:shadow mx-auto mt-8 rounded p-3 my-8">
-      <h3 className="text-center font-bold text-xl mb-6">
+    <div className="w-[100%] md:h-[500px]  md:p-8 md:w-2/3 md:shadow mx-auto mt-8 rounded p-3 my-8">
+      <h3 className="text-center font-bold text-xl text-dark-purple mb-6">
         Setup Business Profile
       </h3>
 
@@ -72,7 +72,7 @@ const BusinessProfile = () => {
         <input
           type="text"
           required
-          className="py-2 px-4 bg-[rgb(250,_228,_232)] w-full mb-6 capitalize rounded"
+          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
           id="businessName"
           value={user.displayName ? user.displayName : businessName}
           placeholder={`${
@@ -83,7 +83,7 @@ const BusinessProfile = () => {
         <input
           type="text"
           required
-          className="py-2 px-4 bg-[rgb(250,_228,_232)] w-full mb-6 capitalize rounded"
+          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
           id="businessAddress"
           value={businessAddress}
           placeholder="Business Address"
@@ -111,10 +111,8 @@ const BusinessProfile = () => {
         </div>
 
         <button
-          className="hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#b0f328_-56.25deg,_#f79daf_37.5deg,_#ff6584_191.25deg,_#ff6584_303.75deg,_#f79daf_397.5deg)] text-[#FFFFFF]
-                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f79daf_-56.25deg,_#b0f328_37.5deg,_#ff6584_191.25deg,_#f79daf_303.75deg,_#ff6584_397.5deg)]
-                        text-[14px] 
-                        md:text-[16px] text-gray-100 w-full p-[10px] 
+          className="hover:bg-dark-purp-hover bg-dark-purple
+                        text-xl md:text-sm text-gray-100 w-full p-[10px] 
                         md:p-5 rounded my-6"
         >
           COMPLETE PROFILE

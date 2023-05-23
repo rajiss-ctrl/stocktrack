@@ -21,7 +21,7 @@ const StockEdit = ({
         <input
           type="number"
           name="stock"
-          className="py-2 px-4 bg-[rgb(250,_228,_232)] text-[11px] sm:text-[14px] w-full mb-6 rounded"
+          className="py-2 px-4  text-[11px] outline-none border sm:text-sm w-full mb-6 rounded"
           onChange={(e) => setNewStock(e.target.value)}
           placeholder="Item Qty"
         />
@@ -29,19 +29,19 @@ const StockEdit = ({
       <div className="flex justify-between">
         <button
           onClick={() => handleEdit(index)}
-          className="rounded text-[11px] sm:text-[14px] border border-[1px solid] border-[red] p-[5px_8px] text-[red]"
+          className="rounded text-[11px] sm:text-sm border border-[1px solid] border-[red] p-[5px_8px] text-[red]"
         >
           cancel
         </button>
         <button
           onClick={() => handleAddItem(item.id, item?.product_Qty)}
-          className="rounded text-[11px] sm:text-[14px] border border-[1px solid] bg-[green] p-[5px_8px] text-[#ffffff]"
+          className="rounded text-[11px] sm:text-[14px] border border-[1px solid] bg-[green] p-[5px_10px] text-[#ffffff]"
         >
           Add Stock
         </button>
         <button
           onClick={() => handleMinus(item.id, item?.product_Qty)}
-          className="rounded text-[11px] sm:text-[14px] border border-[1px solid] bg-[#000000] p-[5px_8px] text-[#ffffff]"
+          className="rounded text-[11px] sm:text-sm border border-[1px solid] bg-dark-purple p-[8px_8px] text-[#ffffff]"
         >
           Minus Sales
         </button>

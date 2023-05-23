@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { db } from "../../db/firebase";
 
-const Editbuz = ({ handleBuzProfileEdit }) => {
+const Editbuz = ({ handleBuzProfileEdit, open }) => {
   const buzData = useSelector((store) => store.buz.buzProfileData);
 
   const [buz, setBuz] = useState("");
@@ -12,6 +12,8 @@ const Editbuz = ({ handleBuzProfileEdit }) => {
 
   const handleUpdate = async (id) => {
     const taskDocRef = doc(db, "businesses", id);
+    setBuz("");
+    setAddress("");
     try {
       await updateDoc(taskDocRef, {
         businessName: buz,
@@ -23,7 +25,11 @@ const Editbuz = ({ handleBuzProfileEdit }) => {
   };
 
   return (
-    <div className="z-[4] p-[30px] text-sm sm:text-[1rem] absolute left-[18px] sm:left-[200px] lg:left-[250px] w-[90%] sm:w-[60%] lg:w-[30%] top-[60px] lg:top-[80px] shadow bg-[#FFFFFF]">
+    <div
+      className={`z-[4] p-[30px] text-sm sm:text-[1rem] absolute left-6 sm:left-60 ${
+        !open ? "lg:left-72" : "lg:left-32"
+      } duration-300  w-[90%] sm:w-[60%] lg:w-[30%] top-[60px] lg:top-[80px] shadow bg-[#FFFFFF]`}
+    >
       {buzData?.map((item) => {
         return (
           <div
@@ -34,29 +40,23 @@ const Editbuz = ({ handleBuzProfileEdit }) => {
             <h1 className="m-[10px_0]">Update Business Profile</h1>
             <input
               type="text"
-              className="
-                                  w-[100%] mb-3  
-                                  border bg-[rgb(250,_228,_232)]
-                                  outline-[0] border-[none] 
+              className="w-[100%] mb-3 border
+                                  outline-[0] border 
                                   rounded-[8px]  h-[40px] 
-                                  text-[#808080] text-[14px] 
+                                  text-[#808080] text-sm 
                                   font-[200] p-[13px] 
-                                  leading-[24px]
                                   "
               placeholder={`Edit ${item.businessName} Buz Name?`}
               onChange={(e) => setBuz(e.target.value)}
             />
             <input
               type="text"
-              className="
-                                  w-[100%] mb-3  
-                                  border bg-[rgb(250,_228,_232)]
-                                  outline-[0] border-[none] 
-                                  rounded-[8px]  h-[40px] 
-                                  text-[#808080] text-[14px] 
-                                  font-[200] p-[13px] 
-                                  leading-[24px]
-                                  "
+              className="w-[100%] mb-3 border
+                        outline-[0] border 
+                        rounded-[8px]  h-[40px] 
+                        text-[#808080] text-sm 
+                        font-[200] p-[13px] 
+                        "
               placeholder={`Edit Business Address`}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -69,7 +69,7 @@ const Editbuz = ({ handleBuzProfileEdit }) => {
               </button>
               <button
                 onClick={() => handleUpdate(item?.id)}
-                className="bg-[rgb(255,_101,_132)] text-white rounded-[4px] p-[4px_10px]"
+                className="bg-dark-purple text-white rounded-[4px] p-[4px_10px]"
               >
                 Edit
               </button>

@@ -20,7 +20,7 @@ function Home() {
   return (
     <div className="bg-[#002c12]  overflow-hidden">
       <NavBar />
-      <div className=" w-full hero-bg  relative">
+      <div className=" w-full relative">
         <div className=" w-full  flex  items-center flex-col min-h-[400px]">
           <div className="container mx-auto px-4 pt-[3rem] less_sm:pt-14  md:pt-16 lg:pt-32">
             <h1 className="text-[1.5rem] less_sm:text-[2.5rem]  md:text-5xl font-bold text-center text-[rgb(247,_193,_0)] mb-6">

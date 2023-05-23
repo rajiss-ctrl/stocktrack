@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "dark-purple": "#081A51",
         "light-white": "rgba(225,225,225,0.17)",
+        "dark-purp-hover": "#213a84",
       },
       backgroundImage: {
         "home-texture": "url('./assets/images/bg.png')",
