@@ -2,102 +2,118 @@
 import { FaStore, FaOpencart, FaTimes, FaBars } from "react-icons/fa";
 import { RiDashboardFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
-import Logo from "../assets/images/stock.jpg";
+import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useToggle } from "../custom-hooks/useToggle";
 
 const NavBar = () => {
+  const location = useLocation();
+  const currentRoutePath = location.pathname;
+  console.log(currentRoutePath);
   const user = useSelector((store) => store.user.user);
   const [isVisible, toggle] = useToggle();
   //style={({isActive})=> isActive ? {borderBottom:'2px solid red'} : {borderBottom:'none'} }
   return (
     <nav
       className="static z-[20px] overflow-hidden top-0 
-    bg-transparent px-[20px] less_sm:px-10"
+    bg-transparent px-[20px] less_sm:px-10 text-white"
     >
       <div
         className={`${
           isVisible ? "h-[200px]" : "h-[auto]"
         } relative md:static  flex md:items-center  font-[400]
-        justify-between py-[5px] sm:py-[0] rounded-full shadow-lg`}
+        justify-between py-[5px] sm:py-0 rounded-full`}
       >
         <NavLink to="/">
-          <div className="pt-[12.6px] less_sm:pt-[0]">
-            <img className="w-[50px] less_sm:w-[70px]" src={Logo} alt="logo" />
+          <div className="">
+            {/* <img className="w-[50px] less_sm:w-[70px]" src={Logo} alt="logo" /> */}
+            <div
+              className={`${
+                currentRoutePath != "/" ? "text-black" : "text-white"
+              } text-2xl shadow-lg  font-[400] sm:font-[600]`}
+            >
+              <h2>
+                <span className="text-[rgb(247,_193,_0)]">S</span>tock
+                <span className="text-[rgb(247,_193,_0)]">T</span>rack
+              </h2>
+            </div>
           </div>
         </NavLink>
 
         <ul
-          className={`${isVisible ? "block" : "hidden"} ' w-[100%] md:w-[auto] 
-          absolute md:static left-[0px] top-[50px] 
+          className={`${isVisible ? "block" : "hidden"} ${
+            currentRoutePath != "/" ? "text-dark-purple" : "text-white"
+          } ' w-[100%] md:w-[auto] 
+          absolute duration-300 md:static left-[0px] top-[50px] 
            md:flex md:justify-center items-center  
-            sm:gap-[0] md:gap-[20px]  text-[#FFFFFF] `}
+            sm:gap-[0] md:gap-[20px] text-2xl sm:text-xl   `}
         >
           <li
-            className="list-[none]  less_sm:text-[18px]
+            className="list-[none]  
           w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
           md:hover:border-b-4 
-          md:hover:border-[#b0f328] md:hover:text-[#fff] 
+          md:hover:border-[rgb(247,_193,_0)] hover:text-[#c6b9b9] 
           py-[6px] md:py-[24px]"
           >
-            <NavLink to="/" className="font-[400] less_sm:text-[18px]">
-              Home
-            </NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li
-            className="list-[none]  less_sm:text-[18px]
+            className="list-[none]
           w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
           md:hover:border-b-4 
-          md:hover:border-[#b0f328] md:hover:text-[#fff] 
+          md:hover:border-[rgb(247,_193,_0)] hover:text-[#c6b9b9] 
           py-[6px] md:py-[24px]"
           >
             {user.id ? (
               <Link to="/updatestock">Update Store</Link>
             ) : (
-              <a href="#login" className="less_sm:text-[18px]">
-                Sign Up
-              </a>
+              <a href="#signup">Sign Up</a>
             )}
           </li>
           <li
-            className="list-[none]  less_sm:text-[18px]
+            className="list-[none]
           w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
            md:hover:border-b-4 
-          md:hover:border-[#b0f328] md:hover:text-[#fff] 
+          md:hover:border-[rgb(247,_193,_0)] hover:text-[#c6b9b9] 
           py-[6px] md:py-[24px]"
           >
             {user.id ? (
               <NavLink to="/dashboard">Dashboard</NavLink>
             ) : (
-              <a href="#login" className="less_sm:text-[18px]">
-                SignIn
-              </a>
+              <a href="#signup">SignIn</a>
             )}
           </li>
         </ul>
         <div className="flex h-[40px] md:h-[auto] items-center gap-[18px]">
-          <div className="cursor-[pointer] text-[20px] less_sm:text-[21px] text-[#FFFFFF]">
+          <div
+            className={`${
+              currentRoutePath != "/" ? "text-dark-purple" : "text-white"
+            } cursor-[pointer] text-[20px] less_sm:text-[21px]`}
+          >
             <NavLink to="/dashboard">
               <RiDashboardFill />
             </NavLink>
           </div>
           <div
-            className="cursor-[pointer] text-[20px] 
-          less_sm:text-[21px] text-[#FFFFFF]"
+            className={`${
+              currentRoutePath != "/" ? "text-dark-purple" : "text-white"
+            } cursor-[pointer] text-[20px] less_sm:text-[21px]`}
           >
             <FaOpencart />
           </div>
         </div>
         <div
-          className="  h-[35px] w-[35px] 
+          className={`${
+            currentRoutePath != "/" ? "text-dark-purple" : "text-white"
+          } h-[35px] w-[35px] 
          text-[#999999] md:hidden 
-        md:h-[auto] flex items-center justify-center"
+        md:h-[auto] flex items-center justify-center`}
         >
           <div
             onClick={toggle}
             className={`${
               isVisible ? "block" : "hidden"
-            } font-[400] text-[17px] less_sm:text-[24px] cursor-pointer`}
+            } font-[400] duration-300 text-[17px] less_sm:text-[24px] cursor-pointer`}
           >
             <FaTimes />
           </div>
@@ -105,7 +121,7 @@ const NavBar = () => {
             onClick={toggle}
             className={`${
               isVisible ? "hidden" : "block"
-            } font-[400] text-[17px] less_sm:text-[24px] cursor-pointer`}
+            } font-[400] duration-300 text-[17px] less_sm:text-[24px] cursor-pointer`}
           >
             <FaBars />
           </div>

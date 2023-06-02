@@ -112,7 +112,7 @@ const BusinessProfile = () => {
 
         <button
           className="hover:bg-dark-purp-hover bg-dark-purple
-                        text-xl md:text-sm text-gray-100 w-full p-[10px] 
+                        text-sm md:text-sm text-gray-100 w-full p-[10px] 
                         md:p-5 rounded my-6"
         >
           COMPLETE PROFILE

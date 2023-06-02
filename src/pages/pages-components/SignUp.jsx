@@ -79,7 +79,10 @@ const SignUp = () => {
   };
 
   return (
-    <main className="w-full  flex flex-col items-center justify-center mt-[60px] ">
+    <main
+      id="signup"
+      className="w-full  flex flex-col items-center justify-center mt-[60px] "
+    >
       <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] bg-[#ffffff]">
         <p className="text-[#000007] text-[18px]">Register here</p>
         <form
@@ -99,10 +102,8 @@ const SignUp = () => {
           <button
             type="submit"
             className="w-[100%] less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
-                    rounded mt-[10px] shadow-lg 
-                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#000_-56.25deg,_#fff_37.5deg,_#f7c100_191.25deg,_#000_303.75deg,_#f7c100_397.5deg)] text-[#FFFFFF]
-                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f7c100_-56.25deg,_#f7c100_37.5deg,_#000_191.25deg,_#f7c100_303.75deg,_#000_397.5deg)]
-                    "
+                    rounded-lg mt-[10px] shadow-lg bg-dark-purple hover:bg-dark-purp-hover text-white 
+                   "
           >
             SIGN IN
           </button>

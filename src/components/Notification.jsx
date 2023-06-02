@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FaStore, FaOpencart, FaTimes } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const Notification = () => {
@@ -24,13 +23,13 @@ const Notification = () => {
     <div
       className={`${
         isNotificationVisible === true ? "hidden" : "block"
-      } w-full bg-transparent flex flex-col md:flex-row items-center gap-4`}
+      }  bg-transparent grid grid-cols-[repeat(auto-fill,_minmax(220px,_1fr))] gap-2`}
     >
       {product.map((item, index) => {
         return (
           <div
             key={item.id}
-            className={`shadow rounded bg-white w-[100%] md:w-[25%] lg:w-[22%] cursor-pointer p-[.8rem_.5rem]  ${
+            className={`shadow rounded bg-white cursor-pointer p-4  ${
               item?.product_Qty < 20
                 ? "border-l-[0.2em] border-[red]"
                 : "border-l-[0.2em] border-[yellow]"
@@ -38,43 +37,46 @@ const Notification = () => {
           >
             <h1 className="text-[red] font-[400] ">
               {item?.product_Qty <= 50 && (
-                <div className="">
+                <div className="flex justify-between">
                   <div className="flex items-center gap-[3px]">
                     <img
-                      className="w-[1.8rem] h-[1.8rem] rounded-[50%]"
+                      className="w-16  h-16 rounded-[50%]"
                       src={item.img}
                       alt="product"
                     />
+                  </div>
+                  <div className="">
                     <span className="font-[400] text-[#000]">
                       {item?.product_name}
                     </span>
+
+                    <p>
+                      <span>
+                        {item?.product_Qty === 0 ? (
+                          <span className="text-sm">is empty</span>
+                        ) : (
+                          <span className="text-sm">is running low</span>
+                        )}{" "}
+                      </span>
+                      <span
+                        className={`${
+                          item?.product_Qty < 20
+                            ? "text-white  bg-[red]"
+                            : "text-[#000] bg-[yellow]"
+                        } shadow-sm md:shadow-lg text-sm p-[0.2rem_0.3rem] rounded font-[600]`}
+                      >
+                        {item?.product_Qty <= 1 ? (
+                          <span>
+                            {item?.product_Qty} {item?.size}
+                          </span>
+                        ) : (
+                          <span>
+                            {item?.product_Qty} {item?.size}s
+                          </span>
+                        )}
+                      </span>
+                    </p>
                   </div>
-                  <p>
-                    <span>
-                      {item?.product_Qty === 0 ? (
-                        <span className="text-sm">is empty</span>
-                      ) : (
-                        <span className="text-sm">is running low</span>
-                      )}{" "}
-                    </span>
-                    <span
-                      className={`${
-                        item?.product_Qty < 20
-                          ? "text-white  bg-[red]"
-                          : "text-[#000] bg-[yellow]"
-                      } shadow-sm md:shadow-lg text-sm p-[0.2rem_0.3rem] rounded font-[400]`}
-                    >
-                      {item?.product_Qty <= 1 ? (
-                        <span>
-                          {item?.product_Qty} {item?.size}
-                        </span>
-                      ) : (
-                        <span>
-                          {item?.product_Qty} {item?.size}s
-                        </span>
-                      )}
-                    </span>
-                  </p>
                 </div>
               )}
             </h1>

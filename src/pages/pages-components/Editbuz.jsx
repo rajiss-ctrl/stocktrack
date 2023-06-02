@@ -1,10 +1,9 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { db } from "../../db/firebase";
 
-const Editbuz = ({ handleBuzProfileEdit, open }) => {
+const Editbuz = ({ showEdit, handleBuzProfileEdit, open }) => {
   const buzData = useSelector((store) => store.buz.buzProfileData);
 
   const [buz, setBuz] = useState("");
@@ -26,7 +25,7 @@ const Editbuz = ({ handleBuzProfileEdit, open }) => {
 
   return (
     <div
-      className={`z-[4] p-[30px] text-sm sm:text-[1rem] absolute left-6 sm:left-60 ${
+      className={`z-[4] p-[30px] text-sm sm:text-[1rem] absolute ${
         !open ? "lg:left-72" : "lg:left-32"
       } duration-300  w-[90%] sm:w-[60%] lg:w-[30%] top-[60px] lg:top-[80px] shadow bg-[#FFFFFF]`}
     >
@@ -52,7 +51,7 @@ const Editbuz = ({ handleBuzProfileEdit, open }) => {
             <input
               type="text"
               className="w-[100%] mb-3 border
-                        outline-[0] border 
+                        outline-[0]
                         rounded-[8px]  h-[40px] 
                         text-[#808080] text-sm 
                         font-[200] p-[13px] 

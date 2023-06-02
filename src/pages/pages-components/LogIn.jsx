@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../db/firebase";
 import { setUser } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
-import { FaAt, FaEye, FaVoicemail } from "react-icons/fa";
+import { FaAt, FaEye } from "react-icons/fa";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -30,8 +30,9 @@ const LogIn = () => {
 
   return (
     <main
+      id="signup"
       className="w-full flex flex-col items-center 
-                    justify-center mt-[60px]"
+               justify-center mt-[60px]"
     >
       <div className="w-[90%] md:w-[80%] p-[10px] less_sm:p-[20px]">
         <p className="text-[#000007] text-[18px]">Log in to your dashboard</p>
@@ -45,7 +46,7 @@ const LogIn = () => {
             outline-none
             w-[100%] h-[42px] sm:h-[54px] 
             text-[#000] text-[14px] lg:text-[18px] 
-            p-[13px] 
+            p-[13px_13px_2rem_13px] 
             "
           >
             <input
@@ -80,7 +81,7 @@ const LogIn = () => {
               id="password"
               type="password"
               placeholder="Password"
-              className=" mb-3  
+              className=" mb-6  
              border-none          
             outline-none
             w-[100%] h-[98%]  
@@ -98,11 +99,8 @@ const LogIn = () => {
 
           <button
             type="submit"
-            className="w-[100%] less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
-                    rounded  
-                    hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#000_-56.25deg,_#fff_37.5deg,_#f7c100_191.25deg,_#000_303.75deg,_#f7c100_397.5deg)] text-[#FFFFFF]
-                    bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f7c100_-56.25deg,_#f7c100_37.5deg,_#000_191.25deg,_#f7c100_303.75deg,_#000_397.5deg)]
-                    "
+            className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
+                    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm sm:md text-white"
           >
             SIGN IN
           </button>

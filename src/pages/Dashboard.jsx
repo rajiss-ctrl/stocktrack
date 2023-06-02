@@ -10,25 +10,17 @@ import StockEdit from "../components/StockEdit";
 import ConfirmPrompt from "../components/ConfirmPrompt";
 import Notification from "../components/Notification";
 import Editbuz from "./pages-components/Editbuz";
-import {
-  FaArrowCircleLeft,
-  FaArrowCircleRight,
-  FaBars,
-  FaEdit,
-  FaTrash,
-  FaUpload,
-} from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import DashboardBar from "../components/DashboardBar";
+import { BsArrowLeftShort } from "react-icons/bs";
 // https://dev.to/shashannkbawa/deploying-vite-app-to-github-pages-3ane
 
 const Dashnoard = () => {
   const [isVisible, toggle] = useToggle();
-  const navigate = useNavigate();
+
   const user = useSelector((state) => state.user.user);
   const product = useSelector((store) => store.product.productData);
-  const buzData = useSelector((store) => store.buz.buzProfileData);
 
-  const [proData, setProData] = useState([]);
   const [newStock, setNewStock] = useState(Number(0));
   const [stockEdit, setStockEdit] = useState(-1);
   const [showPrompt, setShowPrompt] = useState(-1);
@@ -92,77 +84,19 @@ const Dashnoard = () => {
     setOpen(!open);
   };
   return (
-    <div className="min-h-[600px] bg-[#f6f6f6] relative flex">
-      {/* SideBar Items */}
-
-      {/* {showEdit ? (
-        <div
-          className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
-        >
-          <Editbuz handleBuzProfileEdit={handleBuzProfileEdit} />
-        </div>
-      ) : (
-        <></>
-      )} */}
-
-      {/* If the user had not update his profile the sidebar should look like this */}
-      {/* <div
-        className={`${
-          isVisible ? "hidden" : "block"
-        } fixed z-[6] top-[0] md:static  
-        w-[120px] less_sm:w-[180px] lg:w-[200px]  
-        bg-[#000904]  
-        `}
-      >
-        {buzData.length === 0 ? (
-          <div className="w-[100%] h-[600px] flex flex-col items-center mt-[15px] text-[#ffffff] hover:text-[#e0d7d7]">
-            <div
-              onClick={toggle}
-              className={`${
-                isVisible ? "hidden" : "block"
-              } text-[#ffffff] fixed top-[5px] 
-        left-[98px] less_sm:left-[158px] 
-        text-[18px] z-[8] block md:hidden shadow `}
-            >
-              <FaArrowCircleLeft />
-            </div>
-
-            <Link to="businessprofile">
-              <h1 className="text-center p-2 md:text-[18px]">
-                Update Business Profile
-              </h1>
-              <div className="flex justify-center items-center">
-                <img
-                  className="drop-shadow-[7px_5px_3px_red] w-[60px] h-[60px] md:w-[100px] md:h-[100px] rounded-[50%]"
-                  src={Logo}
-                  alt="profile"
-                />
-              </div>
-            </Link>
-          </div>
-        ) : ( */}
-      {/* when the user had updated the business profile the sidebar should have this */}
-      {/* buzData.map((item) => {
-          return (
-             <div key={item.id} className=" flex flex-col">
-               <Sidebar
-                 item={item}
-                 user={user}
-                 handleBuzProfileEdit={handleBuzProfileEdit}
-                   toggle={toggle}
-               isVisible={isVisible}
-                 />
-               </div>
-             );
-           })
-         )}
-       </div> */}
-
+    <div className="min-h-[800px] sm:min-h-[1200px] lg:min-h-[900px] bg-[#f6f6f6] relative flex">
       {showEdit ? (
         <div
-          className={` absolute w-[100%] flex justify-center items-center h-[100vh]`}
+          className={`${
+            showEdit &&
+            "bg-[rgb(000,_000,_000,_0.5)] lg:bg-transparent lg:z-10 z-50"
+          } absolute w-[100%]  flex justify-center items-center h-[100vh]`}
         >
-          <Editbuz handleBuzProfileEdit={handleBuzProfileEdit} open={open} />
+          <Editbuz
+            showEdit={showEdit}
+            handleBuzProfileEdit={handleBuzProfileEdit}
+            open={open}
+          />
         </div>
       ) : (
         <></>
@@ -170,9 +104,23 @@ const Dashnoard = () => {
 
       <div
         className={`${
-          open ? " md:w-20" : " w-[60%] md:w-72"
-        } duration-300 h-[100%] absolute top-0 left-0 md:static`}
+          open
+            ? "right-[100rem] lg:w-20 duration-300 "
+            : " w-[60%] less_sm:w-[40%] lg:w-72 duration-300"
+        } h-[600px] lg:h-[800px] mb-2 duration-300  bg-dark-purple absolute top-0 left-0 lg:relative`}
       >
+        <div
+          onClick={handleOpen}
+          className={`${
+            open ? "-right-4 duration-300" : " -right-3 duration-300"
+          } cursor-pointer z-40  absolute top-8 shadow `}
+        >
+          <BsArrowLeftShort
+            className={`bg-white ${
+              open && "rotate-180"
+            } text-3xl rounded-full border border-dark-purple text-dark-purple`}
+          />
+        </div>
         <Sidebar
           user={user}
           handleBuzProfileEdit={handleBuzProfileEdit}
@@ -185,19 +133,21 @@ const Dashnoard = () => {
 
       <div
         className={`${
-          open ? "w-full md:w-[95%] " : "w-full md:w-[90%]"
-        } px-[5%]`}
+          open ? "w-full lg:w-[95%] " : "w-full lg:w-[90%]"
+        } px-[5%] z-[5px]`}
       >
         <DashboardBar />
+
+        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] text-2xl text-dark-purple m-[10px_0]">
+          Dashboard
+        </h1>
 
         <div className="  mt-[0] md:mt-[30px] w-full ">
           <Notification />
         </div>
-        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] text-2xl text-dark-purple m-[10px_0]">
-          Dashboard
-        </h1>
+
         {product.length === 0 ? (
-          <h1 className="text-[#2c5b2c] text-sm md:text-xl">
+          <h1 className="text-[#2c5b2c] text-sm md:text-lg">
             Welcome <span className="text-[red]">{user.email}</span>! Navigate
             To{" "}
             <Link className="text-[blue]" to="/updatestock">
@@ -208,7 +158,7 @@ const Dashnoard = () => {
             your business profile.
           </h1>
         ) : (
-          <table className="static md:relative w-[100%] p-[30px] ">
+          <table className="static lg:relative lg:z-[5px] w-[100%] p-[30px] mt-20 ">
             <thead className="shadow-md rounded h-[40px] sm:h-[50px] bg-white">
               <tr>
                 <th

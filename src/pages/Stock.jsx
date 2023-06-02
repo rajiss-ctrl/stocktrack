@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useToggle } from "../custom-hooks/useToggle";
+import { useSelector } from "react-redux";
 import Product from "./pages-components/Product";
+import NavBar from "../components/NavBar";
 
 const Stock = () => {
   const [visible, setVisible] = useState(0);
@@ -18,6 +17,7 @@ const Stock = () => {
 
   return (
     <div className="min-h-[100vh]">
+      <NavBar />
       {product.length === 0 ? (
         <p>Loading....</p>
       ) : (

@@ -18,15 +18,15 @@ function Home() {
   const [isVisible, toggle] = useToggle();
   useEffect(() => {}, [isVisible, toggle]);
   return (
-    <div className="bg-[#002c12]  overflow-hidden">
+    <div className="bg-dark-purple  overflow-hidden">
       <NavBar />
       <div className=" w-full relative">
         <div className=" w-full  flex  items-center flex-col min-h-[400px]">
           <div className="container mx-auto px-4 pt-[3rem] less_sm:pt-14  md:pt-16 lg:pt-32">
-            <h1 className="text-[1.5rem] less_sm:text-[2.5rem]  md:text-5xl font-bold text-center text-[rgb(247,_193,_0)] mb-6">
+            <h1 className="text-2xl less_sm:text-[2.5rem]  md:text-5xl font-bold text-center text-[rgb(247,_193,_0)] mb-6">
               Inventory Management System
             </h1>
-            <p className="less_sm:text-lg text-center px-4 md:px-[20%] text-[#FFFFFF]">
+            <p className="less_sm:text-[1.2rem] text-center px-4 md:px-[20%] text-[#FFFFFF] font-[400]">
               Our inventory management system makes it easy to track your stock
               level, track sales, and make informed business decisions.
             </p>
@@ -40,34 +40,44 @@ function Home() {
                 <img src={Parcels} alt="Inventory" className="w-[65%] h-auto" />
               </div>
               <div className="lg:w-1/2">
-                <ul className="list-none list-inside text-md mb-4">
-                  <li className="flex space-x-2">
-                    <FaLevelUpAlt />{" "}
+                <ul className="list-none list-inside font-[500] text-[rgb(17,_29,_51)] text-[1rem] mb-4 ">
+                  <li className="flex space-x-2  ">
+                    <FaLevelUpAlt className="text-[rgb(158,_169,_201)]" />{" "}
                     <span>Track inventory levels in real-time</span>
                   </li>
                   <li className="flex space-x-2">
-                    <FaBell /> <span>Set low-stock alerts</span>
+                    <FaBell className="text-[rgb(158,_169,_201)]" />{" "}
+                    <span>Set low-stock alerts</span>
                   </li>
                   <li className="flex space-x-2">
-                    <FaProductHunt /> <span>Manage purchase orders</span>
+                    <FaProductHunt className="text-[rgb(158,_169,_201)]" />{" "}
+                    <span>Manage purchase orders</span>
                   </li>
                   <li className="flex space-x-2">
-                    <FaRecordVinyl /> <span>Track sales and revenue</span>
+                    <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />{" "}
+                    <span>Track sales and revenue</span>
                   </li>
                   <li className="flex space-x-2">
-                    <FaRecordVinyl />
+                    <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />
                     <span>Generate reports and analytics</span>
                   </li>
                 </ul>
-                <a
+                <a href="#signup">
+                  <button className="m-auto bg-dark-purple hover:bg-dark-purp-hover text-white text-lg py-2 px-8 rounded-lg">
+                    Get Started
+                  </button>
+                </a>
+
+                {/* <a
                   href="#signup"
-                  className=" font-bold py-2 px-4 rounded
-                              hover:bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#000_-56.25deg,_#fff_37.5deg,_#f7c100_191.25deg,_#000_303.75deg,_#f7c100_397.5deg)] text-[#FFFFFF]
-                              bg-[conic-gradient(from_142.8deg_at_58.75%_50%,_#f7c100_-56.25deg,_#f7c100_37.5deg,_#000_191.25deg,_#f7c100_303.75deg,_#000_397.5deg)]
+                  className=" font- py-2 px-4 rounded
+                              bg-dark-purp-hover text-white
+                              hover:bg-[#6d80be]
+                              duration-300
                               "
                 >
                   Get Started
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -80,14 +90,17 @@ function Home() {
               <img className="w-" src={LadyStocker} alt="" />
             </div>
           </div>
-          <div className="w-full sm:w-[40%] less_md:w-[90%] md:w-[90%] lg:w-[40%] bg-[#FFFFFF] ">
+          <div
+            id="signup"
+            className="w-full sm:w-[40%] less_md:w-[90%] md:w-[90%] lg:w-[40%] bg-[#FFFFFF] font-[400]"
+          >
             {!isVisible ? <LogIn /> : <SignUp />}
             <button
               onClick={toggle}
               className="outline-none border-0 my-[15px]"
             >
               {isVisible ? (
-                <p className="pl-[20px] less_sm:pl-[48px]">
+                <p className="pl-[20px] less_sm:pl-[48px] font-[400]">
                   Already registered?{" "}
                   <span className="text-[blue]">Log In!</span>{" "}
                 </p>
