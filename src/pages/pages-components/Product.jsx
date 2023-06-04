@@ -1,16 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
-const Product = ({ index, item, visible }) => {
+const Product = ({ key, index, item, visible }) => {
   const user = useSelector((state) => state.user.user);
 
   return (
     <>
       <div
+        key={key}
         className={`${
           visible === index ? "flex" : "hidden"
         } w-[100%] ] flex-col  justify-center items-center lg:items-start lg:flex-row p-[20px_0px] less_sm:p-[20px_30px] lg:py-[40px] `}
       >
-        <div className="w-[100%]  shadow-[0_10px_20px_rgb(255,_101,_132)] lg:w-[40%]  flex justify-center items-center rounded-[10px] p-[10px]">
+        <div className="w-[100%]  lg:w-[40%]  flex justify-center items-center rounded-[10px] p-[10px]">
           <img
             className="drop-shadow-[7px_5px_3px_white] lg:w[100%] h-[260px] sm:w-[290px] sm:h-[290px] lg:w-[290px] lg:h-[300px]   "
             src={item?.img}

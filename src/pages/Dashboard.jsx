@@ -32,7 +32,7 @@ const Dashnoard = () => {
   };
   // function to add to stcok
   const handleMinus = async (id, qty) => {
-    setNewStock("");
+    setNewStock(0);
     const newFileds = { product_Qty: Number(qty) - Number(newStock) };
     const taskDocRef = doc(db, "stock", id);
     try {
@@ -43,7 +43,7 @@ const Dashnoard = () => {
   };
   // function to minus to stcok
   const handleAddItem = async (id, qty) => {
-    setNewStock("");
+    setNewStock(0);
     const newFileds = { product_Qty: Number(qty) + Number(newStock) };
     const taskDocRef = doc(db, "stock", id);
     try {
@@ -163,16 +163,16 @@ const Dashnoard = () => {
               <tr>
                 <th
                   className=" font-[Kumbh Sans, sans-serif] 
-                 text-[#FFFFFF] bg-[#c2bdbd] shadow-xl 
-                text-sm sm:text-lg font-[800]"
+                 text-white bg-dark-purple shadow-xl 
+                text-sm sm:text-xl font-[800]"
                 >
-                  Items
+                  ITEM
                 </th>
-                <th className="shadow-xl text-sm sm:text-lg text-[#FFFFFF] bg-[#b9cfb9] font-[800] ">
-                  Quantity
+                <th className="shadow-xl text-sm sm:text-xl text-white bg-[#f7c100] font-[800] ">
+                  QUANTITY
                 </th>
-                <th className="shadow-xl text-sm sm:text-lg text-[#FFFFFF] bg-[#f6c3c3] font-[800] ">
-                  Actions
+                <th className="shadow-xl text-sm sm:text-xl text-white bg-[#f82e2e] font-[800] ">
+                  ACTION
                 </th>
               </tr>
             </thead>
@@ -181,18 +181,22 @@ const Dashnoard = () => {
                 return (
                   <tr
                     key={item.id}
-                    className=" shadow-md hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
+                    className=" shadow-md cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className=" font-[00] pl-[15px] text-sm sm:text-[1rem]  font-600">
-                      {item?.product_name}
+                    <td className="  pl-[15px] text-sm font-[600]">
+                      {item?.product_name.toUpperCase()}
                     </td>
-                    <td className="font-[400]  pl-[15px] text-sm sm:text-[1rem] font-600">
+                    <td className="font-[600]  pl-[15px] text-xl ">
                       {Number(item?.product_Qty)}{" "}
                       <span>
                         {item?.product_Qty <= 1 ? (
-                          <span>{item?.size}</span>
+                          <span className="text-xs">
+                            {item?.size.toUpperCase()}
+                          </span>
                         ) : (
-                          <span>{item?.size}s</span>
+                          <span className="text-xs">
+                            {item?.size.toUpperCase()}s
+                          </span>
                         )}
                       </span>
                     </td>

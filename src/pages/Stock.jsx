@@ -23,24 +23,25 @@ const Stock = () => {
       ) : (
         product?.map((item, index) => {
           return (
-            <div key={item.id} className="w-[100%] p-[15px]">
+            <>
               <Product
                 handleClick={handleClick}
                 item={item}
                 index={index}
                 visible={visible}
+                key={item.id}
               />
-            </div>
+            </>
           );
         })
       )}
 
-      <div className="w-[100%] flex gap-[20px] flex-wrap p-[18px] less_sm:px-[40px] items-center mt-[0] lg:mt-[35px] lg:px-[18%] ">
+      <div className="w-[100%] grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3 p-[18px] less_sm:px-[40px] items-center mt-[0] lg:mt-[35px] lg:px-[18%] ">
         {product?.map((btn, index) => {
           return (
             <div key={btn.id}>
               <button
-                className={` border-[none] bg-[#da5098] w-[60px] h-[60px] lg:w-[100%] rounded-[10px] flex items-center justify-center p-[5px]`}
+                className={` border-[none] w-[60px] h-[60px] lg:w-[100%] rounded-[10px] flex items-center justify-center p-[5px]`}
                 onClick={() => handleClick(index)}
               >
                 <img

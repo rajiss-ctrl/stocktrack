@@ -23,20 +23,22 @@ const Notification = () => {
     <div
       className={`${
         isNotificationVisible === true ? "hidden" : "block"
-      }  bg-transparent grid grid-cols-[repeat(auto-fill,_minmax(220px,_1fr))] gap-2`}
+      }  bg-transparent grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-1`}
     >
       {product.map((item, index) => {
         return (
           <div
             key={item.id}
-            className={`shadow rounded bg-white cursor-pointer p-4  ${
+            className={`shadow rounded bg-white cursor-pointer p-2  ${
               item?.product_Qty < 20
                 ? "border-l-[0.2em] border-[red]"
                 : "border-l-[0.2em] border-[yellow]"
-            } ${item?.product_Qty >= 100 && "hidden"} `}
+            } ${item?.product_Qty >= 100 && "hidden"} ${
+              item?.product_Qty > 50 && "hidden"
+            }`}
           >
-            <h1 className="text-[red] font-[400] ">
-              {item?.product_Qty <= 50 && (
+            <h1 className={` text-[red] font-[400]`}>
+              {item?.product_Qty <= 50 ? (
                 <div className="flex justify-between">
                   <div className="flex items-center gap-[3px]">
                     <img
@@ -46,16 +48,20 @@ const Notification = () => {
                     />
                   </div>
                   <div className="">
-                    <span className="font-[400] text-[#000]">
+                    <span className="font-[600] text-sm text-dark-purple">
                       {item?.product_name}
                     </span>
 
                     <p>
                       <span>
                         {item?.product_Qty === 0 ? (
-                          <span className="text-sm">is empty</span>
+                          <span className="text-xs lg:text-sm font-[600]">
+                            is empty
+                          </span>
                         ) : (
-                          <span className="text-sm">is running low</span>
+                          <span className="text-xs lg:text-sm font-[600]">
+                            running low
+                          </span>
                         )}{" "}
                       </span>
                       <span
@@ -67,17 +73,19 @@ const Notification = () => {
                       >
                         {item?.product_Qty <= 1 ? (
                           <span>
-                            {item?.product_Qty} {item?.size}
+                            {item?.product_Qty} {item?.size.slice(0, 3)}
                           </span>
                         ) : (
                           <span>
-                            {item?.product_Qty} {item?.size}s
+                            {item?.product_Qty} {item?.size.slice(0, 2)}s
                           </span>
                         )}
                       </span>
                     </p>
                   </div>
                 </div>
+              ) : (
+                <></>
               )}
             </h1>
           </div>
