@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/stocktrack/static/css/main.fa1819c4.css",
-    "main.js": "/stocktrack/static/js/main.a62e02a0.js",
+    "main.css": "/stocktrack/static/css/main.b4f392ec.css",
+    "main.js": "/stocktrack/static/js/main.4bf198c7.js",
     "static/js/787.21409dba.chunk.js": "/stocktrack/static/js/787.21409dba.chunk.js",
     "static/media/error.png": "/stocktrack/static/media/error.c2945f0186d1b6c59b77.png",
-    "static/media/login.svg": "/stocktrack/static/media/login.c6defa285a23333ab02d2139245b46eb.svg",
+    "static/media/parcels.png": "/stocktrack/static/media/parcels.41fbf1532af291d5000d.png",
+    "static/media/store-lady.png": "/stocktrack/static/media/store-lady.61d8b3f7f8d0d97eb127.png",
     "index.html": "/stocktrack/index.html",
-    "main.fa1819c4.css.map": "/stocktrack/static/css/main.fa1819c4.css.map",
-    "main.a62e02a0.js.map": "/stocktrack/static/js/main.a62e02a0.js.map",
+    "static/media/bg-pattern-leaf-left.svg": "/stocktrack/static/media/bg-pattern-leaf-left.e4e9002c8dc635810638.svg",
+    "main.b4f392ec.css.map": "/stocktrack/static/css/main.b4f392ec.css.map",
+    "main.4bf198c7.js.map": "/stocktrack/static/js/main.4bf198c7.js.map",
     "787.21409dba.chunk.js.map": "/stocktrack/static/js/787.21409dba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa1819c4.css",
-    "static/js/main.a62e02a0.js"
+    "static/css/main.b4f392ec.css",
+    "static/js/main.4bf198c7.js"
   ]
 }
