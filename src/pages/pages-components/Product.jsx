@@ -1,4 +1,5 @@
 import React from "react";
+import { FaStar } from "react-icons/fa";
 import { useSelector } from "react-redux";
 const Product = ({ key, index, item, visible }) => {
   const user = useSelector((state) => state.user.user);
@@ -9,39 +10,73 @@ const Product = ({ key, index, item, visible }) => {
         key={key}
         className={`${
           visible === index ? "flex" : "hidden"
-        } w-[100%] ] flex-col  justify-center items-center lg:items-start lg:flex-row p-[20px_0px] less_sm:p-[20px_30px] lg:py-[40px] `}
+        } w-full flex-col sm:flex-row sm:gap-4`}
       >
-        <div className="w-[100%]  lg:w-[40%]  flex justify-center items-center rounded-[10px] p-[10px]">
+        <div className="w-full lg:w-2/5 flex  items-center">
           <img
-            className="drop-shadow-[7px_5px_3px_white] lg:w[100%] h-[260px] sm:w-[290px] sm:h-[290px] lg:w-[290px] lg:h-[300px]   "
+            className="rotate-[360deg] duration-300 drop-shadow-[7px_5px_3px_transparent] h-52 lg:h-[500px] w-fit"
             src={item?.img}
             alt="product"
           />
         </div>
-        <div className="lg:pl-[20px] mt-[20px] lg:mt-[0] w-[100%] lg:w-[30%]">
-          <h1 className="text-[16px] sm:text-[25px] mt-[20px] md:mt-[0] font-[400] sm:font-[600] text-[#da5098]">
+        <div className="w-full lg:w-2/4 lg:pl-40 mt-[20px] lg:mt-[0]">
+          {/* <h1 className="text-xl sm:text-4xl mt-7 md:mt-[0] font-[600]  text-dark-purple">
             {item?.product_name}
-          </h1>
-          <p className="text-[14px] flex gap-[10px] font-[400] sm:font-[400] sm:text-[16px]">
-            <span className="">Quantity :- </span>
-            <span
-              className={`${
-                item.product_Qty < 20 ? "text-[red]" : "text-[green]"
-              }  font-[400]`}
-            >
-              {item?.product_Qty}
-              <span>
-                {item?.product_Qty <= 1 ? (
-                  <span> {item?.size}</span>
-                ) : (
-                  <span> {item?.size}s</span>
-                )}
-              </span>
-            </span>
-          </p>
-          <p className="text-[14px] sm:text-[16px]">
-            {item?.product_description}
-          </p>
+          </h1> */}
+
+          {visible === index && (
+            <div className="p-4">
+              <h2 className="text-xl font-bold">{item?.product_name}</h2>
+              <div
+                className={`${
+                  item.product_Qty > 0 ? "text-green-500" : "text-yellow-600"
+                } flex `}
+              >
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+              </div>
+              <p>{item?.product_description}</p>
+              <div className="mt-4">
+                <span className="text-gray-600">Price:</span>{" "}
+                <span className="font-semibold">
+                  N 1000
+                  {/* ${item?.product_description} */}
+                </span>
+              </div>
+              <div className="mt-4">
+                <span className="text-gray-600">Availability:</span>{" "}
+                <span
+                  className={`font-bold ${
+                    item.product_Qty ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {item.product_Qty > 0 ? "In Stock" : "Out of Stock"}
+                </span>
+              </div>
+              <p className="text-base flex gap-3 font-[400]">
+                <span className="">Quantity :- </span>
+                <span
+                  className={`${
+                    item.product_Qty < 20
+                      ? "text-bold font-bold text-[red]"
+                      : "font-bold text-green-600"
+                  } `}
+                >
+                  {item?.product_Qty}
+                  <span className="font-bold">
+                    {item?.product_Qty <= 1 ? (
+                      <span> {item?.size}</span>
+                    ) : (
+                      <span> {item?.size}s</span>
+                    )}
+                  </span>
+                </span>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

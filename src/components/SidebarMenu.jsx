@@ -20,6 +20,7 @@ import {
 import Logo from "../assets/images/default-logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useAuth } from "../db/firebase";
 
 const SidebarMenu = ({
   item,
@@ -29,6 +30,7 @@ const SidebarMenu = ({
   handleBuzProfileEdit,
   handleLogout,
 }) => {
+  const currentUser = useAuth();
   const buzData = useSelector((store) => store.buz.buzProfileData);
   return (
     <div className="text-[1.3rem] less_sm:text-[1rem] mt-8 duration-300 ">

@@ -1,10 +1,10 @@
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { db, storage } from "../db/firebase";
 
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import db, { storage } from "../db/firebase";
 
 const BusinessProfile = () => {
   const navigate = useNavigate();

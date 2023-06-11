@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../db/firebase";
+import { auth, useAuth } from "../../db/firebase";
 import { setUser } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
 import { FaAt, FaEye } from "react-icons/fa";
 
 const LogIn = () => {
+  const currentUser = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const LogIn = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
+        dispatch(setUser({ id: currentUser?.uid, email: currentUser?.email })); //Substitute the console.log with this
         //Substitute the console.log with this
         navigate("/dashboard");
       })
@@ -31,7 +32,7 @@ const LogIn = () => {
   return (
     <main
       id="signup"
-      className="w-full flex flex-col items-center 
+      className="w-full h-auto lg:h-96  flex flex-col items-center 
                justify-center mt-[60px]"
     >
       <div className="w-[90%] md:w-[80%] p-[10px] less_sm:p-[20px]">

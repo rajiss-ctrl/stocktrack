@@ -23,26 +23,26 @@ const Notification = () => {
     <div
       className={`${
         isNotificationVisible === true ? "hidden" : "block"
-      }  bg-transparent grid grid-cols-[repeat(auto-fill,_minmax(230px,_1fr))] gap-1`}
+      }  bg-transparent grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4`}
     >
       {product.map((item, index) => {
         return (
           <div
             key={item.id}
-            className={`shadow rounded bg-white cursor-pointer p-2  ${
+            className={`shadow rounded bg-white cursor-pointer py-2 px-1  ${
               item?.product_Qty < 20
                 ? "border-l-[0.2em] border-[red]"
-                : "border-l-[0.2em] border-[yellow]"
+                : "border-l-[0.2em] border-[#f7c100]"
             } ${item?.product_Qty >= 100 && "hidden"} ${
               item?.product_Qty > 50 && "hidden"
             }`}
           >
             <h1 className={` text-[red] font-[400]`}>
               {item?.product_Qty <= 50 ? (
-                <div className="flex justify-between">
-                  <div className="flex items-center gap-[3px]">
+                <div className="flex gap-2">
+                  <div className="flex items-center">
                     <img
-                      className="w-16  h-16 rounded-[50%]"
+                      className="w-fit h-16 rounded-[50%]"
                       src={item.img}
                       alt="product"
                     />
@@ -50,26 +50,28 @@ const Notification = () => {
                   <div className="">
                     <span className="font-[600] text-sm text-dark-purple">
                       {item?.product_name}
-                    </span>
-
-                    <p>
                       <span>
                         {item?.product_Qty === 0 ? (
                           <span className="text-xs lg:text-sm font-[600]">
+                            {" "}
                             is empty
                           </span>
                         ) : (
                           <span className="text-xs lg:text-sm font-[600]">
-                            running low
+                            {" "}
+                            is running low
                           </span>
-                        )}{" "}
+                        )}
                       </span>
+                    </span>
+
+                    <p>
                       <span
                         className={`${
                           item?.product_Qty < 20
-                            ? "text-white  bg-[red]"
-                            : "text-[#000] bg-[yellow]"
-                        } shadow-sm md:shadow-lg text-sm p-[0.2rem_0.3rem] rounded font-[600]`}
+                            ? "text-white  bg-gradient-to-r from-[rgb(211,_24,_24)] to-yellow-200 bg-clip"
+                            : "text-[#000] bg-gradient-to-r from-green-600 to-yellow-300 bg-clip"
+                        } shadow-sm md:shadow-lg text-md py-1 px-2 rounded font-[800]`}
                       >
                         {item?.product_Qty <= 1 ? (
                           <span>

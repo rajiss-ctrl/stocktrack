@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
-import { db, storage } from "../db/firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import db, { storage } from "../db/firebase";
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
@@ -85,7 +85,7 @@ const UpdateStock = () => {
   };
 
   return (
-    <div>
+    <div className="bg-gradient-to-t from-[rgb(8,_26,_81,_0.4)] to-white-800 bg-clip">
       <NavBar />
       <div
         className="w-full md:p-8 md:w-2/3 md:shadow 

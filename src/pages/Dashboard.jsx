@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { db } from "../db/firebase";
 
 import { useToggle } from "../custom-hooks/useToggle";
 import Sidebar from "../components/Sidebar";
@@ -13,11 +12,12 @@ import Editbuz from "./pages-components/Editbuz";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import DashboardBar from "../components/DashboardBar";
 import { BsArrowLeftShort } from "react-icons/bs";
+import db, { useAuth } from "../db/firebase";
 // https://dev.to/shashannkbawa/deploying-vite-app-to-github-pages-3ane
 
 const Dashnoard = () => {
   const [isVisible, toggle] = useToggle();
-
+  const currentUser = useAuth();
   const user = useSelector((state) => state.user.user);
   const product = useSelector((store) => store.product.productData);
 
@@ -84,7 +84,7 @@ const Dashnoard = () => {
     setOpen(!open);
   };
   return (
-    <div className="min-h-[800px] sm:min-h-[1200px] lg:min-h-[900px] bg-[#f6f6f6] relative flex">
+    <div className="min-h-[800px] sm:min-h-[1200px] lg:min-h-[900px] bg-gradient-to-r from-white to-[rgb(8,_26,_81,_0.3)] bg-clip  relative flex">
       {showEdit ? (
         <div
           className={`${
@@ -122,7 +122,6 @@ const Dashnoard = () => {
           />
         </div>
         <Sidebar
-          user={user}
           handleBuzProfileEdit={handleBuzProfileEdit}
           handleOpen={handleOpen}
           open={open}
@@ -138,7 +137,7 @@ const Dashnoard = () => {
       >
         <DashboardBar />
 
-        <h1 className="font-[Kumbh Sans, sans-serif] font-[600] text-2xl text-dark-purple m-[10px_0]">
+        <h1 className="font-[Kumbh Sans, sans-serif] text-2xl text-dark-purple m-[10px_0]">
           Dashboard
         </h1>
 
@@ -148,8 +147,8 @@ const Dashnoard = () => {
 
         {product.length === 0 ? (
           <h1 className="text-[#2c5b2c] text-sm md:text-lg">
-            Welcome <span className="text-[red]">{user.email}</span>! Navigate
-            To{" "}
+            Welcome <span className="text-[red]">{currentUser?.email}</span>!
+            Navigate To{" "}
             <Link className="text-[blue]" to="/updatestock">
               {" "}
               Stock update
@@ -171,7 +170,7 @@ const Dashnoard = () => {
                 <th className="shadow-xl text-sm sm:text-xl text-white bg-[#f7c100] font-[800] ">
                   QUANTITY
                 </th>
-                <th className="shadow-xl text-sm sm:text-xl text-white bg-[#f82e2e] font-[800] ">
+                <th className="shadow-xl text-sm sm:text-xl text-white bg-dark-purple font-[800] ">
                   ACTION
                 </th>
               </tr>

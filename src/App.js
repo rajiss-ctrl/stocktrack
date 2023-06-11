@@ -5,7 +5,7 @@ import UpdateStock from "./pages/UpdateStock";
 import Stock from "./pages/Stock";
 import { useEffect } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { db } from "./db/firebase";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./features/product/productSlice";
 import Dashboard from "./pages/Dashboard";
@@ -13,11 +13,15 @@ import BusinessProfile from "./pages/BusinessProfile";
 import ProtectedRoute from "./protected-route/ProtectedRoute";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
 import Error from "./protected-route/Error";
+import db, { useAuth } from "./db/firebase";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  console.log(user);
+  const currentUser = useAuth();
+  console.log(currentUser);
 
   // stock Data
   useEffect(() => {
@@ -25,7 +29,7 @@ function App() {
 
     try {
       const qRef = collection(db, "stock");
-      const q = query(qRef, where("user_id", "==", user.id));
+      const q = query(qRef, where("user_id", "==", currentUser?.uid));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const stock = [];
         querySnapshot.forEach((doc) => {
@@ -40,7 +44,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, [navigate, user.id]);
+  }, [navigate, currentUser?.uid]);
 
   // business profile data
   useEffect(() => {
@@ -48,7 +52,7 @@ function App() {
 
     try {
       const qRef = collection(db, "businesses");
-      const q = query(qRef, where("user_id", "==", user.id));
+      const q = query(qRef, where("user_id", "==", currentUser?.uid));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const buz = [];
         querySnapshot.forEach((doc) => {
@@ -62,7 +66,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, [user.id]);
+  }, [currentUser?.uid]);
 
   return (
     <div className="font-[Kumbh Sans]">

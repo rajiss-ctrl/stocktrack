@@ -5,8 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useToggle } from "../custom-hooks/useToggle";
+import { useAuth } from "../db/firebase";
 
 const NavBar = () => {
+  const currentUser = useAuth();
   const location = useLocation();
   const currentRoutePath = location.pathname;
   console.log(currentRoutePath);
@@ -41,12 +43,14 @@ const NavBar = () => {
         </NavLink>
 
         <ul
-          className={`${isVisible ? "block" : "hidden"} ${
-            currentRoutePath != "/" ? "text-dark-purple" : "text-white"
+          className={`${
+            isVisible ? "block duration-500" : "hidden duration-300"
+          } ${
+            currentRoutePath != "/" ? "text-black " : "text-white"
           } ' w-[100%] md:w-[auto] 
           absolute duration-300 md:static left-[0px] top-[50px] 
            md:flex md:justify-center items-center  
-            sm:gap-[0] md:gap-[20px] text-xl   `}
+            sm:gap-[0] md:gap-[20px] text-xl sm:text-[1rem] font-[300] `}
         >
           <NavLink to="/">
             <li
@@ -59,32 +63,58 @@ const NavBar = () => {
               <span>Home</span>
             </li>
           </NavLink>
-          <NavLink to="/updatestock">
-            <li
-              className="list-[none]
+
+          {currentUser ? (
+            <NavLink to="/updatestock">
+              <li
+                className="list-[none]
           w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
           md:hover:border-b-4 
           md:hover:border-dark-purple hover:text-[#c6b9b9] 
           py-[6px] md:py-[24px]"
-            >
-              {user.id ? (
+              >
                 <span>Update Store</span>
-              ) : (
-                <a href="#signup">Sign Up</a>
-              )}
-            </li>
-          </NavLink>
-          <NavLink to="/dashboard">
-            <li
-              className="list-[none]
+              </li>
+            </NavLink>
+          ) : (
+            <a href="#signup">
+              <li
+                className="list-[none]
           w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
-           md:hover:border-b-4 
+          md:hover:border-b-4 
           md:hover:border-dark-purple hover:text-[#c6b9b9] 
           py-[6px] md:py-[24px]"
-            >
-              {user.id ? <span>Dashboard</span> : <a href="#signup">SignIn</a>}
-            </li>
-          </NavLink>
+              >
+                <span>Sign Up</span>
+              </li>
+            </a>
+          )}
+
+          {currentUser ? (
+            <NavLink to="/dashboard">
+              <li
+                className="list-[none]
+          w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
+          md:hover:border-b-4 
+          md:hover:border-dark-purple hover:text-[#c6b9b9] 
+          py-[6px] md:py-[24px]"
+              >
+                <span>Dashboard</span>
+              </li>
+            </NavLink>
+          ) : (
+            <a href="#signup">
+              <li
+                className="list-[none]
+          w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
+          md:hover:border-b-4 
+          md:hover:border-dark-purple hover:text-[#c6b9b9] 
+          py-[6px] md:py-[24px]"
+              >
+                <span>Sign In</span>
+              </li>
+            </a>
+          )}
         </ul>
         <div className="flex h-[40px] md:h-[auto] items-center gap-[18px]">
           <div

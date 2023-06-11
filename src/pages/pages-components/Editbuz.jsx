@@ -1,8 +1,7 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { db } from "../../db/firebase";
-
+import db, { storage } from "../../db/firebase";
 const Editbuz = ({ showEdit, handleBuzProfileEdit, open }) => {
   const buzData = useSelector((store) => store.buz.buzProfileData);
 
