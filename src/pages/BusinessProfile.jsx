@@ -36,7 +36,7 @@ const BusinessProfile = () => {
     navigate("/dashboard");
 
     const docRef = await addDoc(collection(db, "businesses"), {
-      user_id: user.id,
+      user_id: user?.id,
       businessName,
       businessAddress,
     });

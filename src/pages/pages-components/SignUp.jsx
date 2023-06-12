@@ -84,7 +84,7 @@ const SignUp = () => {
       className="w-full h-auto lg:h-96  flex flex-col items-center justify-center mt-[60px] "
     >
       <div className="w-[95%] md:w-[80%] p-[10px] less_sm:p-[20px] bg-[#ffffff]">
-        <p className="text-[#000007] text-[18px]">Register here</p>
+        <p className="text-[#000007] leading-6 sm:text-[1rem]">Register here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}

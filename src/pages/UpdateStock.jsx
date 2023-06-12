@@ -4,14 +4,16 @@ import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import db, { storage } from "../db/firebase";
+import db, { storage, useAuth } from "../db/firebase";
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
   console.log(user);
+  const currentUser = useAuth();
   const initialState = {
     product_name: "",
     product_Qty: Number(0),
+    product_Price: Number(0),
     size: "",
     product_description: "",
   };
@@ -77,7 +79,7 @@ const UpdateStock = () => {
     setFile(null);
 
     await addDoc(collection(db, "stock"), {
-      user_id: user.id,
+      user_id: currentUser.uid,
       ...data,
       // timeStamp:sererTimestamp()
     });
@@ -132,13 +134,22 @@ const UpdateStock = () => {
             id="size"
           >
             <option defaultValue>--Choose an option--</option>
-            <option>Pack</option>
-            <option>Carton</option>
-            <option>peice</option>
-            <option>Sachet</option>
+            <option>Pck</option>
+            <option>Ctn</option>
+            <option>pc</option>
+            <option>Scht</option>
             <option>Bag</option>
           </select>
-
+          <input
+            type="number"
+            required
+            className=" p-3 text-sm w-full mb-6 border outline-none rounded"
+            id="productPrice"
+            name="product_Price"
+            value={data.product_Price}
+            onChange={handleChange}
+            placeholder="Product Price"
+          />
           <input
             type="text"
             required

@@ -12,7 +12,7 @@ const Product = ({ key, index, item, visible }) => {
           visible === index ? "flex" : "hidden"
         } w-full flex-col sm:flex-row sm:gap-4`}
       >
-        <div className="w-full lg:w-2/5 flex  items-center">
+        <div className="w-full lg:w-2/5 flex justify-center items-center  sm:items-center">
           <img
             className="rotate-[360deg] duration-300 drop-shadow-[7px_5px_3px_transparent] h-52 lg:h-[500px] w-fit"
             src={item?.img}
@@ -20,10 +20,6 @@ const Product = ({ key, index, item, visible }) => {
           />
         </div>
         <div className="w-full lg:w-2/4 lg:pl-40 mt-[20px] lg:mt-[0]">
-          {/* <h1 className="text-xl sm:text-4xl mt-7 md:mt-[0] font-[600]  text-dark-purple">
-            {item?.product_name}
-          </h1> */}
-
           {visible === index && (
             <div className="p-4">
               <h2 className="text-xl font-bold">{item?.product_name}</h2>
@@ -41,10 +37,7 @@ const Product = ({ key, index, item, visible }) => {
               <p>{item?.product_description}</p>
               <div className="mt-4">
                 <span className="text-gray-600">Price:</span>{" "}
-                <span className="font-semibold">
-                  N 1000
-                  {/* ${item?.product_description} */}
-                </span>
+                <span className="font-semibold">N{item?.product_Price}</span>
               </div>
               <div className="mt-4">
                 <span className="text-gray-600">Availability:</span>{" "}
@@ -74,6 +67,10 @@ const Product = ({ key, index, item, visible }) => {
                     )}
                   </span>
                 </span>
+              </p>
+              <p>
+                Stock Balance--N{" "}
+                {Number(item?.product_Qty) * Number(item?.product_Price)}{" "}
               </p>
             </div>
           )}

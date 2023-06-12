@@ -1,6 +1,6 @@
 // import React from 'react'
-import { FaStore, FaOpencart, FaTimes, FaBars } from "react-icons/fa";
-import { RiDashboardFill } from "react-icons/ri";
+import { FaStore, FaOpencart, FaTimes, FaBars, FaGoogle } from "react-icons/fa";
+import { RiDashboardFill, RiGoogleFill, RiGoogleLine } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -50,7 +50,7 @@ const NavBar = () => {
           } ' w-[100%] md:w-[auto] 
           absolute duration-300 md:static left-[0px] top-[50px] 
            md:flex md:justify-center items-center  
-            sm:gap-[0] md:gap-[20px] text-xl sm:text-[1rem] font-[300] `}
+            sm:gap-[0] md:gap-[20px] text-xl sm:text-[1.15rem] font-[300] `}
         >
           <NavLink to="/">
             <li
@@ -61,6 +61,19 @@ const NavBar = () => {
           py-[6px] md:py-[24px]"
             >
               <span>Home</span>
+            </li>
+          </NavLink>
+          <NavLink to="/stock">
+            <li
+              className={`${
+                currentUser?.email != null ? "block" : "hidden"
+              } list-[none]  
+          w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
+          md:hover:border-b-4 
+          md:hover:border-dark-purple hover:text-[#c6b9b9] 
+          py-[6px] md:py-[24px]`}
+            >
+              <span>Store</span>
             </li>
           </NavLink>
 
@@ -103,17 +116,17 @@ const NavBar = () => {
               </li>
             </NavLink>
           ) : (
-            <a href="#signup">
+            <button className="-ml-3 md:-ml-0  bg-black text-white hover:bg-[#535252]  rounded-2xl  py-2 px-3 outline-none border-0 md:px-4 sm:py-2">
               <li
-                className="list-[none]
-          w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
-          md:hover:border-b-4 
-          md:hover:border-dark-purple hover:text-[#c6b9b9] 
-          py-[6px] md:py-[24px]"
+                className="
+              
+                list-[none] w-[100%]   md:w-[auto]  "
               >
-                <span>Sign In</span>
+                <span className="flex items-center gap-2">
+                  Fast Sign In with <FaGoogle className="text-[red] text-sm" />
+                </span>
               </li>
-            </a>
+            </button>
           )}
         </ul>
         <div className="flex h-[40px] md:h-[auto] items-center gap-[18px]">

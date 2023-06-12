@@ -15,6 +15,8 @@ import {
   RiRefreshFill,
   RiStockFill,
   RiStockLine,
+  RiStore2Fill,
+  RiStore2Line,
 } from "react-icons/ri";
 
 import Logo from "../assets/images/default-logo.png";
@@ -33,7 +35,11 @@ const SidebarMenu = ({
   const currentUser = useAuth();
   const buzData = useSelector((store) => store.buz.buzProfileData);
   return (
-    <div className="text-[1.3rem] less_sm:text-[1rem] mt-8 duration-300 ">
+    <div
+      className={`${
+        open && "hidden md:block"
+      } text-[1.3rem] less_sm:text-[1rem] mt-8 duration-300`}
+    >
       {buzData.length === 0 ? (
         <div className="min-h-[200px] ">
           <Link to="businessprofile">
@@ -125,7 +131,7 @@ const SidebarMenu = ({
                 >
                   <button
                     className={`flex font-[400] tracking-wide gap-[5px]
-            justify-center items-center`}
+                      justify-center items-center`}
                   >
                     <span className="text-center text-white ">
                       <RiEditBoxFill className="text-2xl" />
@@ -153,9 +159,9 @@ const SidebarMenu = ({
                   <NavLink to="/stock">
                     <div className="flex gap-[5px] items-center font-[400]">
                       <span className=" text-white less_sm:block">
-                        <RiStockLine className="text-2xl" />
+                        <RiStore2Line className="text-2xl" />
                       </span>
-                      <span className={`${open && "hidden"}`}>Stock</span>
+                      <span className={`${open && "hidden"}`}>Store</span>
                     </div>
                   </NavLink>
                 </li>

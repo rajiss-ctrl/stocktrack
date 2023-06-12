@@ -36,14 +36,16 @@ const LogIn = () => {
                justify-center mt-[60px]"
     >
       <div className="w-[90%] md:w-[80%] p-[10px] less_sm:p-[20px]">
-        <p className="text-[#000007] text-[18px]">Log in to your dashboard</p>
+        <p className="text-[#000007] leading-6 sm:text-[1rem]">
+          Log in to your dashboard
+        </p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={handleSubmit}
         >
           <div
             className=" mb-3 flex 
-             border-b-[1px] border-[#93b4a1]           
+             border-b-[1px] border-[#191c1a]           
             outline-none
             w-[100%] h-[42px] sm:h-[54px] 
             text-[#000] text-[14px] lg:text-[18px] 
@@ -65,13 +67,12 @@ const LogIn = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <span className="text-[#93b4a1]">
-              <FaAt />
-            </span>
+
+            <FaAt className="text-[#888988]" />
           </div>
           <div
             className=" mb-3 flex 
-             border-b-[1px] border-[#93b4a1]           
+             border-b-[1px] border-[#191c1a]           
             outline-none
             w-[100%] h-[42px] sm:h-[54px] 
             text-[#000] text-[14px] lg:text-[18px] 
@@ -93,9 +94,8 @@ const LogIn = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <span className="text-[#93b4a1]">
-              <FaEye />
-            </span>
+
+            <FaEye className="text-[#888988]" />
           </div>
 
           <button

@@ -16,7 +16,7 @@ const Stock = () => {
   };
 
   return (
-    <div className="bg-gradient-to-t from-[rgb(8,_26,_81,_0.4)] to-white-800 bg-clip">
+    <div className="bg-[rgb(255,_255,_255,_0.5)] ">
       <NavBar />
       <div className="px-10  lg:px-20 pt-16 lg:pt-32 pb-28 min-h-[100vh]">
         {product.length === 0 ? (
@@ -42,14 +42,18 @@ const Stock = () => {
             return (
               <div key={btn.id}>
                 <button
-                  className={` border-2 border-dark-purple flex items-center justify-center p-[5px]`}
+                  className={`hover:text-[green] shadow-[0_20px_25px] items-center justify-center p-[5px] flex flex-col`}
                   onClick={() => handleClick(index)}
                 >
                   <img
-                    className="drop-shadow-[7px_5px_3px_white] "
+                    className={`"hover:rotate-[360deg] "
+                    drop-shadow-[7px_5px_3px_white] duration-500`}
                     src={btn.img}
                     alt="button"
                   />
+                  <div className=" text-sm font-[600]">
+                    <p>{btn.product_name}</p>
+                  </div>
                 </button>
               </div>
             );

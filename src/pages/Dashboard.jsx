@@ -182,19 +182,19 @@ const Dashnoard = () => {
                     key={item.id}
                     className=" shadow-md cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className="  pl-[15px] text-sm font-[600]">
+                    <td className="  pl-[15px] text-[.7rem] leading-4 text-black font-[400]">
                       {item?.product_name.toUpperCase()}
                     </td>
                     <td className="font-[600]  pl-[15px] text-xl ">
                       {Number(item?.product_Qty)}{" "}
-                      <span>
+                      <span className="font-[400]">
                         {item?.product_Qty <= 1 ? (
-                          <span className="text-xs">
+                          <span className="text-[.6rem] leading-[1rem]">
                             {item?.size.toUpperCase()}
                           </span>
                         ) : (
-                          <span className="text-xs">
-                            {item?.size.toUpperCase()}s
+                          <span className="text-[.6rem] leading-[1rem]">
+                            {item?.size.toUpperCase()}S
                           </span>
                         )}
                       </span>
