@@ -20,7 +20,7 @@ const Dashnoard = () => {
   const currentUser = useAuth();
   const user = useSelector((state) => state.user.user);
   const product = useSelector((store) => store.product.productData);
-
+  console.log(product);
   const [newStock, setNewStock] = useState(Number(0));
   const [stockEdit, setStockEdit] = useState(-1);
   const [showPrompt, setShowPrompt] = useState(-1);
@@ -28,7 +28,7 @@ const Dashnoard = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [open, setOpen] = useState(false);
   const handleBuzProfileEdit = () => {
-    setShowEdit(!showEdit);
+    setShowEdit((pre) => !pre);
   };
   // function to add to stcok
   const handleMinus = async (id, qty) => {
@@ -84,13 +84,14 @@ const Dashnoard = () => {
     setOpen(!open);
   };
   return (
-    <div className="min-h-[800px] sm:min-h-[1200px] lg:min-h-[900px] bg-gradient-to-r from-white to-[rgb(8,_26,_81,_0.3)] bg-clip  relative flex">
+    <div
+      className={` min-h-[800px] sm:min-h-[1200px] lg:min-h-[900px] bg-gradient-to-r from-white to-[rgb(8,_26,_81,_0.3)] bg-clip  relative flex`}
+    >
       {showEdit ? (
         <div
           className={`${
-            showEdit &&
-            "bg-[rgb(000,_000,_000,_0.5)] lg:bg-transparent lg:z-10 z-50"
-          } absolute w-[100%]  flex justify-center items-center h-[100vh]`}
+            showEdit && "bg-[rgba(82,56,56,0.5)] lg:bg-transparent lg:z-10 z-50"
+          } absolute w-[100%]  flex justify-center items-center h-full`}
         >
           <Editbuz
             showEdit={showEdit}
@@ -182,7 +183,7 @@ const Dashnoard = () => {
                     key={item.id}
                     className=" shadow-md cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                   >
-                    <td className="  pl-[15px] text-[.7rem] leading-4 text-black font-[400]">
+                    <td className="  pl-[15px] md:text-[.7rem] text-sm md:leading-4 text-black font-[600] md:font-[400]">
                       {item?.product_name.toUpperCase()}
                     </td>
                     <td className="font-[600]  pl-[15px] text-xl ">
@@ -214,7 +215,7 @@ const Dashnoard = () => {
                           <div
                             className={`${
                               showPrompt === index ? "block" : "hidden"
-                            } absolute w-[150px] top-[20px] right-[7px] md:right-[0] bg-[#ffffff] shadow`}
+                            } absolute w-[150px]  top-[50%] lg:top-[20px] right-[7px] md:right-[0] bg-[#ffffff] shadow-2xl`}
                           >
                             <ConfirmPrompt
                               item={item}
@@ -227,8 +228,8 @@ const Dashnoard = () => {
                       </div>
                       <div
                         className={`${
-                          stockEdit === index ? "block" : "hidden"
-                        } absolute w-[90%] lg:w-[40%] top-[20px] right-[10px] md:right-[0] bg-[#ffffff] shadow`}
+                          stockEdit === index ? "block z-50" : "hidden"
+                        } absolute w-[90%] lg:w-[40%] top-[50%] lg:top-[20px] right-[10px] md:right-[0] bg-[#ffffff] shadow-xl`}
                       >
                         <StockEdit
                           handleAddItem={handleAddItem}

@@ -26,7 +26,7 @@ const Editbuz = ({ showEdit, handleBuzProfileEdit, open }) => {
     <div
       className={`z-[4] p-[30px] text-sm sm:text-[1rem] absolute ${
         !open ? "lg:left-72" : "lg:left-32"
-      } duration-300  w-[90%] sm:w-[60%] lg:w-[30%] top-[60px] lg:top-[80px] shadow bg-[#FFFFFF]`}
+      } duration-300  w-[90%] sm:w-[60%] lg:w-[30%] top-[60px] lg:top-[80px] shadow-lg rounded-md bg-[#FFFFFF]`}
     >
       {buzData?.map((item) => {
         return (
@@ -34,26 +34,32 @@ const Editbuz = ({ showEdit, handleBuzProfileEdit, open }) => {
             key={item.id}
             className="  flex justify-center items-center flex-col"
           >
-            <img className="w-[30px] mb-[15px]" src={item.logo} alt="" />
-            <h1 className="m-[10px_0]">Update Business Profile</h1>
+            <img
+              className="w-[30px] h-[30px] rounded-[50%] mb-[15px]"
+              src={item.logo}
+              alt=""
+            />
+            <h1 className="my-3 text-[1.0rem] leading-3 font-[600]">
+              Update Business Profile
+            </h1>
             <input
               type="text"
-              className="w-[100%] mb-3 border
-                                  outline-[0] border 
-                                  rounded-[8px]  h-[40px] 
-                                  text-[#808080] text-sm 
-                                  font-[200] p-[13px] 
-                                  "
+              className="w-full mb-3 
+                  outline-[0] border border-gray-400 
+                  rounded-md  h-[40px] 
+                  text-[#808080] text-sm 
+                  font-[400] p-4 mt-3
+                  "
               placeholder={`Edit ${item.businessName} Buz Name?`}
               onChange={(e) => setBuz(e.target.value)}
             />
             <input
               type="text"
-              className="w-[100%] mb-3 border
+              className="w-full mb-3 border border-gray-400
                         outline-[0]
                         rounded-[8px]  h-[40px] 
                         text-[#808080] text-sm 
-                        font-[200] p-[13px] 
+                        font-[400] p-4 mt-3 
                         "
               placeholder={`Edit Business Address`}
               onChange={(e) => setAddress(e.target.value)}

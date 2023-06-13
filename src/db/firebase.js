@@ -11,11 +11,11 @@ import { useEffect, useState } from "react";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STOTAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
+  authDomain: "stockctrl-c00eb.firebaseapp.com",
+  projectId: "stockctrl-c00eb",
+  storageBucket: "stockctrl-c00eb.appspot.com",
+  messagingSenderId: "908343798059",
+  appId: "1:908343798059:web:b8c6b00055231e2cf37d6e",
 };
 
 // Initialize Firebase

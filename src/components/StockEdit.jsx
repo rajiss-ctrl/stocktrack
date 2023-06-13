@@ -10,10 +10,10 @@ const StockEdit = ({
   setNewStock,
 }) => {
   return (
-    <div className=" w-[100%] flex flex-col justify-center p-[20px]">
+    <div className=" w-full flex flex-col justify-center p-[20px]">
       <h1
         onClick={() => handleEdit(index)}
-        className="text-center mb-[10px] text-[14px]"
+        className="text-center mb-8 text-[1.0rem] leading-3 font-[600]"
       >
         Manage {item?.product_name} - stock level
       </h1>
@@ -21,7 +21,7 @@ const StockEdit = ({
         <input
           type="number"
           name="stock"
-          className="py-2 px-4  text-[11px] outline-none border sm:text-sm w-full mb-6 rounded"
+          className="py-2 px-4  text-[11px] outline-none border border-gray-400 sm:text-sm w-full mb-6 rounded"
           onChange={(e) => setNewStock(e.target.value)}
           placeholder="Item Qty"
         />

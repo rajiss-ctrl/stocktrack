@@ -1,20 +1,34 @@
 // import React from 'react'
 import { FaStore, FaOpencart, FaTimes, FaBars, FaGoogle } from "react-icons/fa";
 import { RiDashboardFill, RiGoogleFill, RiGoogleLine } from "react-icons/ri";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useToggle } from "../custom-hooks/useToggle";
-import { useAuth } from "../db/firebase";
+import { auth, useAuth } from "../db/firebase";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 const NavBar = () => {
   const currentUser = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
   const currentRoutePath = location.pathname;
   console.log(currentRoutePath);
   const user = useSelector((store) => store.user.user);
   const [isVisible, toggle] = useToggle();
   //style={({isActive})=> isActive ? {borderBottom:'2px solid red'} : {borderBottom:'none'} }
+
+  //google sign in click function
+  async function handleGoogleSignin() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   return (
     <nav
       className="static z-[20px] overflow-hidden top-0 
@@ -116,14 +130,17 @@ const NavBar = () => {
               </li>
             </NavLink>
           ) : (
-            <button className="-ml-3 md:-ml-0  bg-black text-white hover:bg-[#535252]  rounded-2xl  py-2 px-3 outline-none border-0 md:px-4 sm:py-2">
+            <button
+              onClick={handleGoogleSignin}
+              className="-ml-3 md:-ml-0  bg-black text-white hover:bg-[#535252]  rounded-2xl  py-2 px-3 outline-none border-0 md:px-4 sm:py-2"
+            >
               <li
                 className="
               
                 list-[none] w-[100%]   md:w-[auto]  "
               >
-                <span className="flex items-center gap-2">
-                  Fast Sign In with <FaGoogle className="text-[red] text-sm" />
+                <span className="flex text-sm duration-300 hover:duration-300 items-center gap-2">
+                  Quick Sign In with <FaGoogle className="text-[red] text-sm" />
                 </span>
               </li>
             </button>

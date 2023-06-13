@@ -20,7 +20,9 @@ const Stock = () => {
       <NavBar />
       <div className="px-10  lg:px-20 pt-16 lg:pt-32 pb-28 min-h-[100vh]">
         {product.length === 0 ? (
-          <p>Loading....</p>
+          <p className="p-10 bg-[rgba(175,243,200,0.6)] border ">
+            You don't have any item in stock!....
+          </p>
         ) : (
           product?.map((item, index) => {
             return (

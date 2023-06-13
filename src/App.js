@@ -30,6 +30,7 @@ function App() {
     try {
       const qRef = collection(db, "stock");
       const q = query(qRef, where("user_id", "==", currentUser?.uid));
+
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const stock = [];
         querySnapshot.forEach((doc) => {

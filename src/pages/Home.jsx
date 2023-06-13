@@ -74,9 +74,9 @@ function Home() {
 
         {/* form */}
         <div className="bg-[#FFFFFF] flex flex-col pt-[26rem] less_sm:p-[34rem_0_6rem_0] md:p-[36rem_0_6rem_0] lg:p-[24rem_0_8rem_0]">
-          <h className="p-6 text-xl font-extrabold text-center bg-gradient-to-r from-black via-orange-400 to-green-900 bg-clip-text text-transparent">
+          <h1 className="p-6 text-xl font-extrabold text-center bg-gradient-to-r from-black via-orange-400 to-green-900 bg-clip-text text-transparent">
             YOU A STEP FROM BEEN IN FULL CONTROL OF YOUR STOCK
-          </h>
+          </h1>
           <div className=" flex flex-col items-center justify-center less_md:flex-col tab:flex-col laptop:flex-row   less_md:w-full  w-full ">
             <div className="w-full less_md:w-[100%] bg sm:w-[40%] md:w-[70%] lg:w-[40%] flex justify-center items-center relative">
               <div className="bg-[rgb(247,_193,_0)] bg  flex flex-col items-center justify-center  rounded-b-3xl w-[90%] less_sm:w-[70%] less_md:w-[90%] tab:h-[90%] md:w-[90%]">
