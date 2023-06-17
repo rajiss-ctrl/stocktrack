@@ -12,6 +12,7 @@ import {
   FaRecordVinyl,
 } from "react-icons/fa";
 import { useToggle } from "../custom-hooks/useToggle";
+import { Link } from "react-router-dom";
 // import InventoryImage from './inventory.jpg';
 
 function Home() {
@@ -98,10 +99,15 @@ function Home() {
                     <span className=" text-[#0000ff]"> Log In!</span>{" "}
                   </p>
                 ) : (
-                  <p className="pl-[20px] less_sm:pl-[48px] text-sm font-medium mb-12 lg:mb-0">
-                    Don't have account?
-                    <span className="text-[blue]"> Sign Up!</span>
-                  </p>
+                  <div className=" flex items-center justify-between">
+                    <p className="pl-[20px] less_sm:pl-[48px] text-sm font-medium mb-12 lg:mb-0">
+                      Don't have account?
+                      <span className="text-[blue]"> Sign Up!</span>
+                    </p>
+                    <Link className="ml-5" to="/reset">
+                      Forget Password?
+                    </Link>
+                  </div>
                 )}
               </button>
             </div>

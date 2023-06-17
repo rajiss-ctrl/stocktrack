@@ -1,21 +1,9 @@
 import React from "react";
-import {
-  FaEdit,
-  FaHome,
-  FaShopware,
-  FaSignOutAlt,
-  FaStore,
-} from "react-icons/fa";
+
 import {
   RiEditBoxFill,
   RiHome2Fill,
-  RiLogoutBoxFill,
-  RiLogoutCircleFill,
-  RiLogoutCircleRFill,
   RiRefreshFill,
-  RiStockFill,
-  RiStockLine,
-  RiStore2Fill,
   RiStore2Line,
 } from "react-icons/ri";
 
@@ -24,20 +12,14 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAuth } from "../db/firebase";
 
-const SidebarMenu = ({
-  item,
-  open,
-  info,
-  setInfo,
-  handleBuzProfileEdit,
-  handleLogout,
-}) => {
-  const currentUser = useAuth();
+const SidebarMenu = ({ open, info, setInfo, handleBuzProfileEdit }) => {
   const buzData = useSelector((store) => store.buz.buzProfileData);
+  console.log(buzData);
+
   return (
     <div
       className={`${
-        open && "hidden md:block"
+        open && "hidden lg:block"
       } text-[1.3rem] less_sm:text-[1rem] mt-8 duration-300`}
     >
       {buzData.length === 0 ? (
@@ -52,9 +34,9 @@ const SidebarMenu = ({
               <img
                 className={` ${
                   !open
-                    ? "md:w-[100px] md:h-[100px]"
+                    ? "md:w-[100px]  md:h-[100px]"
                     : "md:w-[50px]  md:h-[50px] mt-6"
-                } drop-shadow-[7px_5px_3px_#111] w-[60px] h-[60px]  rounded-[50%]`}
+                }   drop-shadow-[7px_5px_3px_#111] w-[60px] h-[60px]  rounded-[50%]`}
                 src={Logo}
                 alt="profile"
               />

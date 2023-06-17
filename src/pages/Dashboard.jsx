@@ -108,7 +108,7 @@ const Dashnoard = () => {
           open
             ? "right-[100rem] lg:w-20 duration-300 "
             : " w-[60%] less_sm:w-[40%] lg:w-72 duration-300"
-        } h-[600px] lg:h-[800px] mb-2 duration-300  bg-dark-purple absolute top-0 left-0 lg:relative`}
+        } h-[600px] z-50 lg:h-[800px] mb-2 duration-300  bg-dark-purple absolute top-0 left-0 lg:relative`}
       >
         <div
           onClick={handleOpen}
@@ -158,7 +158,7 @@ const Dashnoard = () => {
             your business profile.
           </h1>
         ) : (
-          <table className="static lg:relative lg:z-[5px] w-[100%] p-[30px] mt-20 ">
+          <table className="relative lg:z-[5px] w-[100%] p-[30px] mt-20 ">
             <thead className="shadow-md rounded h-[40px] sm:h-[50px] bg-white">
               <tr>
                 <th
@@ -228,8 +228,8 @@ const Dashnoard = () => {
                       </div>
                       <div
                         className={`${
-                          stockEdit === index ? "block z-50" : "hidden"
-                        } absolute w-[90%] lg:w-[40%] top-[50%] lg:top-[20px] right-[10px] md:right-[0] bg-[#ffffff] shadow-xl`}
+                          stockEdit === index ? "block" : "hidden"
+                        } absolute w-full md:w-[50%] xl:w-[40%] -top-40   md:top-[20px] right-1 md:right-[0] bg-[#ffffff] shadow-2xl`}
                       >
                         <StockEdit
                           handleAddItem={handleAddItem}

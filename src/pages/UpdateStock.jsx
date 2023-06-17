@@ -10,6 +10,8 @@ const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
   console.log(user);
   const currentUser = useAuth();
+  console.log(currentUser?.uid);
+
   const initialState = {
     product_name: "",
     product_Qty: Number(0),
@@ -79,7 +81,7 @@ const UpdateStock = () => {
     setFile(null);
 
     await addDoc(collection(db, "stock"), {
-      user_id: currentUser.uid,
+      user_id: currentUser?.uid,
       ...data,
       // timeStamp:sererTimestamp()
     });

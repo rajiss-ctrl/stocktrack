@@ -19,7 +19,7 @@ const Product = ({ key, index, item, visible }) => {
             alt="product"
           />
         </div>
-        <div className="w-full lg:w-2/4 lg:pl-40 mt-[20px] lg:mt-[0]">
+        <div className="w-full  grid place-content-center lg:w-2/4 lg:pl-40 mt-[20px] lg:mt-[0]">
           {visible === index && (
             <div className="p-4">
               <h2 className="text-xl font-bold">{item?.product_name}</h2>

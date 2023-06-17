@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/userSlice";
-import { auth } from "../../db/firebase";
+import db, { auth, useAuth } from "../../db/firebase";
 import FormInput from "../../components/FormInput";
 import { FaAt, FaEye } from "react-icons/fa";
+import { addDoc, collection } from "firebase/firestore";
 
 const SignUp = () => {
   const initialState = {
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -16,10 +18,20 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
-
+  const currentUser = useAuth();
   const inputs = [
     {
       id: 1,
+      name: "name",
+      type: "text",
+      errMessages: "Business Name should not be nore than 20 character long",
+      placeholder: "Business Name",
+      label: "Name",
+      icon: <FaAt />,
+      required: true,
+    },
+    {
+      id: 2,
       name: "email",
       type: "email",
       errMessages: "Business email should be a valid email address!",
@@ -29,7 +41,7 @@ const SignUp = () => {
       required: true,
     },
     {
-      id: 2,
+      id: 3,
       name: "password",
       type: "password",
       errMessages:
@@ -42,7 +54,7 @@ const SignUp = () => {
       required: true,
     },
     {
-      id: 3,
+      id: 4,
       name: "confirmPassword",
       type: "password",
       errMessages: "Password don't match",
@@ -54,25 +66,47 @@ const SignUp = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const registerWithEmailAndPassword = async (e) => {
     e.preventDefault();
     const email = values.email;
+    const name = values.name;
     const password = values.password;
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
-        // ...
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.error(error);
-
-        // ..
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name,
+        authProvider: "local",
+        email,
       });
-    setValues(initialState);
+      // dispatch(setUser({ id: user.uid, email: user.email }));
+      navigate("/dashboard");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const email = values.email;
+  //   const password = values.password;
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
+  //       // ...
+  //       navigate("/dashboard");
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+
+  //       // ..
+  //     });
+  //   setValues(initialState);
+  // };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -87,7 +121,7 @@ const SignUp = () => {
         <p className="text-[#000007] leading-6 sm:text-[1rem]">Register here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
-          onSubmit={handleSubmit}
+          onSubmit={registerWithEmailAndPassword}
         >
           {inputs.map((input) => {
             return (

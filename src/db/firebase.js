@@ -26,11 +26,10 @@ const provider = new EmailAuthProvider();
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-export { provider, auth, storage };
+
 export default db;
 
 // Logout function
-
 export function logOut() {
   return signOut(auth);
 }
@@ -44,3 +43,5 @@ export function useAuth() {
   }, []);
   return currentUser;
 }
+
+export { provider, auth, storage };

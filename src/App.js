@@ -14,6 +14,8 @@ import ProtectedRoute from "./protected-route/ProtectedRoute";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
 import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
+import { getAuth } from "firebase/auth";
+import Reset from "./pages/pages-components/Reset";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ function App() {
   const user = useSelector((state) => state.user.user);
   console.log(user);
   const currentUser = useAuth();
-  console.log(currentUser);
+  console.log(currentUser?.uid);
 
   // stock Data
   useEffect(() => {
@@ -30,6 +32,7 @@ function App() {
     try {
       const qRef = collection(db, "stock");
       const q = query(qRef, where("user_id", "==", currentUser?.uid));
+      console.log(q);
 
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const stock = [];
@@ -38,6 +41,7 @@ function App() {
         });
         if (stock.length > 0) {
           console.log(stock);
+
           dispatch(fetchData(stock));
         }
       });
@@ -45,7 +49,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  }, [navigate, currentUser?.uid]);
+  }, [currentUser?.uid]);
 
   // business profile data
   useEffect(() => {
@@ -74,6 +78,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path={"reset"} element={<Reset />} />
           <Route element={<ProtectedRoute />}>
             <Route path={"updatestock"} element={<UpdateStock />} />
             <Route path={"stock"} element={<Stock />} />

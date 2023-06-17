@@ -4,19 +4,19 @@ import { useSelector } from "react-redux";
 import SidebarMenu from "./SidebarMenu";
 import { RiLogoutCircleFill } from "react-icons/ri";
 import { signOut } from "firebase/auth";
-import { auth, logOut } from "../db/firebase";
+import { auth, logOut, useAuth } from "../db/firebase";
 
 const Sidebar = ({ handleBuzProfileEdit, handleOpen, open, setOpen }) => {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const [info, setInfo] = useState(false);
   console.log(user);
-
+  const currentUser = useAuth();
   const handleLogout = async () => {
     try {
       await logOut();
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error.message);
     }
   };
   return (
@@ -32,7 +32,7 @@ const Sidebar = ({ handleBuzProfileEdit, handleOpen, open, setOpen }) => {
       <button
         onClick={handleLogout}
         className={` ${
-          open ? "w-[50%]" : "w-[80%]"
+          open ? "hidden lg:block lg:w-[50%]" : "lg:w-[80%]"
         } absolute bottom-16  z-[10] hover:bg-light-white hover:rounded-md p-2 hover:text-[#e0d7d7]  h-40px bg-gradient-to-r from-gray to-[red] bg-clip  text-md`}
       >
         <div className="flex gap-4 items-center ">

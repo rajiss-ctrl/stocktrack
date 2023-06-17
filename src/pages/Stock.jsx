@@ -44,7 +44,10 @@ const Stock = () => {
             return (
               <div key={btn.id}>
                 <button
-                  className={`hover:text-[green] shadow-[0_20px_25px] items-center justify-center p-[5px] flex flex-col`}
+                  className={`${
+                    btn.product_Qty === 0 &&
+                    "hover:text-[red] shadow-[0_20px_25px]"
+                  } hover:text-[green] shadow-[0_20px_25px] items-center justify-center p-[5px] flex flex-col`}
                   onClick={() => handleClick(index)}
                 >
                   <img

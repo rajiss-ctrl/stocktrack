@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { FaAt, FaEye } from "react-icons/fa";
 
 const LogIn = () => {
-  const currentUser = useAuth();
+  // const currentUser = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ const LogIn = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        dispatch(setUser({ id: currentUser?.uid, email: currentUser?.email })); //Substitute the console.log with this
+        // dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
         //Substitute the console.log with this
         navigate("/dashboard");
       })

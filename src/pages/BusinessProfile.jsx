@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import db, { storage } from "../db/firebase";
+import db, { storage, useAuth } from "../db/firebase";
 
 const BusinessProfile = () => {
+  const currentUser = useAuth();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [businessName, setBusinessName] = useState("");
@@ -36,7 +37,7 @@ const BusinessProfile = () => {
     navigate("/dashboard");
 
     const docRef = await addDoc(collection(db, "businesses"), {
-      user_id: user?.id,
+      user_id: currentUser?.uid,
       businessName,
       businessAddress,
     });
@@ -74,9 +75,13 @@ const BusinessProfile = () => {
           required
           className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
           id="businessName"
-          value={user.displayName ? user.displayName : businessName}
+          value={
+            currentUser?.displayName ? currentUser?.displayName : businessName
+          }
           placeholder={`${
-            user.displayName ? user.displayName : "Business Name"
+            currentUser?.displayName
+              ? currentUser?.displayName
+              : "Business Name"
           }`}
           onChange={(e) => setBusinessName(e.target.value)}
         />

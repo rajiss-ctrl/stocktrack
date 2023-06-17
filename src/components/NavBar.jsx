@@ -1,12 +1,11 @@
-// import React from 'react'
-import { FaStore, FaOpencart, FaTimes, FaBars, FaGoogle } from "react-icons/fa";
-import { RiDashboardFill, RiGoogleFill, RiGoogleLine } from "react-icons/ri";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FaOpencart, FaTimes, FaBars, FaGoogle } from "react-icons/fa";
+import { RiDashboardFill } from "react-icons/ri";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useToggle } from "../custom-hooks/useToggle";
-import { auth, useAuth } from "../db/firebase";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import db, { auth, useAuth } from "../db/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 const NavBar = () => {
   const currentUser = useAuth();
@@ -14,21 +13,37 @@ const NavBar = () => {
   const location = useLocation();
   const currentRoutePath = location.pathname;
   console.log(currentRoutePath);
-  const user = useSelector((store) => store.user.user);
+
   const [isVisible, toggle] = useToggle();
+
   //style={({isActive})=> isActive ? {borderBottom:'2px solid red'} : {borderBottom:'none'} }
 
   //google sign in click function
-  async function handleGoogleSignin() {
-    const auth = getAuth();
-    const provider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    const googleProvider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      // signInWithRedirect
+      // signInWithPopup
+      const res = await signInWithPopup(auth, googleProvider);
+      const userG = res.user;
+      console.log(userG);
+      const q = query(collection(db, "users"), where("uid", "==", userG.uid));
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await addDoc(collection(db, "users"), {
+          uid: userG.uid,
+          name: userG.displayName,
+          authProvider: "google",
+          email: userG.email,
+        });
+      }
       navigate("/dashboard");
     } catch (err) {
-      console.log(err.message);
+      console.error(err);
+      alert(err.message);
     }
-  }
+  };
+
   return (
     <nav
       className="static z-[20px] overflow-hidden top-0 
@@ -91,7 +106,7 @@ const NavBar = () => {
             </li>
           </NavLink>
 
-          {currentUser ? (
+          {currentUser?.email != null ? (
             <NavLink to="/updatestock">
               <li
                 className="list-[none]
@@ -117,7 +132,7 @@ const NavBar = () => {
             </a>
           )}
 
-          {currentUser ? (
+          {currentUser?.email != null ? (
             <NavLink to="/dashboard">
               <li
                 className="list-[none]
@@ -131,7 +146,7 @@ const NavBar = () => {
             </NavLink>
           ) : (
             <button
-              onClick={handleGoogleSignin}
+              onClick={signInWithGoogle}
               className="-ml-3 md:-ml-0  bg-black text-white hover:bg-[#535252]  rounded-2xl  py-2 px-3 outline-none border-0 md:px-4 sm:py-2"
             >
               <li
