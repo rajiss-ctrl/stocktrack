@@ -28,7 +28,7 @@ function Reset() {
   //   }, [user, loading]);
   return (
     <div className="w-full h-screen flex items-center justify-center shadow">
-      <div className=" w-2/5 flex items-center justify-center flex-col">
+      <div className="w-4/5 xl:w-2/5 flex items-center justify-center flex-col">
         <input
           type="text"
           className=" border-[1.3px] border-[#417141] p-4 w-full mb-5 outline-none bg-transparent"
@@ -36,15 +36,19 @@ function Reset() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
-        <div className="flex items-center w-full  justify-between text-sm">
+        <div className="flex flex-col sm:flex-row items-center w-full  justify-between text-sm">
           <button
-            className="bg-black text-white p-4 rounded-[20px]"
+            className=" bg-black text-sm text-white p-4 rounded-[20px]"
             onClick={() => sendPasswordReset(email)}
           >
             Send password reset email
           </button>
-          <div className="text-blue-600">
-            Don't have an account? <Link to="/">Register</Link> now.
+          <div className=" mt-6 sm:mt-0 text-md">
+            Don't have an account?{" "}
+            <Link className="text-blue-600" to="/">
+              Register
+            </Link>{" "}
+            now.
           </div>
         </div>
       </div>

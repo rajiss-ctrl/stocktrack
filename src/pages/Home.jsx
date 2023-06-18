@@ -13,8 +13,7 @@ import {
 } from "react-icons/fa";
 import { useToggle } from "../custom-hooks/useToggle";
 import { Link } from "react-router-dom";
-// import InventoryImage from './inventory.jpg';
-
+import { useSelector } from "react-redux";
 function Home() {
   const [isVisible, toggle] = useToggle();
   useEffect(() => {}, [isVisible, toggle]);
@@ -99,14 +98,16 @@ function Home() {
                     <span className=" text-[#0000ff]"> Log In!</span>{" "}
                   </p>
                 ) : (
-                  <div className=" flex items-center justify-between">
-                    <p className="pl-[20px] less_sm:pl-[48px] text-sm font-medium mb-12 lg:mb-0">
+                  <div className=" flex flex-col sm:flex-row items-center sm:justify-between">
+                    <p className="pl-[20px] less_sm:pl-[48px] text-sm font-medium mb-6 sm:mb-12 lg:mb-0">
                       Don't have account?
                       <span className="text-[blue]"> Sign Up!</span>
                     </p>
-                    <Link className="ml-5" to="/reset">
-                      Forget Password?
-                    </Link>
+                    <p className="mb-12 xl:mb-0">
+                      <Link className="-ml-10 sm:ml-5" to="/reset">
+                        Forget Password?
+                      </Link>
+                    </p>
                   </div>
                 )}
               </button>

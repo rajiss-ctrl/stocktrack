@@ -3,7 +3,7 @@ import Layout from "./outlet/Layout";
 import Home from "./pages/Home";
 import UpdateStock from "./pages/UpdateStock";
 import Stock from "./pages/Stock";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,12 +16,13 @@ import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
 import { getAuth } from "firebase/auth";
 import Reset from "./pages/pages-components/Reset";
-
+import { addUsers, fetchAsyncUsers } from "./features/userSlice";
+// const Home = lazy(() => import("./pages/Home"));
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
-  console.log(user);
+  // const user = useSelector((state) => state.user.user);
+  // console.log(user);
   const currentUser = useAuth();
   console.log(currentUser?.uid);
 
@@ -75,6 +76,7 @@ function App() {
 
   return (
     <div className="font-[Kumbh Sans]">
+      {/* <Suspense callback={<div>Loading.....</div>}> */}
       <Routes>
         <Route path={"/"} element={<Layout />}>
           <Route index element={<Home />} />
@@ -90,6 +92,7 @@ function App() {
           <Route path={"*"} element={<Error />} />
         </Route>
       </Routes>
+      {/* </Suspense> */}
     </div>
   );
 }

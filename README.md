@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+https://blog.logrocket.com/user-authentication-firebase-react-apps/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
