@@ -1,28 +1,25 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Layout from "./outlet/Layout";
-import Home from "./pages/Home";
-import UpdateStock from "./pages/UpdateStock";
-import Stock from "./pages/Stock";
 import { useEffect, lazy, Suspense } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData } from "./features/product/productSlice";
-import Dashboard from "./pages/Dashboard";
-import BusinessProfile from "./pages/BusinessProfile";
-import ProtectedRoute from "./protected-route/ProtectedRoute";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
 import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
-import { getAuth } from "firebase/auth";
-import Reset from "./pages/pages-components/Reset";
-import { addUsers, fetchAsyncUsers } from "./features/userSlice";
-// const Home = lazy(() => import("./pages/Home"));
+
+const Layout = lazy(() => import("./outlet/Layout"));
+const Home = lazy(() => import("./pages/Home"));
+const UpdateStock = lazy(() => import("./pages/UpdateStock"));
+const Stock = lazy(() => import("./pages/Stock"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const BusinessProfile = lazy(() => import("./pages/BusinessProfile"));
+const ProtectedRoute = lazy(() => import("./protected-route/ProtectedRoute"));
+const Reset = lazy(() => import("./pages/pages-components/Reset"));
+
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const user = useSelector((state) => state.user.user);
-  // console.log(user);
   const currentUser = useAuth();
   console.log(currentUser?.uid);
 
@@ -75,25 +72,27 @@ function App() {
   }, [currentUser?.uid]);
 
   return (
-    <div className="font-[Kumbh Sans]">
-      {/* <Suspense callback={<div>Loading.....</div>}> */}
-      <Routes>
-        <Route path={"/"} element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path={"reset"} element={<Reset />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path={"updatestock"} element={<UpdateStock />} />
-            <Route path={"stock"} element={<Stock />} />
-            <Route path={"dashboard"} element={<Dashboard />}>
-              <Route path={"businessprofile"} element={<BusinessProfile />} />
+    <Suspense
+      fallback={<h1 className="text-center mt-12 text-xl">Loading...</h1>}
+    >
+      <div className="font-[Kumbh Sans]">
+        <Routes>
+          <Route path={"/"} element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path={"reset"} element={<Reset />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path={"updatestock"} element={<UpdateStock />} />
+              <Route path={"stock"} element={<Stock />} />
+              <Route path={"dashboard"} element={<Dashboard />}>
+                <Route path={"businessprofile"} element={<BusinessProfile />} />
+              </Route>
             </Route>
+            {/*All*/}
+            <Route path={"*"} element={<Error />} />
           </Route>
-          {/*All*/}
-          <Route path={"*"} element={<Error />} />
-        </Route>
-      </Routes>
-      {/* </Suspense> */}
-    </div>
+        </Routes>
+      </div>
+    </Suspense>
   );
 }
 
