@@ -30,7 +30,7 @@ const DashboardTable = ({
     <div
       className={`${
         open ? "w-full lg:w-[95%] " : "w-full lg:w-[90%]"
-      } px-[5%] z-[5px]`}
+      } px-[5%] pb-12 z-[5px]`}
     >
       <DashboardBar />
 
