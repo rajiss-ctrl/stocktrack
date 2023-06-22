@@ -8,9 +8,9 @@ import db, { storage, useAuth } from "../db/firebase";
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
-  console.log(user);
+  // console.log(user);
   const currentUser = useAuth();
-  console.log(currentUser?.uid);
+  // console.log(currentUser?.uid);
 
   const initialState = {
     product_name: "",
@@ -21,11 +21,11 @@ const UpdateStock = () => {
   };
   const navigate = useNavigate();
   const [data, setData] = useState(initialState);
-  const { company_name } = data;
+  // const { company_name } = data;
   const [progress, setProgress] = useState({});
 
   const [file, setFile] = useState(null);
-  console.log(data);
+  // console.log(data);
   const [disAble, setDisAble] = useState(false);
 
   useEffect(() => {
@@ -42,17 +42,17 @@ const UpdateStock = () => {
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
+              // console.log("Upload is paused");
               break;
             case "running":
-              console.log("uploading is running");
+              // console.log("uploading is running");
               break;
             default:
               break;
           }
         },
         (error) => {
-          console.log(error);
+          // console.log(error);
         },
         () => {
           getDownloadURL(upLoadTask.snapshot.ref).then((downloadURL) => {

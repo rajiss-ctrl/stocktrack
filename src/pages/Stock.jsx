@@ -6,9 +6,9 @@ import NavBar from "../components/NavBar";
 const Stock = () => {
   const [visible, setVisible] = useState(0);
   const user = useSelector((state) => state.user.user);
-  console.log(user.id);
+  // console.log(user.id);
   const product = useSelector((store) => store.product.productData);
-  console.log(product);
+  // console.log(product);
   // const {isOpen} = useSelector((store)=> store.modal)
 
   const handleClick = (index) => {

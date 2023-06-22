@@ -3,7 +3,6 @@ import React from "react";
 const StockEdit = ({
   item,
   index,
-  newStock,
   handleAddItem,
   handleMinus,
   handleEdit,

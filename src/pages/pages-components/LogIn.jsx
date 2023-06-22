@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, useAuth } from "../../db/firebase";
-import { setUser } from "../../features/userSlice";
 import { useDispatch } from "react-redux";
 import { FaAt, FaEye } from "react-icons/fa";
 
 const LogIn = () => {
-  // const currentUser = useAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,13 +16,10 @@ const LogIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        // dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
-        //Substitute the console.log with this
         navigate("/dashboard");
       })
       .catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
   };
 

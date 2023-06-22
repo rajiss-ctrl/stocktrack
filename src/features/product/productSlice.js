@@ -1,10 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// import ProductItems from "../../db/ProductItems";
-// // import productItems from "../../TestData";
-
-// console.log(ProductItems())
-// const data = JSON.parse(localStorage.getItem("data")) || {};
 
 const initialState = {
   productData: [],

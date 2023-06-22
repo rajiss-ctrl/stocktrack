@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { Link, Outlet } from "react-router-dom";
 
 import { useToggle } from "../custom-hooks/useToggle";
 import Sidebar from "../components/Sidebar";

@@ -83,30 +83,10 @@ const SignUp = () => {
       // dispatch(setUser({ id: user.uid, email: user.email }));
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       alert(err.message);
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const email = values.email;
-  //   const password = values.password;
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       const user = userCredential.user;
-  //       dispatch(setUser({ id: user.uid, email: user.email })); //Substitute the console.log with this
-  //       // ...
-  //       navigate("/dashboard");
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-
-  //       // ..
-  //     });
-  //   setValues(initialState);
-  // };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });

@@ -12,7 +12,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentRoutePath = location.pathname;
-  console.log(currentRoutePath);
 
   const [isVisible, toggle] = useToggle();
 
@@ -26,7 +25,7 @@ const NavBar = () => {
       // signInWithPopup
       const res = await signInWithPopup(auth, googleProvider);
       const userG = res.user;
-      console.log(userG);
+
       const q = query(collection(db, "users"), where("uid", "==", userG.uid));
       const docs = await getDocs(q);
       if (docs.docs.length === 0) {
@@ -39,7 +38,6 @@ const NavBar = () => {
       }
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
       alert(err.message);
     }
   };

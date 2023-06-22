@@ -6,7 +6,7 @@ import { useAuth } from "../db/firebase";
 const ProtectedRoute = () => {
   const currentUser = useAuth();
   const user = useSelector((state) => state.user.user);
-  console.log(user);
+  // console.log(user);
 
   return currentUser === null ? <Navigate to={"/"} /> : <Outlet />;
 };

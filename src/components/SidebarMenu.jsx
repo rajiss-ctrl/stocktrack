@@ -10,11 +10,9 @@ import {
 import Logo from "../assets/images/default-logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useAuth } from "../db/firebase";
 
 const SidebarMenu = ({ open, info, setInfo, handleBuzProfileEdit }) => {
   const buzData = useSelector((store) => store.buz.buzProfileData);
-  console.log(buzData);
 
   return (
     <div

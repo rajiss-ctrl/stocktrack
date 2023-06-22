@@ -22,10 +22,9 @@ const DashboardTable = ({
 }) => {
   const product = useSelector((store) => store.product.productData);
   const currentUser = useAuth();
-  console.log(product);
 
-  const users = useSelector((state) => state.user);
-  console.log(users.user);
+  // const users = useSelector((state) => state.user);
+  // console.log(users.user);
   return (
     <div
       className={`${
