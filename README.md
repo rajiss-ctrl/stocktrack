@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 https://blog.logrocket.com/user-authentication-firebase-react-apps/
-
+@fvilers/disable-react-devtools
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

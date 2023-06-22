@@ -19,9 +19,8 @@ const Reset = lazy(() => import("./pages/pages-components/Reset"));
 
 function App() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const currentUser = useAuth();
-  console.log(currentUser?.uid);
 
   // stock Data
   useEffect(() => {
@@ -30,7 +29,7 @@ function App() {
     try {
       const qRef = collection(db, "stock");
       const q = query(qRef, where("user_id", "==", currentUser?.uid));
-      console.log(q);
+      // console.log(q);
 
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const stock = [];
@@ -38,14 +37,14 @@ function App() {
           stock.push({ ...doc.data(), id: doc.id });
         });
         if (stock.length > 0) {
-          console.log(stock);
+          // console.log(stock);
 
           dispatch(fetchData(stock));
         }
       });
       return () => unsubscribe();
     } catch (error) {
-      console.log(error);
+      // alert(error);
     }
   }, [currentUser?.uid]);
 
@@ -67,7 +66,7 @@ function App() {
       });
       return () => unsubscribe();
     } catch (error) {
-      console.log(error);
+      // alert(error);
     }
   }, [currentUser?.uid]);
 
