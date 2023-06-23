@@ -19,7 +19,7 @@ const FormInput = (props) => {
         focused={focused.toString()}
         className=" 
              border-b-[1px] border-[#191c1a]          
-            outline-none
+            outline-none mb-3
             w-[100%] h-[80%]  
             text-[#000] text-[14px] lg:text-[18px] 
             p-[13px] 

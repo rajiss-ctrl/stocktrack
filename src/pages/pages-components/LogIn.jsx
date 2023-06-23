@@ -3,15 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, useAuth } from "../../db/firebase";
 import { useDispatch } from "react-redux";
-import { FaAt, FaEye } from "react-icons/fa";
+import { FaAt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hidePassword, setHidePassword] = useState(true);
+  const handleShowPassword = () => {
+    setHidePassword((pre) => !pre);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!hidePassword) {
+      setHidePassword(true);
+    }
     //Firebase function that allows users sign-in via Firebase
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -75,7 +82,7 @@ const LogIn = () => {
           >
             <input
               id="password"
-              type="password"
+              type={`${hidePassword ? "password" : "text"}`}
               placeholder="Password"
               className=" mb-6  
              border-none          
@@ -89,13 +96,24 @@ const LogIn = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <FaEye className="text-[#888988]" />
+            <div onClick={handleShowPassword}>
+              <FaEye
+                className={`${
+                  hidePassword ? "block" : "hidden"
+                } text-[#888988]`}
+              />
+              <FaEyeSlash
+                className={`${
+                  hidePassword ? "hidden" : "block"
+                } text-[#888988]`}
+              />
+            </div>
           </div>
 
           <button
             type="submit"
             className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
-                    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm sm:md text-white"
+                    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm sm:md text-white mt-8 "
           >
             SIGN IN
           </button>

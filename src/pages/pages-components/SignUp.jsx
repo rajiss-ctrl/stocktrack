@@ -116,7 +116,7 @@ const SignUp = () => {
           <button
             type="submit"
             className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
-                mt-4    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm  text-white"
+                mt-8    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm  text-white"
           >
             SIGN UP
           </button>

@@ -20,25 +20,25 @@ const HomeForms = () => {
         </div>
         <div
           id="signup"
-          className="w-full sm:w-[40%] less_md:w-[90%] md:w-[90%] lg:w-[45%] bg-[#FFFFFF] font-[400]"
+          className="w-full  sm:w-[40%] less_md:w-[90%] md:w-[90%] lg:w-[45%] bg-[#FFFFFF] font-[400]"
         >
           {!isVisible ? <LogIn /> : <SignUp />}
           <button
             onClick={toggle}
-            className="outline-none  less_sm:px-[28px] border-0"
+            className="outline-none mt-12  less_sm:px-[28px] border-0"
           >
             {isVisible ? (
-              <p className="pl-[20px] less_sm:pl-[48px] text-sm font-medium mb-12 lg:mb-0">
+              <p className="pl-[20px] less_sm:pl-[48px] text-[1rem] font-[300] mb-12 lg:mb-0">
                 Already registered?{" "}
                 <span className=" text-[#0000ff]"> Log In!</span>{" "}
               </p>
             ) : (
               <div className=" flex flex-col sm:flex-row items-center sm:justify-between">
-                <p className="pl-[20px] text-sm font-medium mb-6 sm:mb-12 xl:mb-0">
+                <p className="pl-[20px] text-[1rem] font-[300]  mb-6 sm:mb-12 xl:mb-0">
                   Don't have account?
                   <span className="text-[blue]"> Sign Up!</span>
                 </p>
-                <p className="mb-12 text-sm xl:mb-0">
+                <p className="mb-12 text-[1rem] font-[300] xl:mb-0">
                   <Link className="-pl-10 sm:pl-5" to="/reset">
                     Forget Password?
                   </Link>
