@@ -78,7 +78,7 @@ const DashboardTable = ({
                   key={item.id}
                   className=" shadow-md cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded h-[40px] sm:h-[50px] bg-white"
                 >
-                  <td className="  pl-[15px] md:text-[.7rem] text-sm md:leading-4 text-black font-[600] md:font-[400]">
+                  <td className="  pl-[15px] md:text-[.7rem] text-sm md:leading-4 text-black font-[600]">
                     {item?.product_name.toUpperCase()}
                   </td>
                   <td className="font-[600]  pl-[15px] text-xl ">
