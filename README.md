@@ -6,7 +6,7 @@ INVENTORY MANAGEMENT APP
 # StockTrack
 </details>
 
-![Landing Page](../assets/project.png)
+![Landing Page](/assets/project.png)
 
 
 
