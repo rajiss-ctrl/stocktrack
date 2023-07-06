@@ -23,17 +23,17 @@ const Footer = () => {
         <div className="flex gap-[10px] mt-[15px] less_sm:mt-[0] text-[14px] sm:text-[16px] font-['Kumbh Sans']">
           <a
             href="https://www.twitter.com/rajisanjo"
-            className="cursor-pointer text-lg lg:text-xl text-[#00a6ffe7] "
+            className="shadow-2xl cursor-pointer text-lg lg:text-xl text-[#00a6ffe7] "
           >
             <FaTwitter />
           </a>
-          <a className="cursor-pointer text-lg lg:text-xl text-[#FFFFFF] ">
+          <a className="shadow-2xl cursor-pointer text-lg lg:text-xl text-[#FFFFFF] ">
             <FaGithub />
           </a>
-          <a className="cursor-pointer text-lg lg:text-xl   text-[#586cb5e7] ">
+          <a className="shadow-2xl cursor-pointer text-lg lg:text-xl   text-[#586cb5e7] ">
             <FaLinkedin />
           </a>
-          <a className="cursor-pointer text-lg lg:text-xl  text-[#00a6ffe7] less_sm:text-[20px] w-[20px] h-[20px]">
+          <a className="shadow-2xl cursor-pointer text-lg lg:text-xl  text-[#00a6ffe7] less_sm:text-[20px] w-[20px] h-[20px]">
             <FaFacebook />
           </a>
         </div>

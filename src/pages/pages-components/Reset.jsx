@@ -38,7 +38,7 @@ function Reset() {
         />
         <div className="flex flex-col sm:flex-row items-center w-full  justify-between text-sm">
           <button
-            className=" bg-black text-sm xl:text-xs  bg-black text-white hover:bg-[#535252] p-4 rounded-3xl"
+            className="  text-sm xl:text-xs  bg-black text-white hover:bg-[#535252] p-4 rounded-3xl"
             onClick={() => sendPasswordReset(email)}
           >
             Send password reset email
