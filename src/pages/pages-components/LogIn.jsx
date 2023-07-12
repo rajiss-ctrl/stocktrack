@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../db/firebase";
+import { auth, useAuth } from "../../db/firebase";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaAt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogIn = () => {
   const navigate = useNavigate();
   const [serverErr, setServerErr] = useState("");
-
+  const currentUser = useAuth();
   const [hidePassword, setHidePassword] = useState(true);
   const handleShowPassword = () => {
     setHidePassword((pre) => !pre);
@@ -131,6 +132,7 @@ const LogIn = () => {
             type="submit"
             className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
             rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm sm:md text-white mt-8 "
+            disabled={currentUser}
           >
             SIGN IN
           </button>
