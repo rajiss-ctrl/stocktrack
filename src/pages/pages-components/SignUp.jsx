@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../features/userSlice";
-import db, { auth, useAuth } from "../../db/firebase";
+import db, { auth } from "../../db/firebase";
 import FormInput from "../../components/FormInput";
 import { FaAt, FaEye } from "react-icons/fa";
 import { addDoc, collection } from "firebase/firestore";
@@ -15,10 +13,9 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   };
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
-  const currentUser = useAuth();
+  const [serverErr, setServerErr] = useState("");
   const inputs = [
     {
       id: 1,
@@ -80,11 +77,13 @@ const SignUp = () => {
         authProvider: "local",
         email,
       });
-      // dispatch(setUser({ id: user.uid, email: user.email }));
       navigate("/dashboard");
     } catch (err) {
+      if (err) {
+        let err = "Internet problem";
+        setServerErr(err);
+      }
       // console.error(err);
-      alert(err.message);
     }
   };
 
@@ -120,6 +119,7 @@ const SignUp = () => {
           >
             SIGN UP
           </button>
+          <p className="text-[red]">{serverErr}</p>
         </form>
       </div>
     </main>

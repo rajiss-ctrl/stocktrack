@@ -1,6 +1,7 @@
 import { FaOpencart, FaTimes, FaBars, FaGoogle } from "react-icons/fa";
 import { RiDashboardFill } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Link } from "react-scroll";
 import { useLocation } from "react-router-dom";
 import { useToggle } from "../custom-hooks/useToggle";
 import db, { auth, useAuth } from "../db/firebase";
@@ -117,17 +118,17 @@ const NavBar = () => {
               </li>
             </NavLink>
           ) : (
-            <a href="#signup">
+            <Link to="signup">
               <li
                 className="list-[none]
-          w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
-          md:hover:border-b-4 
-          md:hover:border-dark-purple hover:text-[#c6b9b9] 
-          py-[6px] md:py-[24px]"
+                w-[100%] md:w-[auto] md:border-b-4 md:border-[transparent] 
+                md:hover:border-b-4 cursor-pointer
+                md:hover:border-dark-purple hover:text-[#c6b9b9] 
+                py-[6px] md:py-[24px]"
               >
                 <span>Sign Up</span>
               </li>
-            </a>
+            </Link>
           )}
 
           {currentUser?.email != null ? (

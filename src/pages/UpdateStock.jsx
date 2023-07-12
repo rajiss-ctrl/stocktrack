@@ -5,6 +5,58 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import db, { storage, useAuth } from "../db/firebase";
+import {
+  FaMoneyBill,
+  FaPrescription,
+  FaProductHunt,
+  FaSortNumericUp,
+} from "react-icons/fa";
+import StockInput from "../components/StockInput";
+
+const inputs = [
+  {
+    id: 1,
+    name: "product_name",
+    type: "text",
+    errMessages: "Product Name should not be nore than 20 character long",
+    placeholder: "Product Name",
+    label: "Product Name",
+    icon: <FaProductHunt />,
+    required: true,
+  },
+  {
+    id: 2,
+    name: "product_Qty",
+    type: "number",
+    errMessages: "Product quantity should inserted!",
+    placeholder: "Product Quantity",
+    label: "Product quantity",
+    icon: <FaSortNumericUp />,
+    required: true,
+  },
+  {
+    id: 3,
+    name: "product_Price",
+    type: "number",
+    errMessages: "Must be number!",
+    placeholder: "Product price",
+    label: "Product price",
+    icon: <FaMoneyBill />,
+    // pattern: `^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$`,
+    required: true,
+  },
+  {
+    id: 4,
+    name: "product_description",
+    type: "text",
+    errMessages: "Describe the product!",
+    placeholder: "Product description",
+    label: "Product description",
+    icon: <FaProductHunt />,
+    // pattern: `^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$`,
+    required: true,
+  },
+];
 
 const UpdateStock = () => {
   const user = useSelector((store) => store.user.user);
@@ -14,8 +66,8 @@ const UpdateStock = () => {
 
   const initialState = {
     product_name: "",
-    product_Qty: Number(0),
-    product_Price: Number(0),
+    product_Qty: Number(),
+    product_Price: Number(),
     size: "",
     product_description: "",
   };
@@ -23,10 +75,10 @@ const UpdateStock = () => {
   const [data, setData] = useState(initialState);
   // const { company_name } = data;
   const [progress, setProgress] = useState({});
+  const [serverErr, setServerErr] = useState("");
 
   const [file, setFile] = useState(null);
   // console.log(data);
-  const [disAble, setDisAble] = useState(false);
 
   useEffect(() => {
     const uploadFile = () => {
@@ -52,6 +104,10 @@ const UpdateStock = () => {
           }
         },
         (error) => {
+          if (error) {
+            let error = "Internet Problems";
+            setServerErr(error);
+          }
           // console.log(error);
         },
         () => {
@@ -64,18 +120,11 @@ const UpdateStock = () => {
     file && uploadFile();
   }, [file]);
 
-  /* The handleFileReader function converts the business logo (image file) to base64 */
-
-  const handleChange = (e) => {
-    // if (data.length === 0) {
-    //   setDisAble(true);
-    // } else {
-    //   setDisAble(false);
-    // }
+  const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleStock = async (e) => {
     e.preventDefault();
     setData(initialState);
     setFile(null);
@@ -95,74 +144,43 @@ const UpdateStock = () => {
         className="w-full md:p-8 md:w-2/3 md:shadow 
                     mx-auto mt-8 rounded p-3 my-8 h-[100vh]"
       >
+        <h3 className="text-center font-bold text-xl mb-6">create stock</h3>
         <div
           className={`${
             progress !== null && progress < 100 ? "block" : "hidden"
-          } h-[5px] bg-[green] w-[${progress}%]`}
+          } h-[5px] mb-2 bg-[green] w-[${progress}%]`}
         ></div>
-        <h3 className="text-center font-bold text-xl mb-6">create stock</h3>
 
-        <form className="w-full mx-auto flex flex-col" onSubmit={handleSubmit}>
-          <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-[4%]">
-            <input
-              type="text"
+        <form className="w-full mx-auto flex flex-col" onSubmit={handleStock}>
+          <div className="flex flex-col w-full">
+            {inputs.map((input) => {
+              return (
+                <StockInput
+                  key={input.id}
+                  {...input}
+                  value={data[input.name]}
+                  onChange={onChange}
+                />
+              );
+            })}
+            <select
+              value={data.size}
               required
-              className=" p-3 text-sm w-full sm:w-[48%] border outline-none mb-6 rounded"
-              id="productName"
-              name="product_name"
-              value={data.product_name}
-              placeholder="Product Name"
-              onChange={handleChange}
-            />
-
-            <input
-              type="number"
-              required
-              className=" p-3 text-sm w-full sm:w-[48%] mb-6 border outline-none rounded"
-              id="productQty"
-              name="product_Qty"
-              value={data.product_Qty}
-              onChange={handleChange}
-              placeholder="Quantity"
-            />
+              onChange={onChange}
+              className="signup__form-input select
+                w-full text-sm bg-gray rounded p-3 border
+                outline-none mb-6 form-select "
+              name="size"
+              id="size"
+            >
+              <option defaultValue>--Choose an option--</option>
+              <option>Pk</option>
+              <option>Ctn</option>
+              <option>pc</option>
+              <option>Scht</option>
+              <option>Bag</option>
+            </select>
           </div>
-          <select
-            value={data.size}
-            onChange={handleChange}
-            className="signup__form-input select
-          w-full text-sm bg-gray rounded p-3 border
-          outline-none mb-6 form-select "
-            name="size"
-            id="size"
-          >
-            <option defaultValue>--Choose an option--</option>
-            <option>Pck</option>
-            <option>Ctn</option>
-            <option>pc</option>
-            <option>Scht</option>
-            <option>Bag</option>
-          </select>
-          <input
-            type="number"
-            required
-            className=" p-3 text-sm w-full mb-6 border outline-none rounded"
-            id="productPrice"
-            name="product_Price"
-            value={data.product_Price}
-            onChange={handleChange}
-            placeholder="Product Price"
-          />
-          <input
-            type="text"
-            required
-            className="p-3 text-sm outline-none border w-full mb-6 capitalize rounded"
-            id="description"
-            name="product_description"
-            value={data.product_description}
-            onChange={handleChange}
-            placeholder="Product Description"
-          />
-
           <div className="flex items-center space-x-4 w-full">
             <div className="flex flex-col w-1/2">
               {/* <img src={productImg} alt="Logo" className=" w-full max-h-[300px]" /> */}
@@ -182,24 +200,16 @@ const UpdateStock = () => {
               />
             </div>
           </div>
-
           <button
             type="submit"
             className="bg-dark-purple 
-          hover:bg-dark-purp-hover 
-          text-[14px] md:text-[16px] 
-           text-gray-100 w-full p-[10px] md:p-5 rounded my-6"
-            disabled={
-              // data.product_Qty <= 0 ||
-              // data.product_description === "" ||
-              // data.product_name === "" ||
-              // data.size === "" ||
-              progress !== null && progress < 100
-            }
+              hover:bg-dark-purp-hover text-gray-100 w-full p-[10px] md:p-5 rounded my-6"
+            disabled={progress !== null && progress < 100}
           >
-            CREATE STOCK
+            Add To Stock
           </button>
         </form>
+        <p className="text-[red]">{serverErr}</p>
       </div>
     </div>
   );

@@ -119,7 +119,7 @@ const Dashnoard = () => {
           <BsArrowLeftShort
             className={`bg-white ${
               open && "rotate-180"
-            } text-3xl rounded-full border border-dark-purple text-dark-purple`}
+            } animate-pulse  text-3xl rounded-full border border-dark-purple text-dark-purple`}
           />
         </div>
         <Sidebar

@@ -30,7 +30,7 @@ const HeroSection = () => {
               <img src={Parcels} alt="Inventory" className="w-[65%] h-auto" />
             </div>
             <div className="lg:w-1/2">
-              <ul className="list-none list-inside font-[300] leading-6 sm:text-[1.15rem] text-black mb-4 ">
+              <ul className="list-none list-inside font-[400] leading-6 sm:text-[1.15rem] text-black mb-4 ">
                 <li className="flex items-center space-x-2  ">
                   <FaLevelUpAlt className="text-[rgb(158,_169,_201)]" />{" "}
                   <span>Track inventory levels in real-time</span>
