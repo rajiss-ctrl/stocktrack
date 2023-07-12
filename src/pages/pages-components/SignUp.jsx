@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import db, { auth } from "../../db/firebase";
+import db, { auth, useAuth } from "../../db/firebase";
 import FormInput from "../../components/FormInput";
-import { FaAt, FaEye } from "react-icons/fa";
+import {
+  FaAt,
+  FaEye,
+  FaEyeSlash,
+  FaPeopleArrows,
+  FaRegEnvelope,
+} from "react-icons/fa";
 import { addDoc, collection } from "firebase/firestore";
 
 const SignUp = () => {
@@ -16,15 +22,20 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
   const [serverErr, setServerErr] = useState("");
+  const [hidePassword, setHidePassword] = useState(true);
+  const handleShowPassword = () => {
+    setHidePassword((pre) => !pre);
+  };
+  const currentUser = useAuth();
   const inputs = [
     {
       id: 1,
       name: "name",
       type: "text",
       errMessages: "Business Name should not be nore than 20 character long",
-      placeholder: "Business Name",
+      placeholder: `${currentUser ? currentUser.email : "Business Name"} `,
       label: "Name",
-      icon: <FaAt />,
+      icon: <FaPeopleArrows />,
       required: true,
     },
     {
@@ -32,20 +43,20 @@ const SignUp = () => {
       name: "email",
       type: "email",
       errMessages: "Business email should be a valid email address!",
-      placeholder: "Business Email",
+      placeholder: `${currentUser ? currentUser.email : "Email Address"} `,
       label: "Email",
-      icon: <FaAt />,
+      icon: <FaRegEnvelope />,
       required: true,
     },
     {
       id: 3,
       name: "password",
-      type: "password",
+      type: hidePassword ? "password" : "text",
       errMessages:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
       placeholder: "Password",
       label: "Password",
-      icon: <FaEye />,
+      icon: hidePassword ? <FaEyeSlash /> : <FaEye />,
       // pattern: `^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$`,
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
@@ -53,11 +64,11 @@ const SignUp = () => {
     {
       id: 4,
       name: "confirmPassword",
-      type: "password",
+      type: hidePassword ? "password" : "text",
       errMessages: "Password don't match",
       placeholder: "Confirm Password",
       label: "Confirm Password",
-      icon: <FaEye />,
+      icon: hidePassword ? <FaEyeSlash /> : <FaEye />,
       pattern: values.password,
       required: true,
     },
@@ -65,6 +76,9 @@ const SignUp = () => {
 
   const registerWithEmailAndPassword = async (e) => {
     e.preventDefault();
+    if (!hidePassword) {
+      setHidePassword((pre) => !pre);
+    }
     const email = values.email;
     const name = values.name;
     const password = values.password;
@@ -109,6 +123,8 @@ const SignUp = () => {
                 {...input}
                 value={values[input.name]}
                 onChange={onChange}
+                hidePassword={hidePassword}
+                handleShowPassword={handleShowPassword}
               />
             );
           })}
@@ -116,6 +132,7 @@ const SignUp = () => {
             type="submit"
             className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
                 mt-8    rounded-lg bg-dark-purple hover:bg-dark-purp-hover text-sm  text-white"
+            disabled={currentUser}
           >
             SIGN UP
           </button>

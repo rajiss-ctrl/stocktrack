@@ -32,8 +32,8 @@ const LogIn = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data.email);
-    console.log(data.password);
+    // console.log(data.email);
+    // console.log(data.password);
     if (!hidePassword) {
       setHidePassword(true);
     }
@@ -78,7 +78,7 @@ const LogIn = () => {
               {...register("email")}
               id="email"
               type="email"
-              placeholder="Email"
+              placeholder={`${currentUser ? currentUser.email : "Email"}`}
               className=" mb-3  
               border-none          
               outline-none
@@ -86,6 +86,7 @@ const LogIn = () => {
               text-[#000] text-[14px] lg:text-[18px] 
               p-[13px] 
               "
+              disabled={currentUser}
             />
 
             <FaAt className="text-[#888988]" />
@@ -112,6 +113,7 @@ const LogIn = () => {
               text-[#000] text-[14px] lg:text-[18px] 
               p-[13px] 
               "
+              disabled={currentUser}
             />
 
             <div onClick={handleShowPassword}>

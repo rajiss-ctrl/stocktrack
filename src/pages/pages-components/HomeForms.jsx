@@ -10,7 +10,7 @@ const HomeForms = () => {
   return (
     <div className="bg-[#FFFFFF] flex flex-col pt-[26rem] less_sm:p-[34rem_0_6rem_0] md:p-[36rem_0_6rem_0] lg:p-[24rem_0_8rem_0]">
       <h1 className="p-6 text-xl font-extrabold text-center bg-gradient-to-r from-black via-orange-400 to-green-900 bg-clip-text text-transparent">
-        YOU A STEP FROM BEEN IN FULL CONTROL OF YOUR STOCK
+        YOU ARE A STEP FROM BEEN IN FULL CONTROL OF YOUR STOCK
       </h1>
       <div className=" flex flex-col items-center justify-center less_md:flex-col tab:flex-col laptop:flex-row   less_md:w-full  w-full ">
         <div className="w-full less_md:w-[100%] bg sm:w-[40%] md:w-[70%] lg:w-[35%] flex justify-center items-center relative">
