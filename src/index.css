@@ -32,3 +32,17 @@ input:invalid[focused="true"] ~ span{
   background-image: url('./assets/bg-pattern-leaf-left.svg');
   background-repeat: no-repeat;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animated-spin {
+  animation: spin 9s linear infinite;
+}
