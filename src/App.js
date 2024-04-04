@@ -8,10 +8,13 @@ import { fetchBuzData } from "./features/businessprofile/businessSlice";
 import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
 
+
+import Index from "./pages/signin-signup/Index";
+import Loading from './assets/img/loading-state.svg'
+import InventoryTable from "./pages/InventoryTable";
 const Layout = lazy(() => import("./outlet/Layout"));
 const Home = lazy(() => import("./pages/Home"));
 const UpdateStock = lazy(() => import("./pages/UpdateStock"));
-const Stock = lazy(() => import("./pages/Stock"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const BusinessProfile = lazy(() => import("./pages/BusinessProfile"));
 const ProtectedRoute = lazy(() => import("./protected-route/ProtectedRoute"));
@@ -72,16 +75,21 @@ function App() {
 
   return (
     <Suspense
-      fallback={<h1 className="text-center mt-12 text-xl">Loading...</h1>}
+      fallback={
+      <div className="h-screen flex justify-center items-center">
+        <img className="w-20" src={Loading} alt="stocktrack loading" />
+      </div>}
     >
-      <div className="font-[Kumbh Sans]">
+      <div className="font-[Kumbh Sans] tracking-tight md:tracking-wide lg:tracking-widest">
         <Routes>
           <Route path={"/"} element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path={'index'} element={<Index />} />
             <Route path={"reset"} element={<Reset />} />
             <Route element={<ProtectedRoute />}>
               <Route path={"updatestock"} element={<UpdateStock />} />
-              <Route path={"stock"} element={<Stock />} />
+            <Route path={'inventorytable'} element={<InventoryTable />} />
+            <Route path={'businessprofile'} element={<BusinessProfile />} />
               <Route path={"dashboard"} element={<Dashboard />}>
                 <Route path={"businessprofile"} element={<BusinessProfile />} />
               </Route>

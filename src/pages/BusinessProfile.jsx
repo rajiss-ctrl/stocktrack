@@ -1,134 +1,3 @@
-// import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-// import { useSelector } from "react-redux";
-// import { useNavigate } from "react-router-dom";
-
-// import React, { useState } from "react";
-// import { getDownloadURL, ref, uploadString } from "firebase/storage";
-// import db, { storage, useAuth } from "../db/firebase";
-
-// const BusinessProfile = () => {
-//   const currentUser = useAuth();
-//   const navigate = useNavigate();
-//   const user = useSelector((state) => state.user.user);
-//   const [businessName, setBusinessName] = useState("");
-//   const [businessAddress, setBusinessAddress] = useState("");
-//   const [logo, setLogo] = useState(
-//     "https://www.pesmcopt.com/admin-media/images/default-logo.png"
-//   );
-
-//   {
-//     /* The handleFileReader function converts the business logo (image file) to base64 */
-//   }
-//   const handleFileReader = (e) => {
-//     const reader = new FileReader();
-//     if (e.target.files[0]) {
-//       reader.readAsDataURL(e.target.files[0]);
-//     }
-//     reader.onload = (readerEvent) => {
-//       setLogo(readerEvent.target.result);
-//     };
-//   };
-
-//   /* The handleSubmit function sends the form details to Firestore */
-//   const handleSubmit = async (e) => {
-//     e.preventDefault(); //prevents the page from refreshing
-//     setBusinessAddress("");
-//     setBusinessName("");
-//     navigate("/dashboard");
-
-//     const docRef = await addDoc(collection(db, "businesses"), {
-//       user_id: currentUser?.uid,
-//       businessName,
-//       businessAddress,
-//     });
-
-//     const imageRef = ref(storage, `businesses/${docRef.id}/image`);
-
-//     if (
-//       logo !== "https://www.pesmcopt.com/admin-media/images/default-logo.png"
-//     ) {
-//       await uploadString(imageRef, logo, "data_url").then(async () => {
-//         //Gets the image URL
-//         const downloadURL = await getDownloadURL(imageRef);
-
-//         //Updates the docRef, by adding the logo URL to the document
-//         await updateDoc(doc(db, "businesses", docRef.id), {
-//           logo: downloadURL,
-//         });
-
-//         //Alerts the user that the process was successful
-//         // alert("Congratulations, you've just created a business profile!");
-//       });
-//     }
-//   };
-
-//   return (
-//     <div className="w-[100%] md:h-[500px]  md:p-8 md:w-2/3 md:shadow mx-auto mt-8 rounded p-3 my-8">
-//       <h3 className="text-center font-bold text-xl text-dark-purple mb-6">
-//         Setup Business Profile
-//       </h3>
-
-//       <form className="w-full flex flex-col" onSubmit={handleSubmit}>
-//         {/* The handleSubmit function sends the form details to Firestore */}
-//         <input
-//           type="text"
-//           required
-//           className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
-//           id="businessName"
-//           value={
-//             currentUser?.displayName ? currentUser?.displayName : businessName
-//           }
-//           placeholder={`${
-//             currentUser?.displayName
-//               ? currentUser?.displayName
-//               : "Business Name"
-//           }`}
-//           onChange={(e) => setBusinessName(e.target.value)}
-//         />
-//         <input
-//           type="text"
-//           required
-//           className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
-//           id="businessAddress"
-//           value={businessAddress}
-//           placeholder="Business Address"
-//           onChange={(e) => setBusinessAddress(e.target.value)}
-//         />
-
-//         <div className="flex items-center space-x-4 w-full">
-//           <div className="flex flex-col w-1/2">
-//             <img src={logo} alt="Logo" className=" w-full max-h-[300px]" />
-//           </div>
-
-//           <div className="flex flex-col w-full">
-//             <label htmlFor="logo" className="text-sm mb-1">
-//               Upload logo
-//             </label>
-//             <input
-//               type="file"
-//               accept="image/*"
-//               required
-//               className="w-full mb-6  rounded"
-//               id="logo"
-//               onChange={handleFileReader}
-//             />
-//           </div>
-//         </div>
-
-//         <button
-//           className="hover:bg-dark-purp-hover bg-dark-purple
-//                         text-sm md:text-sm text-gray-100 w-full p-[10px]
-//                         md:p-5 rounded my-6"
-//         >
-//           COMPLETE PROFILE
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default BusinessProfile;
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -136,9 +5,11 @@ import * as yup from "yup";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import db, { storage, useAuth } from "../db/firebase";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import Navbar from './../components/Navbars/IndexNavbar';
 
 const schema = yup.object().shape({
   businessName: yup.string().required("Business Name is required"),
@@ -180,6 +51,7 @@ const BusinessProfile = () => {
     const docRef = await addDoc(collection(db, "businesses"), {
       user_id: currentUser?.uid,
       businessName: data.businessName,
+      businessType: data.businessType,
       businessAddress: data.businessAddress,
     });
 
@@ -202,10 +74,17 @@ const BusinessProfile = () => {
   };
 
   return (
-    <div className="w-[100%] md:h-[500px]  md:p-8 md:w-2/3 md:shadow mx-auto mt-8 rounded p-3 my-8">
-      <h3 className="text-center font-bold text-xl text-dark-purple mb-6">
-        Setup Business Profile
-      </h3>
+    <div className="relative bg-[#F3F5F7]">
+      <Link className='absolute hover:shadow-lg top-6 sm:top-6 text-gray-600 shadow-xl bg-transparent text-xs px-3 py-1 rounded-sm sm:rounded-md left-1/2 transform -translate-x-1/2 -translate-y-1/2' to='/dashboard'>Dashboard</Link>
+      {/* <div className="pb-10">
+        <Navbar/>
+      </div> */}
+    <div className="flex flex-col sm:justify-between sm:flex-row items-center  px-2 sm:px-0 mt-24 sm:mt-0 ">
+      <div className="px-2 sm:px-14 sm:w-1/2">
+      <div className=" w-full flex flex-col justify-center items-center  sm:shadow bg-[#eceff1] rounded p-3">
+        <h3 className="text-center font-bold text-sm text-gray-400 mb-6">
+          Create Business Profile
+        </h3>
 
       <form className="w-full flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         {/* The handleSubmit function sends the form details to Firestore */}
@@ -219,6 +98,18 @@ const BusinessProfile = () => {
         {errors?.businessName && (
           <span className="text-[red]" role="alert">
             {errors.businessName.message}
+          </span>
+        )}
+        <input
+          type="text"
+          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
+          id="businessType"
+          placeholder="Business Type"
+          {...register("businessType")}
+        />
+        {errors?.businessType && (
+          <span className="text-[red]" role="alert">
+            {errors.businessType.message}
           </span>
         )}
 
@@ -236,11 +127,41 @@ const BusinessProfile = () => {
         )}
 
         <div className="flex items-center space-x-4 w-full">
-          <div className="flex flex-col w-1/2">
-            <img src={logo} alt="Logo" className=" w-full max-h-[300px]" />
+          <div className="flex flex-col w-1/2 pl-16">
+            <img src={logo} alt="Logo" className="w-9 h-9 sm:w-14 sm:h-14 rounded-[50%]"  />
           </div>
+          <div className="w-full">
+          <label
+            htmlFor="logo"
+            className="w-full flex items-center text-[#46148B] text-xs pb-2 px-4 border-0 cursor-pointer"
+          >
+            <FaCloudUploadAlt className="mr-2 text-xs font-bold cursor-pointer" /> Business Logo
+            <input
+              accept="image/*"
+              required
+              // className="opacity-0 absolute cursor-pointer"
+              style={{display:"none"}}
+              type="file"
+              id="logo"
+              {...register("logo")}
+              onChange={handleFileReader}
+            />
+               {errors.logo && (
+              <span className="text-[red]" role="alert">
+                {errors.logo.message}
+              </span>
+            )}
+          </label>
+        </div>
 
-          <div className="flex flex-col w-full">
+
+
+
+
+
+
+
+          {/* <div className="flex flex-col w-full">
             <label htmlFor="logo" className="text-sm mb-1">
               Upload logo
             </label>
@@ -257,18 +178,38 @@ const BusinessProfile = () => {
                 {errors.logo.message}
               </span>
             )}
-          </div>
+          </div> */}
         </div>
 
         <button
           className="hover:bg-dark-purp-hover bg-dark-purple
-                        text-sm md:text-sm text-gray-100 w-full p-[10px] 
-                        md:p-5 rounded my-6"
+                        text-xs text-gray-100 w-full p-[10px] 
+                        md:p-3 rounded my-6 uppercase"
           type="submit"
         >
-          COMPLETE PROFILE
+          submit
         </button>
       </form>
+      </div>
+      </div> 
+      {/* profile */}
+      <div className="bg-white sm:w-1/2 sm:h-screen">
+      <div className="flex py-16 bg-white w-full   justify-center items-center flex-col">
+                <div className="flex flex-col justify-center items-center"> 
+                  <img src={logo} alt="Logo" className=" w-14 h-14 rounded-[50%]"  />
+                  <h1 className="pt-1  text-sm">Business Name</h1>
+                  <p className="text-gray-400 text-xs">01 Business adress at aros compound ira.</p>
+                </div>
+              <div className="text-sm pt-5 flex justify-center items-center flex-col">
+                  <h4 className="border border-gray-400 px-4 py-2">Business Type</h4>
+                  <article className="pt-5">
+                    <h4 className="leading-normal md:leading-relaxed lg:leading-loose text-center pb-2">About The Business</h4>
+                    <p className="leading-normal md:leading-relaxed lg:leading-loose sm:mx-4 text-gray-500 sm:text-black text-sm sm:text-xs px-4 py-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae laudantium quae repellat! Cupiditate?</p>
+                  </article>
+              </div>
+      </div>
+    </div>
+    </div>
     </div>
   );
 };

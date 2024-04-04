@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
+
 import db, { storage, useAuth } from "../db/firebase";
 import {
+  FaCloudUploadAlt,
   FaMoneyBill,
   FaPrescription,
   FaProductHunt,
@@ -18,7 +19,8 @@ const inputs = [
     id: 1,
     name: "product_name",
     type: "text",
-    errMessages: "Product Name should not be nore than 20 character long",
+    errMessages: "Product name cannot be empty or blank.",
+    successMessage: "Acknowledged compliance for Product Name.",
     placeholder: "Product Name",
     label: "Product Name",
     icon: <FaProductHunt />,
@@ -28,9 +30,10 @@ const inputs = [
     id: 2,
     name: "product_Qty",
     type: "number",
-    errMessages: "Product quantity should inserted!",
-    placeholder: "Product Quantity",
-    label: "Product quantity",
+    errMessages: "Please provide the product quantity.",
+    successMessage: "Acknowledged compliance for product quantity.",
+    placeholder: "Product Quantity (0000)",
+    label: "Product Quantity",
     icon: <FaSortNumericUp />,
     required: true,
   },
@@ -38,27 +41,28 @@ const inputs = [
     id: 3,
     name: "product_Price",
     type: "number",
-    errMessages: "Must be number!",
-    placeholder: "Product price",
-    label: "Product price",
+    errMessages: "Please enter a valid number for product price.",
+    successMessage: "Acknowledged compliance for product Price.",
+    placeholder: "Product Price (0000)",
+    label: "Product Price",
     icon: <FaMoneyBill />,
-    // pattern: `^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$`,
     required: true,
   },
   {
     id: 4,
     name: "product_description",
     type: "text",
-    errMessages: "Describe the product!",
-    placeholder: "Product description",
-    label: "Product description",
+    errMessages: "Please provide a description for the product.",
+    placeholder: "Product Description",
+    label: "Product Description",
     icon: <FaProductHunt />,
-    // pattern: `^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$`,
-    required: true,
+    required: false,
   },
 ];
 
-const UpdateStock = () => {
+
+
+const UpdateStock = ({handleRestock,restock}) => {
   const user = useSelector((store) => store.user.user);
   // console.log(user);
   const currentUser = useAuth();
@@ -136,30 +140,35 @@ const UpdateStock = () => {
     });
     // navigate("/dashboard");
   };
-
+  // bg-[rgba(0, 0, 0, 0.464)] bg-blend-darken
   return (
-    <div className="bg-gradient-to-t from-[rgb(8,_26,_81,_0.4)] to-white-800 bg-clip">
-      <NavBar />
+    // <div className="bg-gradient-to-t from-[rgb(8,_26,_81,_0.4)] to-white-800 bg-clip">
+    <div className=" bg-gradient-to-t from-[rgba(69,69,70,0.4)] to-white-200 bg-clip z-[100000] w-full h-full fixed top-0 right-0">
+      
       <div
-        className="w-full md:p-8 md:w-2/3 md:shadow 
-                    mx-auto mt-8 rounded p-3 my-8 h-[100vh]"
+        className="w-full bg-white  md:w-[50%] md:shadow 
+                    mx-auto  md:mt-1 rounded p-6 "
       >
-        <h3 className="text-center font-bold text-xl mb-6">create stock</h3>
+        <div className="mb-6 flex justify-between items-center">
+        <h3 className="mb-2 uppercase font-bold text-xs ">add New Item To the inventory</h3>
+        <i onClick={handleRestock} class="fas fa-times text-gray-500 hover:text-red-500 cursor-pointer transition duration-300 transform hover:scale-110"></i>
+        </div>
         <div
           className={`${
             progress !== null && progress < 100 ? "block" : "hidden"
           } h-[5px] mb-2 bg-[green] w-[${progress}%]`}
         ></div>
 
-        <form className="w-full mx-auto flex flex-col" onSubmit={handleStock}>
+        <form className=" mx-auto flex flex-col" onSubmit={handleStock}>
           <div className="flex flex-col w-full">
             {inputs.map((input) => {
               return (
                 <StockInput
-                  key={input.id}
-                  {...input}
-                  value={data[input.name]}
-                  onChange={onChange}
+                key={input.id}
+                {...input}
+                type={input.type}  
+                value={data[input.name]}
+                onChange={onChange}
                 />
               );
             })}
@@ -169,15 +178,15 @@ const UpdateStock = () => {
               onChange={onChange}
               className="signup__form-input select
                 w-full text-sm bg-gray rounded p-3 border
-                outline-none mb-6 form-select "
+                outline-none mb-2 form-select  text-gray-500"
               name="size"
               id="size"
             >
-              <option defaultValue>--Choose an option--</option>
-              <option>Pk</option>
-              <option>Ctn</option>
-              <option>pc</option>
-              <option>Scht</option>
+              <option className="uppercase" defaultValue>Choose packaging size</option>
+              <option>Pack</option>
+              <option>Carton</option>
+              <option>peice</option>
+              <option>Sachet</option>
               <option>Bag</option>
             </select>
           </div>
@@ -186,27 +195,47 @@ const UpdateStock = () => {
               {/* <img src={productImg} alt="Logo" className=" w-full max-h-[300px]" /> */}
             </div>
 
-            <div className="flex flex-col w-full">
-              <label htmlFor="logo" className="text-sm mb-1">
-                Upload Product Picture.
-              </label>
+            {/* <div className="flex ">
+              <div htmlFor="product" className="text-sm ">
+                Upload Image.
+              </div>
               <input
                 type="file"
                 accept="image/*"
                 required
-                className="w-full mb-6  rounded"
+                className="  rounded"
                 id="productImg"
                 onChange={(e) => setFile(e.target.files[0])}
               />
-            </div>
+            </div> */}
+
+
+        <div className="w-full">
+          <label
+            htmlFor="productImg"
+            className="w-full flex items-center text-green-300 text-xs sm:text-sm font-bold pb-2 px-4 border-0 cursor-pointer"
+          >
+            <FaCloudUploadAlt className="mr-2 text-sm cursor-pointer" /> Item Image
+            <input
+              accept="image/*"
+              required
+              id="productImg"
+              // className="opacity-0 absolute cursor-pointer"
+              style={{display:"none"}}
+              type="file"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
+          </label>
+        </div>
+
           </div>
           <button
             type="submit"
-            className="bg-dark-purple 
-              hover:bg-dark-purp-hover text-gray-100 w-full p-[10px] md:p-5 rounded my-6"
+            className="bg-dark-purple uppercase text-sm
+              hover:bg-dark-purp-hover text-gray-100 w-full p-[10px] md:p-2 rounded"
             disabled={progress !== null && progress < 100}
           >
-            Add To Stock
+            Add Item
           </button>
         </form>
         <p className="text-[red]">{serverErr}</p>

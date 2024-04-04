@@ -30,8 +30,8 @@ const FormInput = (props) => {
         disabled={currentUser}
         focused={focused.toString()}
         className="
-             border-b-[1px] border-[#191c1a]          
-            outline-none mb-3
+             border-b-[1px] border-0          
+            outline-none mb-3 rounded
             w-[100%] h-[80%]  
             text-[#000] text-[14px] lg:text-[18px] 
             p-[13px] 
