@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Google from '../../assets/img/google.svg'
-import Logo from '../../assets/img/stocktrack-logo.png'
-import IndexDropdown from "../Dropdowns/IndexDropdown";
+import Logo from '../../assets/img/stocktrack-logo.png';
 import { Line } from 'react-chartjs-2';
 import db, { auth, useAuth } from "../../db/firebase";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";

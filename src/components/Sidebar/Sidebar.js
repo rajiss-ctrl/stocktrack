@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Logo from '../../assets/img/stocktrack-logo.png'
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
-import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import { logOut } from "../../db/firebase";
 // import UserDropdown from "../Dropdowns/UserDropdown";
 // import { useLocation } from 'react-router-dom';
