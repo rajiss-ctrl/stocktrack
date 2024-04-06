@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import db, { storage, useAuth } from "../db/firebase";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
@@ -125,7 +125,7 @@ const UpdateStock = ({handleRestock}) => {
     };
   
     uploadFile(); // Call the uploadFile function
-  }, [file, storage]); // Dependency array includes file and storage
+  }, [file]); // Dependency array includes only 'file'
   
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });

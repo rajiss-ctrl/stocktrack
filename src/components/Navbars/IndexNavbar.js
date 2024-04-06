@@ -112,6 +112,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+        {serverErr}
       </nav>
     </>
   );
