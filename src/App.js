@@ -1,7 +1,6 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-
 import { useDispatch } from "react-redux";
 import { fetchData } from "./features/product/productSlice";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
@@ -9,9 +8,10 @@ import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
 
 
-import Index from "./pages/signin-signup/Index";
+
 import Loading from './assets/img/loading-state.svg'
 import InventoryTable from "./pages/InventoryTable";
+import SigninSignout from "./pages/signin-signup/SigninSignout";
 const Layout = lazy(() => import("./outlet/Layout"));
 const Home = lazy(() => import("./pages/Home"));
 const UpdateStock = lazy(() => import("./pages/UpdateStock"));
@@ -49,7 +49,7 @@ function App() {
     } catch (error) {
       // alert(error);
     }
-  }, [currentUser?.uid]);
+  }, [currentUser?.uid,dispatch]);
 
   // business profile data
   useEffect(() => {
@@ -71,7 +71,7 @@ function App() {
     } catch (error) {
       // alert(error);
     }
-  }, [currentUser?.uid]);
+  }, [currentUser?.uid,dispatch]);
 
   return (
     <Suspense
@@ -84,7 +84,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path={'index'} element={<Index />} />
+            <Route path={"signinsignout"} element={<SigninSignout />} />
             <Route path={"reset"} element={<Reset />} />
             <Route element={<ProtectedRoute />}>
               <Route path={"updatestock"} element={<UpdateStock />} />

@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import db, { storage, useAuth } from "../db/firebase";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import Navbar from './../components/Navbars/IndexNavbar';
+
 
 const schema = yup.object().shape({
   businessName: yup.string().required("Business Name is required"),
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 const BusinessProfile = () => {
   const currentUser = useAuth();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
   const [logo, setLogo] = useState(
     "https://www.pesmcopt.com/admin-media/images/default-logo.png"
   );

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productReducer from './features/product/productSlice';
 import businessProReducer from './features/businessprofile/businessSlice';
-import modalReducer from './features/modalSlice';
+// import modalReducer from './features/modalSlice';
 import userReducer from './features/userSlice';
 
 export const store = configureStore({

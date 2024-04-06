@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+
 
 import db, { storage, useAuth } from "../db/firebase";
 import {
   FaCloudUploadAlt,
   FaMoneyBill,
-  FaPrescription,
   FaProductHunt,
   FaSortNumericUp,
 } from "react-icons/fa";
@@ -62,8 +61,8 @@ const inputs = [
 
 
 
-const UpdateStock = ({handleRestock,restock}) => {
-  const user = useSelector((store) => store.user.user);
+const UpdateStock = ({handleRestock}) => {
+  // const user = useSelector((store) => store.user.user);
   // console.log(user);
   const currentUser = useAuth();
   // console.log(currentUser?.uid);
@@ -75,7 +74,7 @@ const UpdateStock = ({handleRestock,restock}) => {
     size: "",
     product_description: "",
   };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [data, setData] = useState(initialState);
   // const { company_name } = data;
   const [progress, setProgress] = useState({});
@@ -86,44 +85,48 @@ const UpdateStock = ({handleRestock,restock}) => {
 
   useEffect(() => {
     const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, file.name);
-      const upLoadTask = uploadBytesResumable(storageRef, file);
-
-      upLoadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgress(progress);
-          switch (snapshot.state) {
-            case "paused":
-              // console.log("Upload is paused");
-              break;
-            case "running":
-              // console.log("uploading is running");
-              break;
-            default:
-              break;
+      if (file) { // Check if a file is present before initiating upload
+        const fileName = new Date().getTime() + file.name; // Generate unique file name
+        const storageRef = ref(storage, fileName); // Use the generated file name
+        const uploadTask = uploadBytesResumable(storageRef, file);
+  
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setProgress(progress);
+            switch (snapshot.state) {
+              case "paused":
+                // console.log("Upload is paused");
+                break;
+              case "running":
+                // console.log("Uploading is running");
+                break;
+              default:
+                break;
+            }
+          },
+          (error) => {
+            if (error) {
+              // Update serverErr state in case of errors
+              setServerErr("Internet Problems");
+            }
+            // console.log(error);
+          },
+          () => {
+            // Once upload is complete, get the download URL
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              // Update data state with the download URL
+              setData((prevData) => ({ ...prevData, img: downloadURL }));
+            });
           }
-        },
-        (error) => {
-          if (error) {
-            let error = "Internet Problems";
-            setServerErr(error);
-          }
-          // console.log(error);
-        },
-        () => {
-          getDownloadURL(upLoadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
-        }
-      );
+        );
+      }
     };
-    file && uploadFile();
-  }, [file]);
-
+  
+    uploadFile(); // Call the uploadFile function
+  }, [file, storage]); // Dependency array includes file and storage
+  
   const onChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -151,7 +154,9 @@ const UpdateStock = ({handleRestock,restock}) => {
       >
         <div className="mb-6 flex justify-between items-center">
         <h3 className="mb-2 uppercase font-bold text-xs ">add New Item To the inventory</h3>
-        <i onClick={handleRestock} class="fas fa-times text-gray-500 hover:text-red-500 cursor-pointer transition duration-300 transform hover:scale-110"></i>
+        <div className="shadow-md flex justify-center items-center text-gray-500 hover:text-red-500  w-[30px] h-[30px]  rounded-[50%] border border-[#213A84] hover:border-red-500 cursor-pointer transition duration-300 transform hover:scale-110">
+        <i onClick={handleRestock} class="fas fa-times "></i>
+        </div>
         </div>
         <div
           className={`${

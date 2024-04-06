@@ -11,7 +11,7 @@ const initialState = {
   stockDesc: "",
 };
 
-const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,handleDeleteItem,updateStockState, index }) => {
+const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,handleDeleteItem,stockState, index }) => {
   const [data, setData] = useState(initialState);
   const [delModal, setDelModal] = useState(false);
   const inputData = [
@@ -21,7 +21,7 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
       type: "number",
       errMessages: "Please provide the product quantity.",
       successMessage: "Acknowledged compliance for product quantity.",
-      placeholder:`Stock: ${updateStockState === index && qty} ${updateStockState === index && siz}${qty <= 1 ? "" : "s"} `,
+      placeholder:`Stock: ${stockState === index && qty} ${stockState === index && siz}${qty <= 1 ? "" : "s"} `,
       label: "Product Quantity",
       required: true,
     },
@@ -31,7 +31,7 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
       type: "number",
       errMessages: "Please enter a valid number for product price.",
       successMessage: "Acknowledged compliance for product Price.",
-      placeholder:`Cost: ₦${updateStockState === index && price}`,
+      placeholder:`Cost: ₦${stockState === index && price}`,
       label: "Product Price",
       required: true,
     },

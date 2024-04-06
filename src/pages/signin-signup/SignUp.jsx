@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import db, { auth, useAuth } from "../../db/firebase";
 import FormInput from "../../components/FormInput";
 import {
-  FaAt,
   FaEye,
   FaEyeSlash,
   FaPeopleArrows,

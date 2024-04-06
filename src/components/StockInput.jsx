@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FaEye } from "react-icons/fa";
-
 const StockInput = (props) => {
   const [focused, setFocused] = useState(false);
   const handleFocused = () => {

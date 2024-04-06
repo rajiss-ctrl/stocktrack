@@ -9,7 +9,7 @@ import { logOut } from "../../db/firebase";
 // import { useLocation } from 'react-router-dom';
 // import { useSelector } from "react-redux";
 
-export default function Sidebar({handleRestock, restock}) {
+export default function Sidebar({handleRestock}) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   
   

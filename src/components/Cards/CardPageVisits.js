@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useSpring, animated } from "react-spring";
-import Logo from '../../assets/img/stocktrack-logo.png'
 import Spinner from '../../assets/img/spinner.svg'
 import { useSelector } from "react-redux";
-import db, { useAuth } from "../../db/firebase";
+import db from "../../db/firebase";
 import { Link, useLocation } from "react-router-dom";
-import FormInput from './../FormInput';
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import UpdateStockState from "../../pages/pages-components/UpdateStockState";
+import UpdateStock from "../../pages/UpdateStock";
 
 
-export default function CardPageVisits() {
+
+export default function CardPageVisits({handleRestock,restock}) {
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
@@ -20,13 +20,13 @@ export default function CardPageVisits() {
   const location = useLocation();
   const currentRoutePath = location.pathname;
   const [salesConfirmation, setSalesConfirmation] = useState(-1);
-  const [updateStockState, setUpdateStockState] = useState(-1);
+  const [stockState, setStockState] = useState(-1);
   const [minusFromStock, setMinusFromStock]= useState(0)
   const [currencySymbol, setCurrencySymbol] = useState('₦');
 
   const product = useSelector((store) => store.product.productData);
   const userData = useSelector((store) => store.buz);
-  const currentUser = useAuth();
+  console.log(userData);
 
   const handleConfirmation = (event,index) => {
     event.preventDefault()
@@ -89,7 +89,8 @@ export default function CardPageVisits() {
     // Use the Geolocation API to get the user's location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
+        const { latitude } = position.coords;
+        // const { latitude, longitude } = position.coords;
 
         // Use latitude and longitude to determine the user's location
         // For simplicity, let's assume Nigeria if latitude is positive
@@ -106,11 +107,11 @@ console.log(userData)
 const handleStockStateUpdateModal = (event, index) =>{
   event.preventDefault()
     
-    if (updateStockState === index) {
-      setUpdateStockState(-1);
+    if (stockState === index) {
+      setStockState(-1);
       return;
     }
-    setUpdateStockState(index);
+    setStockState(index);
   
 
 }
@@ -128,7 +129,10 @@ const handleDeleteItem = async (e,id) => {
 
   return (
     <>
-      <div    className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2 md:mb-14  rounded ${currentRoutePath === '/inventorytable' ? "mt-0" : "mt-28"}`}>
+      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2 md:mb-14  rounded ${currentRoutePath === '/inventorytable' ? "mt-0" : "mt-28"}`}>
+       <div className={`${!restock ? 'hidden' : 'block'}`}>
+       <UpdateStock handleRestock={handleRestock} restock={restock}/>
+       </div>
         <div className="flex  px-4 items-center justify-end">  
           {currentRoutePath === '/inventorytable' ? "" :  "Business Profile" }
         </div>
@@ -147,7 +151,7 @@ const handleDeleteItem = async (e,id) => {
             </div>
             <div className="relative w-full sm:px-4  max-w-full flex-grow flex-1 text-right">
               {currentRoutePath === '/inventorytable' ? 
-                 <Link to="/dashboardtest"
+                 <Link to="/dashboard"
                  className="bg-[#46148B]  text-white active:bg-[#2e0a61] shadow hover:shadow-lg text-xs  uppercase px-3 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                   Dshboard
                  </Link> :
@@ -202,14 +206,14 @@ const handleDeleteItem = async (e,id) => {
               product?.map((item, index) => (
                 <tr key={index} onClick={currentRoutePath === '/inventorytable' ? (event) => handleStockStateUpdateModal(event, index) : undefined} className={`${currentRoutePath === '/inventorytable' && "cursor-pointer hover:bg-slate-50"}`}>
                   <td className="relative  border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-left">
-                  <div className={`${updateStockState === index ? 'block' : 'hidden' } absolute z-50 top-[1.65rem] h-auto  left-40 lg:left-32 `}>
+                  <div className={`${stockState === index ? 'block' : 'hidden' } absolute z-50 top-[1.65rem] h-auto  left-40 lg:left-32 `}>
                     <UpdateStockState 
                     id={item.id} 
                     qty={item.product_Qty}
                     price={item.product_Price} 
                     des={item.product_description} 
                     siz={item.size} 
-                    updateStockState={updateStockState}
+                    stockState={stockState}
                     handleStockStateUpdateModal={handleStockStateUpdateModal}
                     handleDeleteItem={handleDeleteItem}
                     index={index}/>

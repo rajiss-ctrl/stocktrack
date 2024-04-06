@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { FaEye } from "react-icons/fa";
 import { useAuth } from "../db/firebase";
-
 const FormInput = (props) => {
   const currentUser = useAuth();
   const [focused, setFocused] = useState(false);

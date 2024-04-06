@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbars/IndexNavbar'
 import FooterAdmin from '../../components/Footers/FooterAdmin'
 import Drownfan from "../../assets/img/drownfan.png";
 
-const Index = () => {
+const SigninSignout = () => {
     const [switchPage, setSwitchPage] = useState(true)
 
     const handlePageSwitch = ()=>{
@@ -39,4 +39,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default SigninSignout

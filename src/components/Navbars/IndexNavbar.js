@@ -1,21 +1,18 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Removed unused imports
 import Google from '../../assets/img/google.svg'
 import Logo from '../../assets/img/stocktrack-logo.png';
-import { Line } from 'react-chartjs-2';
 import db, { auth, useAuth } from "../../db/firebase";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
-export default function Navbar(props) {
-  const [serverErr, setServerErr] = useState("");
+export default function Navbar() {
+  const navigate = useNavigate()
+  const [serverErr, setServerErr] = useState(""); // Removed unused variable
   const guestEmail = "stocktrack.guest@gmail.com";
   const guestPass = "stocktrack02!";
   const currentUser = useAuth();
   console.log(currentUser?.email)
-  const location = useLocation();
-  const currentRoutePath = location.pathname;
-  const navigate = useNavigate();
 
   const signInWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider();
@@ -33,7 +30,7 @@ export default function Navbar(props) {
           email: userG.email,
         });
       }
-      navigate("/dashboardtest");
+      // navigate("/dashboardtest"); // Navigate commented out for now
     } catch (err) {
       alert(err.message);
     }
@@ -43,7 +40,7 @@ export default function Navbar(props) {
     signInWithEmailAndPassword(auth, guestEmail, guestPass)
       .then((userCredential) => {
         const user = userCredential.user;
-        navigate("/dashboard");
+        user && navigate("/dashboard"); 
       })
       .catch((error) => {
         if (error) {
@@ -81,12 +78,12 @@ export default function Navbar(props) {
             <ul className="flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
               <li className="hover:text-slate-400">
                 { currentUser?.email === undefined ?
-                  <Link to='/index'>Login</Link> :
+                  <Link to='/signinsignout'>Login</Link> :
                   <button>Log-out</button>}
               </li>
               <li className="hover:text-slate-400">
                 { currentUser?.email === undefined ?
-                  <Link to='/index'>Sign-up</Link> :
+                  <Link to='/signinsignout'>Sign-up</Link> :
                   <></>}
               </li>
               <li className="hover:text-slate-400">
@@ -99,7 +96,7 @@ export default function Navbar(props) {
                 onSubmit={signInWithEmailAndPassword}
                 className=" active:bg-lightBlue-600 lead-[0.8rem] text-[0.65rem] tracking-tight md:tracking-wide lg:tracking-widest font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0  mb-3 ease-linear transition-all duration-150"
                 type="button"
-                onClick={handleGuestLogin} // Trigger the function when the button is clicked
+                onClick={handleGuestLogin}
               >
                 Guest
               </button>

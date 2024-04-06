@@ -1,11 +1,11 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../components/Footer";
+import { Outlet } from "react-router-dom";
+
 
 
 const Layout = () => {
-  const location = useLocation();
-  const currentRoutePath = location.pathname;
+  // const location = useLocation();
+  // const currentRoutePath = location.pathname;
   return (
     <div className="overflow-y-auto overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-blue-100 flex flex-col justify-center min-[100vh]"
     style={{
@@ -21,11 +21,10 @@ const Layout = () => {
     >
       {/* <NavBar /> */}
       <Outlet />
-      <div className={`${
-                currentRoutePath != "/dashboardtext" ? "hidden" : "block"
+      {/* <div className={`${
+                currentRoutePath !== "/dashboard" ? "hidden" : "block"
               }`}>
-        <Footer />
-       </div>
+       </div> */}
     </div>
   );
 };

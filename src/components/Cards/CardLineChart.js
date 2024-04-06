@@ -2,11 +2,11 @@ import React from "react";
 import { Chart } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { useAuth } from "../../db/firebase";
+
 
 export default function CardLineChart() {
   const product = useSelector((store) => store.product.productData);
-  const currentUser = useAuth();
+  
 
   const labels = product.map((item) => `${item.product_name}`);
   const productQty = product.map((item) => item.product_Qty);
@@ -59,7 +59,7 @@ export default function CardLineChart() {
 
         {/* Chart */}
         <div className="relative p-4">
-          <Line data={data} />
+          <Line Chart={Chart} data={data} />
         </div>
       </div>
     </>
