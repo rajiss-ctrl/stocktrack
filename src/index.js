@@ -15,7 +15,8 @@ if (process.env.NODE_ENV === "production") {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
+    {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
       <Provider store={store}>
         <Routes>
           <Route path={"/*"} element={<App />} />
