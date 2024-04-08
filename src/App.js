@@ -4,7 +4,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { fetchData } from "./features/product/productSlice";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
-import Error from "./protected-route/Error";
+// import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
 
 
@@ -95,7 +95,7 @@ function App() {
               </Route>
             </Route>
             {/*All*/}
-            <Route path={"*"} element={<Error />} />
+            {/* <Route path={"*"} element={<Error />} /> */}
           </Route>
         </Routes>
       </div>
