@@ -1,6 +1,5 @@
 {
   "name": "stocktrack",
-  "homepage": "https://rajiss-ctrl.github.io/stocktrack",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
