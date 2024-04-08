@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, useAuth } from "../../db/firebase";
+import Google from '../../assets/img/google.svg'
+import Guest from '../../assets/img/guest.png'
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -58,7 +60,7 @@ const SignIn = () => {
                justify-center mt-[60px]"
     >
       <div className="w-[90%] shadow-lg bg-[#eceff1] rounded-sm md:w-[80%] p-[10px] less_sm:p-[20px]">
-        <p className="text-[#000007] pl-6 leading-6 sm:text-sm">
+        <p className="text-[#000007]  leading-6 sm:text-sm">
           Sign in
         </p>
         <form
@@ -66,7 +68,7 @@ const SignIn = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div
-            className="py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]"
+            className="shadow py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]"
           >
             <input
               {...register("email")}
@@ -74,7 +76,7 @@ const SignIn = () => {
               type="email"
               placeholder={`${currentUser ? currentUser.email : "Email"}`}
 
-              className="outline-none bg-white  w-full  border-0 capitalize"
+              className="outline-none  bg-white  w-full  border-0 capitalize"
               disabled={currentUser}
             />
 
@@ -82,7 +84,7 @@ const SignIn = () => {
           </div>
           <p className="text-[red] pb-2 text-xs">{errors.email?.message}</p>
           <div
-            className="py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]"
+            className="shadow py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]"
           >
             <input
               {...register("password")}
@@ -109,12 +111,32 @@ const SignIn = () => {
           <p className="text-[red] text-xs">{errors.password?.message}</p>
           <button
             type="submit"
-            className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
+            className="w-full shadow h-[40px] less_sm:h-[45px] 
             rounded-lg bg-[#46158B] hover:bg-dark-purp-hover text-sm sm:md text-white mt-4 "
             disabled={currentUser}
           >
             SIGN IN
           </button>
+          <div className="flex justify-center sm:justify-between flex-col sm:flex-row  w-full">
+          <button
+            type="submit"
+            className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
+            rounded-lg bg-white flex items-center px-4 text-xs sm:md text-black mt-4 shadow "
+            disabled={currentUser}
+          >
+            <img className="w-[40px] text-center pr-2 md:pl-1" src={Guest} alt="..."/> 
+            <span className="font-[560] text-[#838C96]">SIGN IN AS GUEST</span>
+          </button>
+          <button
+            type="submit"
+            className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
+            rounded-lg bg-white flex items-center px-4  text-xs sm:md text-black mt-4 shadow "
+            disabled={currentUser}
+          >
+            <img className="w-[40px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
+            <span className="font-[560] text-[#4285F4]">SIGNIN WITH GOOGLE</span>
+          </button>
+          </div>
           <p className="text-[0.9rem] text-[red]">{serverErr}</p>
         </form>
       </div>

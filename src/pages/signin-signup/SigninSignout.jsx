@@ -21,14 +21,14 @@ const SigninSignout = () => {
       </div>
       
       {switchPage ? <SignIn/> : <SignUp/>}
-      {!switchPage ? 
+      {switchPage ? 
          <div className="w-full text-sm flex flex-col justify-between mt-5  px-3 sm:px-32 sm:flex-row">
             <p className=' text-[#186F4A] underline font-light'><Link to='/reset'>Forget Password?</Link></p>
-            <p className='text-[#000000]'>Already have an account <span className='cursor-pointer text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Login</span></p>
+            <span className='cursor-pointer  text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Sign up here</span>
           </div> 
         : 
-          <p className='mt-5 text-[#000000]'>
-            <span className='cursor-pointer  text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Sign up here</span>
+        <p className='mt-8 text-[#000000]'>
+            <p className='text-[#000000]'>Already have an account <span className='cursor-pointer text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Login</span></p>
           </p>
         }
       </div>

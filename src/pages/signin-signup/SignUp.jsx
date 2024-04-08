@@ -110,7 +110,7 @@ const SignUp = () => {
       className="w-full  md:w-2/3  h-auto lg:h-96  flex flex-col items-center justify-center mt-[60px] "
     >
       <div className="w-[95%]  rounded-md md:w-[80%] p-[10px] less_sm:p-[20px] shadow-lg bg-[#eceff1]">
-        <p className="leading-6 pl-2 text-[#000000] sm:text-sm">Sign Up Here</p>
+        <p className="leading-6 pt-2 text-[#000000] sm:text-sm">Sign Up Here</p>
         <form
           className="w-full flex flex-col items-center justify-center mt-[20px]"
           onSubmit={registerWithEmailAndPassword}
@@ -130,7 +130,7 @@ const SignUp = () => {
           <button
             type="submit"
             className="w-full less_sm:w-[50%] h-[40px] less_sm:h-[45px] 
-                mt-4    rounded-lg bg-[#46158B] hover:bg-dark-purp-hover text-sm  text-white"
+                mt-4 shadow   rounded-lg bg-[#46158B] hover:bg-dark-purp-hover text-sm  text-white"
             disabled={currentUser}
           >
             SIGN UP

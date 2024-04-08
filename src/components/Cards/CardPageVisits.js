@@ -17,6 +17,7 @@ export default function CardPageVisits({handleRestock,restock}) {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+
   const location = useLocation();
   const currentRoutePath = location.pathname;
   const [salesConfirmation, setSalesConfirmation] = useState(-1);
@@ -25,8 +26,8 @@ export default function CardPageVisits({handleRestock,restock}) {
   const [currencySymbol, setCurrencySymbol] = useState('₦');
 
   const product = useSelector((store) => store.product.productData);
-  const userData = useSelector((store) => store.buz);
-  console.log(userData);
+  const userData = useSelector((store) => store.buz.buzProfileData);
+  
 
   const handleConfirmation = (event,index) => {
     event.preventDefault()
@@ -102,8 +103,7 @@ export default function CardPageVisits({handleRestock,restock}) {
     }
   }, []); // Empty dependency
 
-console.log(product)
-console.log(userData)
+
 const handleStockStateUpdateModal = (event, index) =>{
   event.preventDefault()
     
@@ -134,7 +134,14 @@ const handleDeleteItem = async (e,id) => {
        <UpdateStock handleRestock={handleRestock} restock={restock}/>
        </div>
         <div className="flex  px-4 items-center justify-end">  
-          {currentRoutePath === '/inventorytable' ? "" :  "Business Profile" }
+          {currentRoutePath === '/inventorytable' ? 
+          <></> :  
+             userData?.map(user=>
+              <div key={user?.id}>
+                  <img className="w-8" src={user?.logo} alt="user.businessName"/>
+              </div >)
+              
+           }
         </div>
         
         <div ref={componentRef}>
