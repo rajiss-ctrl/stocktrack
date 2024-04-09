@@ -27,6 +27,7 @@ import Hero from "../assets/img/Hero2.png";
 import HeroMobile from "../assets/img/hero-mobile.png";
 import HeroDrown from "../assets/img/hero-drown.png";
 import Drownfan from "../assets/img/drownfan.png";
+import Parcels from "../assets/img/parcels.png";
 import StockTrack from "../assets/img/stocktrack-ill.png";
 import Dashboard from "../assets/video/dashboard-illustration.mp4";
 
@@ -50,7 +51,7 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
                 Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
               </p>
                 <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
-                  <button onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-bold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
+                  <button onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
                       Get started
                   </button>
                 </div>
@@ -70,17 +71,20 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
           </div>
       </section>
       <section className="w-full text-sm sm:text-xl text-slate-600  md:h-[600px] py-14 flex flex-col justify-center items-center bg-white relative z-10">
-          <p className="tracking-tight md:tracking-wide lg:tracking-widest text-center text-lg sm:2xl px-6 md:px-44">Elevate Efficiency: Redefine <span className="text-[#86E372] font-bold">Inventory Management</span> Now!</p>
-          <div className=" flex flex-col justify-center items-center">
+          <h2 className="tracking-tight md:tracking-wide lg:tracking-widest text-center text-lg sm:2xl pb-5 px-6 md:px-44">Elevate Efficiency: Redefine <span className="text-[#86E372] font-bold">Inventory Management</span> Now!</h2>
+          <div className="relative flex flex-col justify-center items-center">
+            <img className="absolute z-10 left-6 md:left-16 -bottom-5 md:-bottom-16 w-[25%]" src={Parcels} alt="..." />
           {/* Video */}
           <video
-            className="w-[70%] sm:w-[65%] shadow-lg mt-5 h-auto"
+            className="w-[75%] sm:w-[65%] shadow-lg mt-5 h-auto"
             autoPlay
             loop
             muted
             playsInline
             src={Dashboard}
           ></video>
+          <div className="absolute -z-0 -bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#FEBC1F] h-1 sm:h-3 w-[75%] sm:w-[65%]"></div>
+          <div className="absolute -z-0 -bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#DEDFFB] h-1 sm:h-3 w-[75%] sm:w-[65%]"></div>
         </div>
       </section>
       <section className="relative  flex flex-col md:h-[700px] md:flex-row justify-center md:justify-between items-center  bg-[#fafafa] py-14 px-4 md:p-4 lg:p-5 xl:p-10">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { FaBars,FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"; // Removed unused imports
 import Google from '../../assets/img/google.svg'
 import Logo from '../../assets/img/stocktrack-logo.png';
@@ -61,22 +62,29 @@ export default function Navbar() {
     }
   };
   const [navbarOpen, setNavbarOpen] = React.useState(false);
-
+  const handleNavbarOpen = ()=>{
+    setNavbarOpen(prev => !prev)
+  }
   return (
     <>
       <nav className="tracking-tight md:tracking-wide lg:tracking-widest top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link to="/" className="">
               <img src={Logo} className="w-12" alt="stock track"/>
             </Link>
             <button
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="cursor-pointer text-sm leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
               type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
+              onClick={handleNavbarOpen}
             >
-              <i className="fas fa-bars"></i>
-            </button>
+              <span className={`${!navbarOpen ? 'block' : 'hidden'}`}>
+                <FaBars/>
+              </span>
+              <span className={`${!navbarOpen ? 'hidden' : 'block'}`}>
+                <FaTimes/>
+              </span>
+             </button>
           </div>
           <div
             className={
@@ -86,17 +94,17 @@ export default function Navbar() {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className="hover:text-slate-400">
+              <li className="hover:text-slate-400 mt-3 md:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
               </li>
-              <li className="hover:text-slate-400">
+              <li className="hover:text-slate-400 mt-3 md:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Sign-up</Link> :
                   <></>}
               </li>
-              <li className="hover:text-slate-400">
+              <li className="hover:text-slate-400 mt-3 md:mt-0">
                 <Link to='/dashboard'>Dashboard</Link>
               </li>
             </ul>

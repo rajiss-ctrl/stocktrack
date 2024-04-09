@@ -7,6 +7,7 @@ import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 // import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import DefaultLogo from '../assets/img/default-logo.png'
 
 import db, { storage, useAuth } from "../db/firebase";
 import { FaCloudUploadAlt } from "react-icons/fa";
@@ -25,9 +26,10 @@ const BusinessProfile = () => {
   const userData = useSelector((store) => store.buz.buzProfileData);
 
   // const user = useSelector((state) => state.user.user);
-  const [logo, setLogo] = useState(
-    "https://www.pesmcopt.com/admin-media/images/default-logo.png"
-  );
+  const [logo, setLogo] = useState(DefaultLogo);
+  // const [logo, setLogo] = useState(
+  //   "https://www.pesmcopt.com/admin-media/images/default-logo.png"
+  // );
 
   const {
     register,

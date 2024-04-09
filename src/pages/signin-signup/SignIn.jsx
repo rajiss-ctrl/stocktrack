@@ -168,17 +168,17 @@ const SignIn = () => {
             disabled={currentUser}
           >
             <img className="w-[40px] text-center pr-2 md:pl-1" src={Guest} alt="..."/> 
-            <span className="font-[560] text-[#838C96]">SIGN IN AS GUEST</span>
+            <span className="font-[560] text-[13px] sm:text-base text-[#838C96]">SIGN IN AS GUEST</span>
           </button>
           <button
             type="submit"
             onClick={signInWithGoogle}
             className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
-            rounded-lg bg-white flex items-center px-4  text-xs sm:md text-black mt-4 shadow "
+            rounded-lg bg-white flex items-center px-4  text-xs sm:md text-black mb-4 md:mb-0 mt-4 shadow "
             disabled={currentUser}
           >
             <img className="w-[40px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
-            <span className="font-[560] text-[#4285F4]">SIGNIN WITH GOOGLE</span>
+            <span className="font-[560] text-[13px] sm:text-base text-[#4285F4]">SIGNIN WITH GOOGLE</span>
           </button>
           </div>
           <p className="text-[0.9rem] text-[red]">{serverErr}</p>
