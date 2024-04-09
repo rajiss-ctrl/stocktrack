@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, useAuth } from "../../db/firebase";
+import db, { auth,  useAuth } from "../../db/firebase";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+
+
 import Google from '../../assets/img/google.svg'
 import Guest from '../../assets/img/guest.png'
 import { useForm } from "react-hook-form";
@@ -11,6 +14,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FaAt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignIn = () => {
+  const guestEmail = "stocktrack.guest@gmail.com";
+  const guestPass = "stocktrack02!";
   const navigate = useNavigate();
   const [serverErr, setServerErr] = useState("");
   const currentUser = useAuth();
@@ -52,6 +57,43 @@ const SignIn = () => {
         // console.error(error);
       });
   };
+
+  const signInWithGoogle = async () => {
+    const googleProvider = new GoogleAuthProvider();
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      const userG = res.user;
+
+      const q = query(collection(db, "users"), where("uid", "==", userG.uid));
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await addDoc(collection(db, "users"), {
+          uid: userG.uid,
+          name: userG.displayName,
+          authProvider: "google",
+          email: userG.email,
+        });
+      }
+      // navigate("/dashboardtest"); // Navigate commented out for now
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleGuestLogin = () => {
+    signInWithEmailAndPassword(auth, guestEmail, guestPass)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        user && navigate("/dashboard"); 
+      })
+      .catch((error) => {
+        if (error) {
+          let error = "Internet issues or wrong credentials!";
+          setServerErr(error);
+        }
+      });
+  };
+
 
   return (
     <main
@@ -120,6 +162,7 @@ const SignIn = () => {
           <div className="flex justify-center sm:justify-between flex-col sm:flex-row  w-full">
           <button
             type="submit"
+            onClick={handleGuestLogin}    
             className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
             rounded-lg bg-white flex items-center px-4 text-xs sm:md text-black mt-4 shadow "
             disabled={currentUser}
@@ -129,6 +172,7 @@ const SignIn = () => {
           </button>
           <button
             type="submit"
+            onClick={signInWithGoogle}
             className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
             rounded-lg bg-white flex items-center px-4  text-xs sm:md text-black mt-4 shadow "
             disabled={currentUser}

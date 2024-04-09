@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footers/Footer";
 import Navbar from "../components/Navbars/IndexNavbar";
 import Hero from "../assets/img/Hero2.png";
+import HeroMobile from "../assets/img/hero-mobile.png";
 import HeroDrown from "../assets/img/hero-drown.png";
 import Drownfan from "../assets/img/drownfan.png";
 import StockTrack from "../assets/img/stocktrack-ill.png";
@@ -34,7 +35,7 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
   return (
     <>
       <Navbar fixed />
-      <section className=" relative  bg-[#F6F8F9] pt-24 pb-10 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-[800px] sm:h-[1250px] lg:h-auto overflow-hidden">
+      <section className=" relative  bg-[#F6F8F9] pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-[800px] sm:h-[1250px] lg:h-auto overflow-hidden">
 
       <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:top-36">
         <img src={HeroDrown} className="rotate-animation" alt="...."/>
@@ -48,21 +49,24 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
               <p className="leading-normal md:leading-relaxed lg:leading-loose  px-4 md:px-6 text-lg lg:pl-16 xl:pl-8 lg:pr-0 xl:pr-14 text-center lg:text-left mt-4 md:text-lg tracking-tight md:tracking-wide lg:tracking-widest text-blueGray-500">
                 Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
               </p>
-                <div className="lg:pl-16 xl:pl-8 mt-6 text-center lg:text-left">
+                <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
                   <button onClick={()=>{navigate('/index')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-bold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
                       Get started
                   </button>
                 </div>
             </div>
+            <img 
+                className='md:w-[40rem] lg:hidden mt-6'
+                src={HeroMobile} alt="..." />
             <img
-                className="w-full xl:w-[70%] xl:pt-10 absolute -right-4 sm:-right-10 -bottom-10 sm:bottom-0 lg:static rotate-12 lg:rotate-0"
+                className="hidden lg:block xl:w-[70%] xl:pt-10 absolute -right-4 sm:-right-10 lg:-bottom-10 sm:bottom-0 lg:static rotate-12 lg:rotate-0"
                 src={Hero}
                 alt="..."
               />
       
           </div>
-          <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:-bottom-10">
-            <img src={Drownfan} alt="...."/>
+          <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:-bottom-6">
+            <img src={HeroDrown} alt="...."/>
           </div>
       </section>
       <section className="w-full text-sm sm:text-xl text-slate-600  md:h-[600px] py-14 flex flex-col justify-center items-center bg-white relative z-10">

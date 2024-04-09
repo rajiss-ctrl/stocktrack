@@ -4,14 +4,14 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { fetchData } from "./features/product/productSlice";
 import { fetchBuzData } from "./features/businessprofile/businessSlice";
-import Error from "./protected-route/Error";
 import db, { useAuth } from "./db/firebase";
-
-
-
 import Loading from './assets/img/loading-state.svg'
-import InventoryTable from "./pages/InventoryTable";
-import SigninSignout from "./pages/signin-signup/SigninSignout";
+
+
+
+import Error from "./protected-route/Error";
+const SigninSignout = lazy(() => import("./pages/signin-signup/SigninSignout"));
+const InventoryTable = lazy(() => import("./pages/InventoryTable"));
 const Layout = lazy(() => import("./outlet/Layout"));
 const Home = lazy(() => import("./pages/Home"));
 const UpdateStock = lazy(() => import("./pages/UpdateStock"));
@@ -87,12 +87,11 @@ function App() {
             <Route path={"signinsignout"} element={<SigninSignout />} />
             <Route path={"reset"} element={<Reset />} />
             <Route element={<ProtectedRoute />}>
-              <Route path={"updatestock"} element={<UpdateStock />} />
+            <Route path={"updatestock"} element={<UpdateStock />} />
             <Route path={'inventorytable'} element={<InventoryTable />} />
             <Route path={'businessprofile'} element={<BusinessProfile />} />
-              <Route path={"dashboard"} element={<Dashboard />}>
-                <Route path={"businessprofile"} element={<BusinessProfile />} />
-              </Route>
+            <Route path={"businessprofile"} element={<BusinessProfile />} />
+            <Route path={"dashboard"} element={<Dashboard />}/>
             </Route>
             {/*All*/}
             <Route path={"*"} element={<Error />} />
