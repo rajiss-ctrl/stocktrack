@@ -31,8 +31,8 @@ const Footer = () => {
               <Link to="/">
                 <img src={Logo} className="w-16 mb-5" alt="stock track"/>
               </Link>
-              <h4 className="text-3xl font-semibold">Let's keep in touch!</h4>
-              <h5 className="text-sm mt-0 mb-2 text-blueGray-900">
+              <h4 className="text-3xl text-[#ACACAC] font-semibold">Let's keep in touch!</h4>
+              <h5 className="text-sm mt-0 mb-2 text-[#8a8888]">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
               <div className="mt-6 lg:mb-0 mb-6">
@@ -62,10 +62,10 @@ const Footer = () => {
             <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="text-[#ACACAC] font-bold block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Links
                   </span>
-                  <ul className="list-unstyled">
+                  <ul className="text-[#8a8888] list-unstyled">
                     <li>
                       <Link to="/about" className="text-blueGray-600 hover:text-blueGray-800 block pb-2 text-sm">
                         About Us
@@ -84,10 +84,10 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
-                  <span className="block font-semibold uppercase text-blueGray-500 text-sm  mb-2">
+                  <span className="text-[#ACACAC] font-bold block uppercase text-blueGray-500 text-sm  mb-2">
                     Terms and policies
                   </span>
-                  <ul className="list-unstyled">
+                  <ul className="text-[#8a8888] list-unstyled">
                     <li>
                       <Link to="/license" className="text-blueGray-600 hover:text-blueGray-800  block pb-2 text-sm">
                         MIT License

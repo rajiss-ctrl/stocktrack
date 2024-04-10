@@ -94,7 +94,7 @@ export default function Navbar() {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className="hover:text-slate-400 mt-3 md:mt-0">
+              <li className="hover:text-slate-400 mt-3 lg:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
