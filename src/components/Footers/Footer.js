@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGithub,FaDribbble,FaTwitter,FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from '../../assets/img/stocktrack-logo.png'
 
@@ -35,26 +36,30 @@ const Footer = () => {
               <h5 className="text-sm mt-0 mb-2 text-[#8a8888]">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
-              <div className="mt-6 lg:mb-0 mb-6">
+              <div className="mt-6 flex justify-center md:justify-start lg:mb-0 mb-6">
                 <a href="https://teitter.com/rajisanjo" target="_blank" rel="noopener noreferrer">
-                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10  items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
-                    <i className="fab fa-twitter"></i>
+                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                    {/* <i className="fab fa-twitter"></i> */}
+                    <FaTwitter/>
                   </button>
                 </a>
                 <a href="https://facebook.com/omosanjos" target="_blank" rel="noopener noreferrer">
-                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10  items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
-                    <i className="fab fa-facebook-square"></i>
+                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 flex  items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                    {/* <i className="fab fa-facebook-square"></i> */}
+                    <FaFacebook/>
                   </button>
                 </a>
                 <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10  flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <i className="fab fa-dribbble"></i>
+                  {/* <i className="fab fa-dribbble"></i> */}
+                  <FaDribbble/>
                 </button>
                 <a href="https://github.com/rajiss-ctrl" target="_blank" rel="noopener noreferrer">
-                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10  items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
-                    <i className="fab fa-github"></i>
+                  <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
+                    {/* <i className="fab fa-github"></i> */}
+                    <FaGithub/>
                   </button>
                 </a>
               </div>
@@ -62,7 +67,7 @@ const Footer = () => {
             <div className="w-full lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="text-[#ACACAC] font-bold block uppercase text-blueGray-500 text-sm font-semibold mb-2">
+                  <span className="text-[#ACACAC]  block uppercase text-blueGray-500 text-sm font-semibold mb-2">
                     Links
                   </span>
                   <ul className="text-[#8a8888] list-unstyled">
