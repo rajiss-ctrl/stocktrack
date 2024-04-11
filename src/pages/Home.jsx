@@ -56,7 +56,7 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
                   </button>
                 </div>
             </div>
-              <div className="flex justify-between items-center">
+              <div className="h-full lg:hidden flex justify-between items-center">
               <img 
                 className='lg:hidden md:w-[40rem] md:mt-10 mt-5'
                 src={HeroMobile} alt="..." />

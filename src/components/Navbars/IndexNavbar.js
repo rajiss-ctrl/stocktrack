@@ -93,7 +93,7 @@ export default function Navbar() {
             }
             id="example-navbar-warning"
           >
-            <ul className="flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
+            <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
               <li className="hover:text-slate-400 mt-3 lg:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Login</Link> :
@@ -127,14 +127,15 @@ export default function Navbar() {
                   >
                     <span className="hidden md:block">google sign-in</span>
                     <img className="w-[30px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
-                    <span className="md:hidden">sign-in</span>  
+                    <span className="text-sm md:hidden">sign-in</span>  
                   </button>
             </div> 
             :
                 userData.map(user=>
                 <div key={user.id}>
-                  <div>welcome {!user.businessName ? currentUser.email : user.businessName
-                    }</div>
+                  <div className="text-sm">welcome {!user.businessName ? currentUser.email : user.businessName
+                    }
+                  </div>
                 </div >)
 
               }
