@@ -36,9 +36,9 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
   return (
     <>
       <Navbar fixed />
-      <section className=" relative  bg-[#F6F8F9] pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-[800px] sm:h-[1250px] lg:h-auto overflow-hidden">
+      <section className=" relative  bg-[#F6F8F9] pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-auto overflow-hidden">
 
-      <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:top-36">
+      <div className="hidden lg:block lg:absolute z-30 lg:right-[38%] xl:right-[36%] lg:top-36">
         <img src={HeroDrown} className="rotate-animation" alt="...."/>
       </div>
 
