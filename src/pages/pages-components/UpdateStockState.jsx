@@ -35,15 +35,15 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
       label: "Product Price",
       required: true,
     },
-    // {
-    //   id: 3,
-    //   name: "product_description",
-    //   type: "text",
-    //   errMessages: "Please provide a description for the product.",
-    //   placeholder:`${updateStockState === index && des}`,
-    //   label: "Product Description",
-    //   required: false,
-    // },
+    {
+      id: 3,
+      name: "product_description",
+      type: "text",
+      errMessages: "Please provide a description for the product.",
+      placeholder:`${stockState === index && des}`,
+      label: "Product Description",
+      required: false,
+    },
   ];
   
   const onChange = (e) => {
@@ -95,22 +95,22 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
   }
 
   return (
-    <div className="m-0 min-h-[50.2px] text-xs" onClick={handleClick}>
-      <form className="w-full flex gap-1">
+    <div className="m-0 min-h-[200px] w-[230px] z-50 bg-white p-2  text-xs" onClick={handleClick}>
+      <form className=" flex flex-col">
         {inputData.map((input) => (
           <input
             key={input.id}
             type={input.type}
             value={data[input.name]} // Ensure correct name attribute
             name={input.name} // Set name attribute to match the state key
-            className={`${input.name === "product_description" ? "hidden lg:block" : "block"} placeholder-text-color text-xs px-1 py-[0.20rem] border-0 shadow-md outline-none  sm:text-sm w-[150px] lg:w-[170px] xl:w-[200px] mb-6 rounded`}
+            className={`${input.name === "product_description" ? "hidden lg:block" : "block"} placeholder-text-color text-xs px-2 py-[0.20rem] border-0 shadow-md outline-none  sm:text-sm w-full mb-2 rounded`}
             onChange={onChange}
             placeholder={input.placeholder}
           />
         ))}
 
         <select
-          className="signup__form-input  select w-[150px] lg:w-[170px] xl:w-[200px] h-[30px]  md:h-[35px] text-[0.65rem] bg-gray rounded px-2 py-0 border-0 shadow-md outline-none  mb-2 form-select text-gray-500"
+          className=" signup__form-input  select w-full h-[30px]  md:h-[35px] text-[0.65rem] bg-gray rounded px-2 py-0 border-0 shadow-md outline-none  mb-2 form-select text-gray-500"
           name="size" // Specify the name of the select input
           value={data.size}
           required
@@ -126,11 +126,11 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
           <option>Bag</option>
         </select>
         {/* <button onClick={(e) => handleUpdate(e, id, qty)}>Confirm</button> */}
-        <button onClick={(e) => { handleUpdate(e, id, qty); handleStockStateUpdateModal(e, index); }} className="outline-none h-[35px] px-3 bg-green-500 rounded-md font-bold text-[0.65rem] text-white">
+        <button onClick={(e) => { handleUpdate(e, id, qty); handleStockStateUpdateModal(e, index); }} className="outline-none shadow-lg h-[35px] px-3 bg-green-500 rounded-md font-bold text-[0.65rem] text-white mb-2">
           <i className="fas fa-check"></i>
         </button>
-        <button onClick={(e) => { showDelModal(e, id)}} className="outline-none h-[35px] px-3 bg-black font-bold text-[0.65rem] rounded-md text-white">Del Product</button>
-          <div className={`${!delModal ? "hidden" : "block" }  absolute -top-9 right-0`}>
+        <button onClick={(e) => { showDelModal(e, id)}} className="outline-none shadow-lg h-[35px] px-3 bg-black font-bold text-[0.65rem] rounded-md text-white">Del Product</button>
+          <div className={`${!delModal ? "hidden" : "block" }  absolute top-[60%] right-[35%]`}>
             <ConfirmDel handleDeleteItem={handleDeleteItem}/>
           </div>
       </form>

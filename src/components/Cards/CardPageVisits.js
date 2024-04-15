@@ -50,20 +50,20 @@ export default function CardPageVisits({handleRestock,restock}) {
     return (
       <animated.div
         style={fadeInProps}
-        className="bg-white shadow-2xl font-semibold rounded-[0.222rem] flex flex-col justify-center items-center w-32 p-1"
+        className="bg-white shadow-2xl font-semibold rounded-[0.222rem] flex flex-col justify-center items-center w- p-2"
       >
-        <h4 className="pb-1 text-slate-500">Confirm Sales Figure</h4>
+        <h4 className="pb-1 text-slate-500">Sales Figure</h4>
         <div className="flex items-center gap-2">
         <button
        onClick={(e) =>{
        handleConfirmation(e, index) 
        handleMinus(e, item.id, item?.product_Qty)}
       }
-  className="bg-green-600 text-white text-xs px-2 py-[0.18rem] outline-none border-0 rounded-[0.222rem]"
+  className="bg-green-600 text-white text-[10px] leading-4 font-bold px-2 py-[0.18rem] outline-none border-0 rounded-[0.222rem]"
 >
   Confirm
 </button>
-<button onClick={handleConfirmation} className="bg-red-500 text-white text-xs px-[0.3rem] py-[0.18rem] outline-none border-0 rounded-[0.222rem]">Decline</button>
+<button onClick={handleConfirmation} className="bg-red-500 text-white text-[10px] leading-4 font-bold px-[0.3rem] py-[0.18rem] outline-none border-0 rounded-[0.222rem]">Decline</button>
         </div>
       </animated.div>
     );
@@ -129,8 +129,8 @@ const handleDeleteItem = async (e,id) => {
 
   return (
     <>
-      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2 md:mb-14  rounded ${currentRoutePath === '/inventorytable' ? "mt-0" : "mt-28"}`}>
-       <div className={`${!restock ? 'hidden' : 'block'}`}>
+      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2 md:mb-14  rounded ${currentRoutePath === '/inventorytable' ? "mt-0" : "mt-36"}`}>
+       <div className={`${!restock ? 'hidden' : 'block '}`}>
        <UpdateStock handleRestock={handleRestock} restock={restock}/>
        </div>
         <div className="flex  px-4 items-center justify-end">  
@@ -211,9 +211,9 @@ const handleDeleteItem = async (e,id) => {
             </tr>
                 :
               product?.map((item, index) => (
-                <tr key={index} onClick={currentRoutePath === '/inventorytable' ? (event) => handleStockStateUpdateModal(event, index) : undefined} className={`${currentRoutePath === '/inventorytable' && "cursor-pointer hover:bg-slate-50"}`}>
-                  <td className="relative  border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-left">
-                  <div className={`${stockState === index ? 'block' : 'hidden' } absolute z-50 top-[1.65rem] h-auto  left-40 lg:left-32 `}>
+                <tr key={index} onClick={currentRoutePath === '/inventorytable' ? (event) => handleStockStateUpdateModal(event, index) : undefined} className={`${currentRoutePath === '/inventorytable' && "cursor-pointer hover:bg-slate-50"} `}>
+                  <td className={`border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-left `}>
+                  <div className={`${stockState === index ? 'block' : 'hidden' } absolute mt-14 lg:mt-0 lg:h-screen flex justify-center items-center   top-0 w-full bg-transparent left-0 `}>
                     <UpdateStockState 
                     id={item.id} 
                     qty={item.product_Qty}
@@ -275,9 +275,11 @@ const handleDeleteItem = async (e,id) => {
       </div>
           <div className="pl-3 sm:pl-0">
           {currentRoutePath === '/inventorytable' &&
-          <button className="outline-none border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>Print</button>
+          <button className="outline-none border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
+            Print
+          </button>
           }
-          </div>
+      </div>
       </>
   );
 }

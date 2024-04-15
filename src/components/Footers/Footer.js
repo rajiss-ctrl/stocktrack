@@ -36,8 +36,8 @@ const Footer = () => {
               <h5 className="text-sm mt-0 mb-2 text-[#8a8888]">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
-              <div className="mt-6 flex justify-center md:justify-start lg:mb-0 mb-6">
-                <a href="https://teitter.com/rajisanjo" target="_blank" rel="noopener noreferrer">
+              <div className="mt-6 flex justify-center lg:justify-start lg:mb-0 mb-6">
+                <a href="https://twitter.com/rajisanjo" target="_blank" rel="noopener noreferrer">
                   <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
                     {/* <i className="fab fa-twitter"></i> */}
                     <FaTwitter/>
@@ -49,13 +49,12 @@ const Footer = () => {
                     <FaFacebook/>
                   </button>
                 </a>
-                <button
+                {/* <button
                   className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10  flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  {/* <i className="fab fa-dribbble"></i> */}
                   <FaDribbble/>
-                </button>
+                </button> */}
                 <a href="https://github.com/rajiss-ctrl" target="_blank" rel="noopener noreferrer">
                   <button className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2">
                     {/* <i className="fab fa-github"></i> */}

@@ -39,7 +39,7 @@ export default function CardLineChart() {
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-            <h6 className="uppercase  text-slate-500  text-xs mt-6 md:mt-0 kumbh font-bold">
+            <h6 className="uppercase  text-slate-500 text-[14px] md:text-xs mt-6 md:mt-0 kumbh font-bold">
             Inventory Alert: Limited stock, low sales as of {"  "}
         {new Date().toLocaleString('en-US', {
           weekday: 'long',

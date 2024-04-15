@@ -19,7 +19,7 @@
 
 // export default Home;
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footers/Footer";
 import Navbar from "../components/Navbars/IndexNavbar";
@@ -33,6 +33,11 @@ import Dashboard from "../assets/video/dashboard-illustration.mp4";
 
  function Home() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = "StocTrack Home page"; // Set your desired page title here
+  }, []); // This effect runs only once after the component mounts
+  
   return (
     <>
       <Navbar fixed />

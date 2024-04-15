@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import CardPageVisits from "../components/Cards/CardPageVisits";
 import CardLineChart from "../components/Cards/CardLineChart";
@@ -11,7 +11,10 @@ const [restock, setRestock] = useState(false)
 const handleRestock = () =>{
   setRestock(prev => !prev)
 }
-  
+useEffect(() => {
+  document.title = "Dashboard"; // Set your desired page title here
+}, []); // This effect runs only once after the component mounts
+
   return (
     <>
     <div className=" md:flex pb-16">

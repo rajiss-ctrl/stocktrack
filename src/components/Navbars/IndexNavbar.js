@@ -121,13 +121,13 @@ export default function Navbar() {
                     Guest
                   </button>
                   <button
-                    className="border-0 flex items-center active:bg-lightBlue-600 text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    className="border-0 flex items-center active:bg-lightBlue-600 text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
                     onClick={signInWithGoogle}
                   >
                     <span className="hidden md:block">google sign-in</span>
                     <img className="w-[30px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
-                    <span className="text-sm md:hidden">sign-in</span>  
+                    <span className="text-xs md:hidden">sign-in</span>  
                   </button>
             </div> 
             :

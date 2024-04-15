@@ -1,8 +1,12 @@
 
+import { useEffect } from 'react';
 import CardPageVisits from '../components/Cards/CardPageVisits'
 
 
 const InventoryTable = () => {
+  useEffect(() => {
+    document.title = "Stock Table"; // Set your desired page title here
+  }, []); // This effect runs only once after the component mounts
   
   return (
     <>
