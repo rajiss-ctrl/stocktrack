@@ -1,5 +1,6 @@
 import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
+import {FaCheck, FaTimes, FaTrash } from "react-icons/fa";
 import db from "../../db/firebase";
 
 
@@ -85,10 +86,10 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
     return(
       <div className=" flex items-center gap-1">
         <button onClick={(e) => { handleDeleteItem(e, id)}} className="bg-[red] active:bg-[#2e0a61] shadow hover:shadow-lg text-center w-[35px] h-[35px] p-2 text-white rounded-[50%]">
-        <i className="fas fa-trash"></i>
+        <FaTrash/>
         </button>
-        <button onClick={showDelModal} className="bg-white outline-0 border text-center border-gray-400 text-[green] w-[35px] h-[35px] p-2 rounded-2xl"
-          ><i className="fas fa-times"></i>
+        <button onClick={showDelModal} className="bg-white outline-0 border text-center border-gray-400 text-[green] w-[35px] h-[35px] p-2 rounded-2xl">
+          <FaTimes/>
         </button>
       </div>
     )
@@ -110,7 +111,7 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
         ))}
 
         <select
-          className=" signup__form-input  select w-full h-[30px]  md:h-[35px] text-[0.65rem] bg-gray rounded px-2 py-0 border-0 shadow-md outline-none  mb-2 form-select text-gray-500"
+          className="signup__form-input  select w-full h-[30px]  md:h-[35px] text-[0.65rem] bg-gray rounded px-2 py-0 border-0 shadow-md outline-none  mb-2 form-select text-gray-500"
           name="size" // Specify the name of the select input
           value={data.size}
           required
@@ -126,8 +127,8 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
           <option>Bag</option>
         </select>
         {/* <button onClick={(e) => handleUpdate(e, id, qty)}>Confirm</button> */}
-        <button onClick={(e) => { handleUpdate(e, id, qty); handleStockStateUpdateModal(e, index); }} className="outline-none shadow-lg h-[35px] px-3 bg-green-500 rounded-md font-bold text-[0.65rem] text-white mb-2">
-          <i className="fas fa-check"></i>
+        <button onClick={(e) => { handleUpdate(e, id, qty); handleStockStateUpdateModal(e, index); }} className="flex items-center justify-center outline-none shadow-lg h-[35px] px-3 bg-green-500 rounded-md font-bold text-[0.65rem] text-white mb-2">
+          <FaCheck/> <span>update</span>
         </button>
         <button onClick={(e) => { showDelModal(e, id)}} className="outline-none shadow-lg h-[35px] px-3 bg-black font-bold text-[0.65rem] rounded-md text-white">Del Product</button>
           <div className={`${!delModal ? "hidden" : "block" }  absolute top-[60%] right-[35%]`}>
