@@ -5,6 +5,7 @@ import Navbar from "../components/Navbars/IndexNavbar";
 import Hero from "../assets/img/Hero2.png";
 import HeroMobile from "../assets/img/hero-mobile.png";
 import HeroDrown from "../assets/img/hero-drown.png";
+import HeroGif from "../assets/img/herogif.gif";
 import Drownfan from "../assets/img/drownfan.png";
 import Parcels from "../assets/img/parcels.png";
 import StockTrack from "../assets/img/stocktrack-ill.png";
@@ -47,10 +48,13 @@ import animationData from '../assets/Animation-note.json'
 
       {/* <div className="hidden lg:block lg:absolute z-30 lg:right-[38%] xl:right-[36%] lg:top-36">
         <img src={HeroDrown} className="rotate-animation" alt="...."/>
-      </div> */}
-      <div className="hidden lg:block w-40 absolute lg:right-[25%]  lg:top-36 z-50">
-        <Lottie animationData={animationData}/>
+  </div> */}
+      <div className="hidden lg:block lg:absolute z-30 lg:right-[28%] lg:top-32">
+        <img src={HeroGif} className="w-40" alt="...."/>
       </div>
+      {/* <div className="hidden lg:block w-40 absolute lg:right-[25%]  lg:top-36 z-50">
+        <Lottie animationData={animationData}/>
+      </div> */}
         <div className="custom-bg w-full flex items-center justify-center flex-col lg:flex-row lg:justify-between">
             <div className="w-full xl:pl-20 sm:pt-0">
               <h2 className="tracking-tight md:tracking-wide lg:tracking-widest px-4 sm:px-0 pt-10 sm:pt-0 lg:pl-16 xl:pl-8  xl:pr-10 text-center lg:text-left text-[#46148B] font-bold text-[1.6rem] leading-[2rem]  sm:text-3xl md:text-6xl lg:text-4xl xl:text-5xl ">
@@ -87,7 +91,8 @@ import animationData from '../assets/Animation-note.json'
       <section className="w-full text-sm sm:text-xl text-[#7b7b7b]  md:py-24 py-14 flex flex-col justify-center items-center bg-white relative z-10">
           <h2 className="font-bold tracking-tight md:tracking-wide lg:tracking-widest text-center text-lg sm:2xl pb-5 px-6 md:px-44">Elevate Efficiency: Redefine <span className="text-[#86E372] font-bold">Inventory Management</span> Now!</h2>
           <div className="relative flex flex-col justify-center items-center">
-            <img className="absolute z-10 left-6 md:left-16 -bottom-5 md:-bottom-16 w-[25%]" src={Parcels} alt="..." />
+            {/* <img className="absolute z-10 left-6 md:left-16 -bottom-5 md:-bottom-16 w-[25%]" src={Parcels} alt="..." /> */}
+            <Lottie className="absolute z-10 left-6 md:left-16 -bottom-5 md:-bottom-16 w-[25%]" animationData={animationData}/>
           {/* Video */}
           <video
             className="w-[75%] sm:w-[65%] shadow-lg mt-5 h-auto"
