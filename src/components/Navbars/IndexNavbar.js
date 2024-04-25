@@ -71,7 +71,7 @@ export default function Navbar() {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link to="/" className="">
-              <img src={Logo} className="w-12" alt="stock track"/>
+              <img src={Logo} className="w-12 shadow-2xl" alt="stock track"/>
             </Link>
             <button
               className="cursor-pointer text-sm leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
@@ -94,24 +94,24 @@ export default function Navbar() {
             id="example-navbar-warning"
           >
             <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className="hover:text-slate-400 mt-3 lg:mt-0">
+              <li className="hover:text-slate-400 mt-6 lg:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
               </li>
-              <li className="hover:text-slate-400 mt-3 md:mt-0">
+              <li className="hover:text-slate-400 mt-6 md:mt-0">
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Sign-up</Link> :
                   <></>}
               </li>
-              <li className="hover:text-slate-400 mt-3 md:mt-0">
+              <li className="hover:text-slate-400 mt-6 md:mt-0">
                 <Link to='/dashboard'>Dashboard</Link>
               </li>
             </ul>
             <div>
               {
                 currentUser?.email === undefined ?
-                  <div className="mt-5 lg:mt-0 bg-lightBlue-500 flex items-center">
+                  <div className="mt-6 lg:mt-0 bg-lightBlue-500 flex items-center">
                   <button
                     onSubmit={signInWithEmailAndPassword}
                     className=" active:bg-lightBlue-600 lead-[0.8rem] text-[0.65rem] tracking-tight md:tracking-wide lg:tracking-widest font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0  mb-3 ease-linear transition-all duration-150"

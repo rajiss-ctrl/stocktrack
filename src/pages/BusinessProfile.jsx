@@ -15,6 +15,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 
 const schema = yup.object().shape({
   about: yup.string().required("About business field is required"),
+  mission: yup.string().required("Business mission field is required"),
   businessName: yup.string().required("Business Name is required"),
   businessAddress: yup.string().required("Business Address is required"),
   logo: yup.mixed().required("Logo is required"),
@@ -61,6 +62,7 @@ const BusinessProfile = () => {
       businessType: data.businessType,
       businessAddress: data.businessAddress,
       about: data.about,
+      mission: data.mission,
     });
 
     const imageRef = ref(storage, `businesses/${docRef.id}/image`);
@@ -85,8 +87,8 @@ const BusinessProfile = () => {
     <div className="relative min-h-screen bg-[#F3F5F7]">
       <Link className='absolute hover:shadow-lg top-6 sm:top-6 font-bold border border-slate-700 text-gray-600 shadow-xl bg-transparent text-xs px-3 py-1 rounded-sm sm:rounded-md left-1/2 transform -translate-x-1/2 -translate-y-1/2' to='/dashboard'>Dashboard</Link>
     
-    <div className={`md:px-12 flex flex-col lg:justify-between lg:flex-row items-center  lg:px-0 ${userData.lenght === 0 ? 'mt-24' :  'mt-8' } md:mt-0`}>
-      {userData.lenght === 0 ?
+    <div className={`md:px-12 flex flex-col lg:justify-between lg:flex-row items-center  lg:px-0 ${userData.lenght === 0 ? 'mt-24' :  'mt-8' } lg:mt-0`}>
+      {userData.length === 0 ?
    
       <div className="px-0 md:mb-24 lg:mb-0 md:w-full  lg:px-14 lg:w-1/2">
       <div className="mb-10 md:px-12 lg:px-0 sm:mb-0 w-full max-h-screen flex flex-col justify-center items-center  sm:shadow sm:bg-[#eceff1] rounded ">
@@ -142,6 +144,17 @@ const BusinessProfile = () => {
         {errors?.about && (
           <span className="text-[red]" role="alert">
             {errors.about.message}
+          </span>
+        )}
+        <textarea
+          className=" outline-yellow-50 px-4 w-full mb-4 border capitalize rounded"
+          id="mission"
+          placeholder="Mission"
+          {...register("mission")}
+        ></textarea>
+        {errors?.mission && (
+          <span className="text-[red]" role="alert">
+            {errors.mission.message}
           </span>
         )}
 
@@ -207,13 +220,12 @@ const BusinessProfile = () => {
       </div>
       }
       {/* profile */}
-      <div className="bg-white   lg:mb-0  min-h-[300px]  lg:w-1/2 lg:h-screen">
+      <div className="bg-white  lg:mb-0  min-h-[300px]  lg:w-1/2 lg:h-screen">
       {userData.length === 0 ?
       <div className="mt-16 sm:mt-0 flex justify-center items-center h-full">
         <h2>BUSINESS PROFILE INFO</h2>
       </div>
         :
-        
           userData.map((user)=>{
             return(
               <div key={user.id} className="flex py-16 bg-white w-full   justify-center items-center flex-col">

@@ -7,15 +7,16 @@ import HeroMobile from "../assets/img/hero-mobile.png";
 import HeroDrown from "../assets/img/hero-drown.png";
 import HeroGif from "../assets/img/herogif.gif";
 import Drownfan from "../assets/img/drownfan.png";
-import Parcels from "../assets/img/parcels.png";
 import StockTrack from "../assets/img/stocktrack-ill.png";
 import Dashboard from "../assets/video/dashboard-illustration.mp4";
 import { useSpring, animated } from 'react-spring';
 import Lottie from 'lottie-react';
 // import animationData from '../assets/Animation-box.json'
 import animationData from '../assets/Animation-note.json'
+import { useSelector } from "react-redux";
 
  function Home() {
+  const userData = useSelector((store) => store.buz.buzProfileData);
   const navigate = useNavigate()
   const [loaded, setLoaded] = useState(false);
 
@@ -64,7 +65,7 @@ import animationData from '../assets/Animation-note.json'
                 Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
               </p>
                 <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
-                  <button onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
+                  <button disabled={userData.length !== 0} onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
                       Get started
                   </button>
                 </div>
@@ -114,7 +115,7 @@ import animationData from '../assets/Animation-note.json'
           <img src={StockTrack} className="w-full" alt="laptop and mobile" />
         </div>
         <div className="w-full md:w-[50%] ">
-         <h3 className="tracking-tight md:tracking-wide lg:tracking-widest text-lg pt-7 sm:pt-0 lg:text-xl  font-bold  text-[#252525]">StockTrack: Empowering Your Inventory Management Effortlessly</h3>
+         <h3 className="tracking-tight md:tracking-wide lg:tracking-widest text-lg pt-9 md:pt-0 lg:text-xl  font-bold  text-[#252525]">StockTrack: Empowering Your Inventory Management Effortlessly</h3>
           <p className="tracking-tight md:tracking-wide lg:tracking-widest text-sm pt-2  md:text-base">Revolutionize your inventory control with our state-of-the-art Dashboard. Seamlessly manage stock, track movements, and make informed decisions. A user-friendly interface following the best industrial practices for unparalleled efficiency and success.</p>
         </div>
       </section>
