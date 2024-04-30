@@ -155,7 +155,7 @@ const UpdateStock = ({handleRestock}) => {
         <div className="mb-6 flex justify-between items-center">
         <h3 className="mb-2 uppercase font-bold text-xs ">add New Item To the inventory</h3>
         <div className="shadow-md flex justify-center items-center text-gray-500 hover:text-red-500  w-[30px] h-[30px]  rounded-[50%] border border-[#213A84] hover:border-red-500 cursor-pointer transition duration-300 transform hover:scale-110">
-        <i onClick={handleRestock} class="fas fa-times "></i>
+        <i onClick={handleRestock} className="fas fa-times "></i>
         </div>
         </div>
         <div

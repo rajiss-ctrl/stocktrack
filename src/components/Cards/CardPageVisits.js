@@ -50,7 +50,7 @@ export default function CardPageVisits({handleRestock,restock}) {
     return (
       <animated.div
         style={fadeInProps}
-        className="bg-white shadow-2xl font-semibold rounded-[0.222rem] flex flex-col justify-center items-center w- p-2"
+        className="bg-white shadow-2xl font-semibold rounded-[0.222rem] flex flex-col justify-center items-center p-2"
       >
         <h4 className="pb-1 text-slate-500">Sales Figure</h4>
         <div className="flex items-center gap-2">
@@ -58,12 +58,14 @@ export default function CardPageVisits({handleRestock,restock}) {
        onClick={(e) =>{
        handleConfirmation(e, index) 
        handleMinus(e, item.id, item?.product_Qty)}
-      }
-  className="bg-green-600 text-white text-[10px] leading-4 font-bold px-2 py-[0.18rem] outline-none border-0 rounded-[0.222rem]"
->
-  Confirm
-</button>
-<button onClick={handleConfirmation} className="bg-red-500 text-white text-[10px] leading-4 font-bold px-[0.3rem] py-[0.18rem] outline-none border-0 rounded-[0.222rem]">Decline</button>
+              }
+          className="bg-green-600 text-white text-[10px] leading-4 font-bold px-2 py-[0.18rem] outline-none border-0 rounded-[0.222rem]"
+        >
+          Confirm
+        </button>
+        <button onClick={handleConfirmation} className="bg-red-500 text-white text-[10px] leading-4 font-bold px-[0.3rem] py-[0.18rem] outline-none border-0 rounded-[0.222rem]">
+          Decline
+        </button>
         </div>
       </animated.div>
     );
@@ -136,9 +138,9 @@ const handleDeleteItem = async (e,id) => {
         <div className="flex  px-4 items-center justify-end">  
           {currentRoutePath === '/inventorytable' ? 
           <></> :  
-             userData?.map(user=>
+          userData.length !== 0 && userData?.map(user=>
               <div key={user?.id}>
-                  <img className="w-8" src={user?.logo} alt="user.businessName"/>
+                  <img className="w-8" src={user?.logo} alt={user.businessName}/>
               </div >)
               
            }

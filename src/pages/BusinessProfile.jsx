@@ -91,8 +91,8 @@ const BusinessProfile = () => {
       {userData.length === 0 ?
    
       <div className="px-0 md:mb-24 lg:mb-0 md:w-full  lg:px-14 lg:w-1/2">
-      <div className="mb-10 md:px-12 lg:px-0 sm:mb-0 w-full max-h-screen flex flex-col justify-center items-center  sm:shadow sm:bg-[#eceff1] rounded ">
-        <h3 className="text-center mt-5 font-bold text-sm text-gray-400 mb-6">
+      <div className="mb-10 lg:mb-6 xl:mb-10 md:px-12 lg:px-0 sm:mb-0 w-full max-h-screen flex flex-col justify-center items-center  sm:shadow sm:bg-[#eceff1] rounded ">
+        <h3 className="text-center mt-5 lg:mt-3 xl:mt-5 font-bold text-sm text-gray-400 mb-6 lg:mb-2 xl:mb-6">
           Create Business Profile
         </h3>
 
@@ -220,9 +220,9 @@ const BusinessProfile = () => {
       </div>
       }
       {/* profile */}
-      <div className="bg-white  lg:mb-0  min-h-[300px]  lg:w-1/2 lg:h-screen">
+      <div className="px-0 bg-white w-full lg:mb-0  min-h-[300px]  lg:w-1/2 lg:h-screen">
       {userData.length === 0 ?
-      <div className="mt-16 sm:mt-0 flex justify-center items-center h-full">
+      <div className="mt-16 lg:mt-0 flex justify-center items-center h-full">
         <h2>BUSINESS PROFILE INFO</h2>
       </div>
         :
