@@ -94,17 +94,17 @@ export default function Navbar() {
             id="example-navbar-warning"
           >
             <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className="hover:text-slate-400 mt-6 lg:mt-0">
+              <li className={`hover:text-slate-400  ${currentUser?.email === undefined ? 'mt-6' : "mt-3"} lg:mt-0`}>
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
               </li>
-              <li className="hover:text-slate-400 mt-6 md:mt-0">
+              <li className={`hover:text-slate-400 ${currentUser?.email === undefined && 'mt-6'}  md:mt-0`}>
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignout'>Sign-up</Link> :
                   <></>}
               </li>
-              <li className="hover:text-slate-400 mt-6 md:mt-0">
+              <li className={`hover:text-slate-400 ${currentUser?.email === undefined ? 'mt-6' : "mt-3"}  lg:mt-0`}>
                 <Link to='/dashboard'>Dashboard</Link>
               </li>
             </ul>
@@ -133,7 +133,7 @@ export default function Navbar() {
             :
                 userData.map(user=>
                 <div key={user.id}>
-                  <div className="text-sm">welcome {!user.businessName ? currentUser.email : user.businessName
+                  <div className="text-sm mt-3 lg:mt-0">welcome {!user.businessName ? currentUser.email : user.businessName
                     }
                   </div>
                 </div >)

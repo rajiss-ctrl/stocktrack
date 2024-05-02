@@ -65,7 +65,7 @@ import { useSelector } from "react-redux";
                 Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
               </p>
                 <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
-                  <button disabled={userData.length !== 0} onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-none focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
+                  <button disabled={userData.length !== 0} onClick={()=>{navigate('/signinsignout')}} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5  sm:px-6  sm:py-3 rounded-full outline-transparent focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm  ease-linear transition-all duration-150">
                       Get started
                   </button>
                 </div>

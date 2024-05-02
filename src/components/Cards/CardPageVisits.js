@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import UpdateStockState from "../../pages/pages-components/UpdateStockState";
 import UpdateStock from "../../pages/UpdateStock";
+import { FaMinus } from "react-icons/fa";
 
 
 
@@ -59,11 +60,11 @@ export default function CardPageVisits({handleRestock,restock}) {
        handleConfirmation(e, index) 
        handleMinus(e, item.id, item?.product_Qty)}
               }
-          className="bg-green-600 text-white text-[10px] leading-4 font-bold px-2 py-[0.18rem] outline-none border-0 rounded-[0.222rem]"
+          className="bg-green-600 text-white text-[10px] leading-4 font-bold px-2 py-[0.18rem] outline-transparent border-0 rounded-[0.222rem]"
         >
           Confirm
         </button>
-        <button onClick={handleConfirmation} className="bg-red-500 text-white text-[10px] leading-4 font-bold px-[0.3rem] py-[0.18rem] outline-none border-0 rounded-[0.222rem]">
+        <button onClick={handleConfirmation} className="bg-red-500 text-white text-[10px] leading-4 font-bold px-[0.3rem] py-[0.18rem] outline-transparent border-0 rounded-[0.222rem]">
           Decline
         </button>
         </div>
@@ -161,11 +162,11 @@ const handleDeleteItem = async (e,id) => {
             <div className="relative w-full sm:px-4  max-w-full flex-grow flex-1 text-right">
               {currentRoutePath === '/inventorytable' ? 
                  <Link to="/dashboard"
-                 className="bg-[#46148B]  text-white active:bg-[#2e0a61] shadow hover:shadow-lg text-xs  uppercase px-3 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                 className="bg-[#46148B]  text-white active:bg-[#2e0a61] shadow hover:shadow-lg text-xs  uppercase px-3 py-2 rounded outline-transparent focus:outline-transparent mr-1 mb-1 ease-linear transition-all duration-150">
                   Dshboard
                  </Link> :
                <Link to='/inventorytable'
-               className="bg-[#46148B] text-white active:bg-[#2e0a61] shadow hover:shadow-lg text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+               className="bg-[#46148B] text-white active:bg-[#2e0a61] shadow hover:shadow-lg text-xs font-bold uppercase px-3 py-1 rounded outline-transparent focus:outline-transparent mr-1 mb-1 ease-linear transition-all duration-150"
                type="button"
              >
                See all
@@ -175,7 +176,7 @@ const handleDeleteItem = async (e,id) => {
    
           </div>
           </div>
-        <div className="block w-full overflow-x-auto sm:overflow-x-hidden">
+        <div className="block w-full overflow-x-auto lg:overflow-x-hidden">
           {/* Projects table */}
           <table className="items-center w-full h-full bg-transparent border-collapse overflow-hidden">
             <thead>
@@ -183,14 +184,16 @@ const handleDeleteItem = async (e,id) => {
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Items
                 </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                <th className="hidden lg:block px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Product Name
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Quantity
+                  <span className="hidden lg:block">  Quantity</span>
+                  <span className=" lg:hidden">Qty</span>
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Packaging Sizes
+                  <span className="hidden lg:block">Packaging Sizes</span>
+                  <span className=" lg:hidden">Sizes</span>
                 </th>
                 <th className={`${currentRoutePath === '/inventorytable' ? 'block' : 'hidden'} px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left`}>
                   Price
@@ -233,7 +236,7 @@ const handleDeleteItem = async (e,id) => {
                   <img src={item?.img} alt={item.product_name} className="w-8 h-8 rounded-md" />                   
                   }
                   </td>
-                  <td className="border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap text-left">
+                  <td className="hidden  h-full md:flex items-center border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap text-left">
                     {item?.product_name}
                   </td>
                   <td className="border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
@@ -248,11 +251,14 @@ const handleDeleteItem = async (e,id) => {
                     {currencySymbol} {item.product_Price}
                   </td>
                    : 
-                   <td className="border relative  border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
+                   <td className=" border relative  border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
                       <form className="flex items-center">
-                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="bg-white outline-none border border-solid border-blueGray-100 rounded-l-md py-2 px-2" />
-                        <button onClick={(e) => handleConfirmation(e,index)}  className="bg-[#3edd3e] uppercase border border-solid   font-bold border-[#3edd3e] rounded-r-md py-2 px-4 text-white">Deplete</button>
-                          <div className={`${salesConfirmation === index ? 'block' : 'hidden'} absolute -top-2 right-0`}>
+                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="w-[100px] md:w-auto bg-white outline-transparent border border-solid border-blueGray-100 rounded-l-md py-1 md:py-2 px-2" />
+                        <button onClick={(e) => handleConfirmation(e,index)}  className="w-[50px] md:w-auto bg-[#3edd3e] uppercase border border-solid outline-transparent font-bold border-[#3edd3e] rounded-r-md py-1 md:py-2 px-4 text-white">
+                          <span className="hidden md:block"> Deplete</span>
+                          <span className=" md:hidden"><FaMinus/></span>
+                        </button>
+                          <div className={`${salesConfirmation === index ? 'block' : 'hidden'} absolute  -top-2 right-0`}>
                             <Confirmation item={item} handleMinus={handleMinus}/>
                           </div> 
                       </form>
@@ -277,7 +283,7 @@ const handleDeleteItem = async (e,id) => {
       </div>
           <div className="pl-3 sm:pl-0">
           {currentRoutePath === '/inventorytable' &&
-          <button className="outline-none border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
+          <button className="outline-transparent border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
             Print
           </button>
           }
