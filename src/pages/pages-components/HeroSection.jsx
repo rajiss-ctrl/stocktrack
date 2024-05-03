@@ -1,140 +1,79 @@
-// import React from "react";
-
-// import Parcels from "../../assets/images/parcels.png";
-// import {
-//   FaBell,
-//   FaLevelUpAlt,
-//   FaProductHunt,
-//   FaRecordVinyl,
-// } from "react-icons/fa";
-
-// const HeroSection = () => {
-//   return (
-//     <>
-//       <div className=" w-full  flex  items-center flex-col min-h-[480px]">
-//         <div className="container mx-auto px-4 pt-12 less_sm:pt-14  md:pt-16 lg:pt-32">
-//           <h1 className="bg-gradient-to-r from-amber-600 via-[rgb(247,_193,_0)] to-yellow-300 bg-clip-text text-transparent        text-2xl sm:text-4xl font-bold text-center mb-6">
-//             INVENTORY MANAGEMENT SYSTEM
-//           </h1>
-//           <p className=" text-center px-4  md:px-[20%]  text-[#FFFFFF] text-xl font-[200]">
-//             Our inventory management system makes it easy to track your stock
-//             level, track sales, and make informed business decisions.
-//           </p>
-//         </div>
-//       </div>
-
-//       <div className="w-[90%] less_sm:w-[80%] absolute  top-[34%] less_sm:top-[35%]  sm:top-[37%] less_md:top-[33%]  md:top-[36%] lg:top-[35%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[30] bg-[#FFFFFF] rounded-xl shadow-xl h-auto md:min-h-[400px]">
-//         <div className="container mx-auto px-4 ">
-//           <div className=" lg:pt-8 pb-10 lg:pb-0 flex flex-col lg:flex-row items-center justify-between">
-//             <div className="lg:w-[50%] flex items-center justify-center mb-8 lg:mb-0">
-//               <img src={Parcels} alt="Inventory" className="w-[65%] h-auto" />
-//             </div>
-//             <div className="lg:w-1/2">
-//               <ul className="list-none list-inside font-[400] leading-6 sm:text-[1.15rem] text-black mb-4 ">
-//                 <li className="flex items-center space-x-2  ">
-//                   <FaLevelUpAlt className="text-[rgb(158,_169,_201)]" />{" "}
-//                   <span>Track inventory levels in real-time</span>
-//                 </li>
-//                 <li className="flex items-center space-x-2">
-//                   <FaBell className="text-[rgb(158,_169,_201)]" />{" "}
-//                   <span>Set low-stock alerts</span>
-//                 </li>
-//                 <li className="flex items-center space-x-2">
-//                   <FaProductHunt className="text-[rgb(158,_169,_201)]" />{" "}
-//                   <span>Manage purchase orders</span>
-//                 </li>
-//                 <li className="flex items-center space-x-2">
-//                   <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />{" "}
-//                   <span>Track sales and revenue</span>
-//                 </li>
-//                 <li className="flex items-center space-x-2">
-//                   <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />
-//                   <span>Generate reports and analytics</span>
-//                 </li>
-//               </ul>
-//               <a href="#signup">
-//                 <button className="m-auto bg-dark-purple hover:bg-dark-purp-hover text-white text-md py-2 px-4 rounded-lg">
-//                   Get Started
-//                 </button>
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default HeroSection;
-
-import React from "react";
-import Parcels from "../../assets/images/parcels.png";
-import {
-  FaBell,
-  FaLevelUpAlt,
-  FaProductHunt,
-  FaRecordVinyl,
-} from "react-icons/fa";
-import { Link } from "react-scroll";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Hero from "../../assets/img/Hero2.png";
+import HeroMobile from "../../assets/img/hero-mobile.png";
+import HeroDrown from "../../assets/img/hero-drown.png";
+import HeroGif from "../../assets/img/herogif.gif";
+import { useSpring, animated } from 'react-spring';
+import { useSelector } from "react-redux";
 
 const HeroSection = () => {
-  return (
-    <>
-      <div className="w-full flex items-center flex-col min-h-[480px]">
-        <div className="container mx-auto px-4 pt-12 less_sm:pt-14  md:pt-16 lg:pt-32">
-          <h1 className="bg-gradient-to-r from-amber-600 via-[rgb(247,_193,_0)] to-yellow-300 bg-clip-text text-transparent text-2xl sm:text-4xl font-bold text-center mb-6">
-            INVENTORY MANAGEMENT SYSTEM
-          </h1>
-          <p className="text-center px-4 md:px-[20%] text-[#FFFFFF] text-xl font-[200]">
-            Our inventory management system makes it easy to track your stock
-            level, track sales, and make informed business decisions.
-          </p>
-        </div>
-      </div>
+  const userData = useSelector((store) => store.buz.buzProfileData);
+  const navigate = useNavigate();
+  const [loaded, setLoaded] = useState(false);
 
-      <div className="w-[90%] less_sm:w-[80%] absolute top-[34%] less_sm:top-[35%] sm:top-[37%] less_md:top-[33%] md:top-[36%] lg:top-[35%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[30] bg-[#FFFFFF] rounded-xl shadow-xl h-auto md:min-h-[400px]">
-        <div className="container mx-auto px-4">
-          <div className="lg:pt-8 pb-10 lg:pb-0 flex flex-col lg:flex-row items-center justify-between">
-            <div className="lg:w-[50%] flex items-center justify-center mb-8 lg:mb-0">
-              <img
-                src={Parcels}
-                alt="Inventory"
-                className="w-[65%] h-auto animated-spin"
-              />
-            </div>
-            <div className="lg:w-1/2">
-              <ul className="list-none list-inside font-[400] leading-6 sm:text-[1.15rem] text-black mb-4 ">
-                <li className="flex items-center space-x-2  ">
-                  <FaLevelUpAlt className="text-[rgb(158,_169,_201)]" />{" "}
-                  <span>Track inventory levels in real-time</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaBell className="text-[rgb(158,_169,_201)]" />{" "}
-                  <span>Set low-stock alerts</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaProductHunt className="text-[rgb(158,_169,_201)]" />{" "}
-                  <span>Manage purchase orders</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />{" "}
-                  <span>Track sales and revenue</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaRecordVinyl className="text-[rgb(158,_169,_201)]" />
-                  <span>Generate reports and analytics</span>
-                </li>
-              </ul>
-              <Link to="signup">
-                <button className="m-auto bg-dark-purple hover:bg-dark-purp-hover text-white font-400 text-md py-2 px-4 rounded-lg">
-                  Get Started
-                </button>
-              </Link>
-            </div>
+
+  
+  // Set loaded to true after a short delay to trigger the animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Animation for revealing the image slowly on first load
+  const imageAnimation = useSpring({
+    opacity: loaded ? 1 : 0,
+    from: { opacity: 0 },
+  });
+
+  // Set loaded to true after a short delay to trigger the animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <section className="relative z-40 bg-[#F6F8F9] pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-auto overflow-hidden">
+      <div className="hidden lg:block lg:absolute z-30 lg:right-[28%] lg:top-32">
+        <img src={HeroGif} className="w-40" alt="..." />
+      </div>
+      <div className="custom-bg w-full flex items-center justify-center flex-col lg:flex-row lg:justify-between">
+        <div className="w-full xl:pl-20 sm:pt-0">
+          <h2 className="tracking-tight md:tracking-wide lg:tracking-widest px-4 sm:px-0 pt-10 sm:pt-0 lg:pl-16 xl:pl-8 xl:pr-10 text-center lg:text-left text-[#46148B] font-bold text-[1.6rem] leading-[2rem] sm:text-3xl md:text-6xl lg:text-4xl xl:text-5xl ">
+            Stock <span className="text-[#86E372]">Tracking</span> Software
+          </h2>
+          <p className="leading-normal md:leading-relaxed lg:leading-loose px-4 md:px-6 text-lg lg:pl-16 xl:pl-8 lg:pr-0 xl:pr-14 text-center lg:text-left mt-4 md:text-lg tracking-tight md:tracking-wide lg:tracking-widest text-blueGray-500">
+            Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
+          </p>
+          <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
+            <button disabled={userData.length !== 0} onClick={() => { navigate('/signinsignout') }} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5 sm:px-6 sm:py-3 rounded-full outline-transparent focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm ease-linear transition-all duration-150">
+              Get started
+            </button>
           </div>
         </div>
+        <div className="h-full lg:hidden flex justify-between items-center">
+          <img
+            className='lg:hidden md:w-[40rem] md:mt-10 mt-5'
+            src={HeroMobile} alt="..." />
+        </div>
+        <animated.img
+          className="hidden lg:block xl:w-[70%] xl:pt-10 absolute -right-4 sm:-right-10 lg:-bottom-10 sm:bottom-0 lg:static rotate-12 lg:rotate-0"
+          src={Hero}
+          style={imageAnimation}
+          onLoad={() => setLoaded(true)}
+          alt="..."
+        />
       </div>
-    </>
+      <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:-bottom-6">
+        <img src={HeroDrown} alt="..." />
+      </div>
+    </section>
   );
 };
 

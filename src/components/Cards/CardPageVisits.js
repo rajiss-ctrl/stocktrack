@@ -132,7 +132,7 @@ const handleDeleteItem = async (e,id) => {
 
   return (
     <>
-      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2 md:mb-14  rounded ${currentRoutePath === '/inventorytable' ? "mt-0" : "mt-36"}`}>
+      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2   rounded ${currentRoutePath === '/inventorytable' ? "mt-0 md:min-h-[calc(100vh)]" : "mt-36"}`}>
        <div className={`${!restock ? 'hidden' : 'block '}`}>
        <UpdateStock handleRestock={handleRestock} restock={restock}/>
        </div>
@@ -280,13 +280,13 @@ const handleDeleteItem = async (e,id) => {
         </div>
         </div>
      
-      </div>
-          <div className="pl-3 sm:pl-0">
-          {currentRoutePath === '/inventorytable' &&
-          <button className="outline-transparent border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
-            Print
-          </button>
-          }
+          <div className="pl-3 mt-12 sm:pl-0">
+              {currentRoutePath === '/inventorytable' &&
+              <button className="outline-transparent border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
+                Print
+              </button>
+              }
+          </div>
       </div>
       </>
   );

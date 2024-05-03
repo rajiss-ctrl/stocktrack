@@ -96,7 +96,7 @@ const UpdateStockState = ({ id, qty,price,des,siz,handleStockStateUpdateModal,ha
   }
 
   return (
-    <div className="m-0 min-h-[200px] w-[230px] z-50 bg-white p-2  text-xs" onClick={handleClick}>
+    <div className="m-0 min-h-[200px] w-[230px] z-50 bg-[#c3c3c3] p-2  text-xs" onClick={handleClick}>
       <form className=" flex flex-col">
         {inputData.map((input) => (
           <input
