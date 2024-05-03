@@ -258,7 +258,7 @@ const handleDeleteItem = async (e,id) => {
                           <span className="hidden md:block"> Deplete</span>
                           <span className=" md:hidden"><FaMinus/></span>
                         </button>
-                          <div className={`${salesConfirmation === index ? 'block' : 'hidden'} absolute  -top-2 right-0`}>
+                          <div className={`${salesConfirmation === index ? 'block' : 'hidden'} absolute  -top-2 right-4`}>
                             <Confirmation item={item} handleMinus={handleMinus}/>
                           </div> 
                       </form>
