@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbars/IndexNavbar'
 import FooterAdmin from '../../components/Footers/FooterAdmin'
 import Drownfan from "../../assets/img/drownfan.png";
 
-const SigninSignout = () => {
+const SigninSignup = () => {
     const [switchPage, setSwitchPage] = useState(true)
 
     const handlePageSwitch = ()=>{
@@ -14,7 +14,7 @@ const SigninSignout = () => {
     }
   return (
     <div className='bg-[#F3F5F7]'>
-      <Navbar/>
+      <Navbar />
       <div className="sm:relative hero-bg w-full h-screen text-sm md:mb-4 xl:mb-8 flex flex-col justify-center items-center">
       <div className="hidden sm:block sm:absolute top-24 right-24">
         <img src={Drownfan} alt="drown fan" />
@@ -39,4 +39,4 @@ const SigninSignout = () => {
   )
 }
 
-export default SigninSignout
+export default SigninSignup

@@ -96,12 +96,12 @@ export default function Navbar() {
             <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
               <li className={`hover:text-slate-400  ${currentUser?.email === undefined ? 'mt-6' : "mt-3"} lg:mt-0`}>
                 { currentUser?.email === undefined ?
-                  <Link to='/signinsignout'>Login</Link> :
+                  <Link to='/signinsignup'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
               </li>
               <li className={`hover:text-slate-400 ${currentUser?.email === undefined && 'mt-6'}  md:mt-0`}>
                 { currentUser?.email === undefined ?
-                  <Link to='/signinsignout'>Sign-up</Link> :
+                  <Link to='/signinsignup'>Sign-up</Link> :
                   <></>}
               </li>
               <li className={`hover:text-slate-400 ${currentUser?.email === undefined ? 'mt-6' : "mt-3"}  lg:mt-0`}>

@@ -10,7 +10,7 @@ import Loading from './assets/img/loading-state.svg'
 
 
 import Error from "./protected-route/Error";
-const SigninSignout = lazy(() => import("./pages/signin-signup/SigninSignout"));
+import SigninSignup from "./pages/signin-signup/SigninSignup";
 const InventoryTable = lazy(() => import("./pages/InventoryTable"));
 const Layout = lazy(() => import("./outlet/Layout"));
 const Home = lazy(() => import("./pages/Home"));
@@ -84,7 +84,7 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path={"signinsignout"} element={<SigninSignout />} />
+            <Route path={"signinsignup"} element={<SigninSignup />} />
             <Route path={"reset"} element={<Reset />} />
             <Route element={<ProtectedRoute />}>
             <Route path={"updatestock"} element={<UpdateStock />} />

@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import UpdateStockState from "../../pages/pages-components/UpdateStockState";
 import UpdateStock from "../../pages/UpdateStock";
-import { FaMinus } from "react-icons/fa";
+import { FaArrowDown, FaMinus } from "react-icons/fa";
 
 
 
@@ -215,7 +215,10 @@ const handleDeleteItem = async (e,id) => {
               </td>
             </tr>
                 :
-              product?.map((item, index) => (
+              product?.map((item, index) => {
+                const P_price = Number(item?.product_Qty) * Number(item?.product_Price);
+                
+                return (
                 <tr key={index} onClick={currentRoutePath === '/inventorytable' ? (event) => handleStockStateUpdateModal(event, index) : undefined} className={`${currentRoutePath === '/inventorytable' && "cursor-pointer hover:bg-slate-50"} `}>
                   <td className={`border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-2 text-left `}>
                   <div className={`${stockState === index ? 'block' : 'hidden' } absolute mt-14 lg:mt-0 lg:h-screen flex justify-center items-center   top-0 w-full bg-transparent left-0 `}>
@@ -248,14 +251,14 @@ const handleDeleteItem = async (e,id) => {
                   {currentRoutePath === '/inventorytable' ? 
                   <td className="border  border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
                    {/* ₦ {item.product_Price} */}
-                    {currencySymbol} {item.product_Price}
+                    {currencySymbol} {item.product_Price.toLocaleString()}
                   </td>
                    : 
                    <td className=" border relative  border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
                       <form className="flex items-center">
-                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="w-[100px] md:w-auto bg-white outline-transparent border border-solid border-blueGray-100 rounded-l-md py-1 md:py-2 px-2" />
-                        <button onClick={(e) => handleConfirmation(e,index)}  className="w-[50px] md:w-auto bg-[#3edd3e] uppercase border border-solid outline-transparent font-bold border-[#3edd3e] rounded-r-md py-1 md:py-2 px-4 text-white">
-                          <span className="hidden md:block"> Deplete</span>
+                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="w-[100px] md:w-auto bg-slate-100 outline-transparent border border-solid border-blueGray-100 rounded-l-md py-1 md:py-2 px-2" />
+                        <button onClick={(e) => handleConfirmation(e,index)}  className="w-[50px] md:w-auto bg-[#3edd3e]  uppercase border border-solid border-blueGray-100 outline-transparent font-bold rounded-r-md py-1 md:py-[0.68rem] px-4 text-white">
+                          <span className="hidden md:block"><FaArrowDown/></span>
                           <span className=" md:hidden"><FaMinus/></span>
                         </button>
                           <div className={`${salesConfirmation === index ? 'block' : 'hidden'} absolute  -top-2 right-4`}>
@@ -266,14 +269,14 @@ const handleDeleteItem = async (e,id) => {
                    }
                    {currentRoutePath === '/inventorytable' ? 
                    <td className="border border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
-                    {currencySymbol} {Number(item?.product_Qty) * Number(item?.product_Price)}
+                    {currencySymbol}{P_price.toLocaleString()}
                   </td>:
                   <></>
                 }
                 </tr>
-              ))
+               );
+              })
             }
-              
             </tbody>
           </table>
 
