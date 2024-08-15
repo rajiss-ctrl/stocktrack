@@ -256,8 +256,8 @@ const handleDeleteItem = async (e,id) => {
                    : 
                    <td className=" border relative  border-solid border-t-0 border-b-blueGray-100 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap">
                       <form className="flex items-center">
-                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="w-[100px] md:w-auto bg-slate-100 outline-transparent border border-solid border-blueGray-100 rounded-l-md py-1 md:py-2 px-2" />
-                        <button onClick={(e) => handleConfirmation(e,index)}  className="w-[50px] md:w-auto bg-[#3edd3e]  uppercase border border-solid border-blueGray-100 outline-transparent font-bold rounded-r-md py-1 md:py-[0.68rem] px-4 text-white">
+                        <input  onChange={(e) => setMinusFromStock(e.target.value)} placeholder="Sales" type='number' className="w-[100px] md:w-auto bg-slate-100 outline-transparent border border-solid border-blueGray-100  py-1 md:py-2 px-2" />
+                        <button onClick={(e) => handleConfirmation(e,index)}  className="w-[50px] md:w-auto bg-[#3edd3e]  uppercase border border-solid border-blueGray-100 outline-transparent font-bold rounded-r-md py-[0.42rem] md:py-[0.68rem] px-4 text-white">
                           <span className="hidden md:block"><FaArrowDown/></span>
                           <span className=" md:hidden"><FaMinus/></span>
                         </button>

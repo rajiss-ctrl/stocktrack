@@ -51,7 +51,7 @@ function Reset() {
           </button>
           <div className="w-full sm:w-auto sm:flex sm:gap-2">
           <div className="w-full text-center sm:w-auto border-[0.002rem] border-[#46148B] px-2 rounded-md py-2 sm:py-1 mt-6 sm:mt-0 text-md">
-            <Link className="" to="signin">
+            <Link className="" to="/signinsignup">
               Login
             </Link>{" "}
           </div>
