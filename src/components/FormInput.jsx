@@ -41,7 +41,7 @@ const FormInput = (props) => {
       >
         {icon}
       </span>
-      <span className="text-[#fb8a8a] text-[14px] hidden">{errMessages}</span>
+      <span className="-mt-3 mb-2 text-[#fb8a8a] font-bold text-[14px] hidden">{errMessages}</span>
     </div>
   );
 };
