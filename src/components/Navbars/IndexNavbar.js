@@ -94,7 +94,7 @@ export default function Navbar() {
             id="example-navbar-warning"
           >
             <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className={`hover:text-slate-400  ${currentUser?.email === undefined ? 'mt-6' : "mt-3"} lg:mt-0`}>
+              <li className={`hover:text-slate-400  ${currentUser?.email === undefined ? 'mt-6' : "mt-4"} lg:mt-0`}>
                 { currentUser?.email === undefined ?
                   <Link to='/signinsignup'>Login</Link> :
                   <button onClick={handleLogout}>Log-out</button>}
@@ -104,7 +104,7 @@ export default function Navbar() {
                   <Link to='/signinsignup'>Sign-up</Link> :
                   <></>}
               </li>
-              <li className={`hover:text-slate-400 ${currentUser?.email === undefined ? 'mt-6' : "mt-3"}  lg:mt-0`}>
+              <li className={`hover:text-slate-400 ${currentUser?.email === undefined ? 'mt-6' : "mt-4"}  lg:mt-0`}>
                 <Link to='/dashboard'>Dashboard</Link>
               </li>
             </ul>
