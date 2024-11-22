@@ -1,10 +1,7 @@
-import React, { useEffect,useState,  } from "react";
 import Dashboard from "../../assets/video/dashboard-illustration.mp4";
 import Lottie from 'lottie-react';
 // import animationData from '../assets/Animation-box.json'
 import animationData from '../../assets/Animation-note.json'
-
-
 
 const DashboardDescription = () => {
   return (

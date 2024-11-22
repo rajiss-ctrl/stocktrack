@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaBars,FaTimes } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom"; // Removed unused imports
+import { Link, useNavigate } from "react-router-dom"; 
 import Google from '../../assets/img/google.svg'
 import Logo from '../../assets/img/stocktrack-logo.png';
 import db, { auth, logOut, useAuth } from "../../db/firebase";
@@ -10,7 +10,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Navbar() {
   const navigate = useNavigate()
-  const [serverErr, setServerErr] = useState(""); // Removed unused variable
+  const [serverErr, setServerErr] = useState(""); 
   const guestEmail = "stocktrack.guest@gmail.com";
   const guestPass = "stocktrack02!";
   const userData = useSelector((store) => store.buz.buzProfileData);
@@ -34,7 +34,6 @@ export default function Navbar() {
           email: userG.email,
         });
       }
-      // navigate("/dashboardtest"); // Navigate commented out for now
     } catch (err) {
       alert(err.message);
     }

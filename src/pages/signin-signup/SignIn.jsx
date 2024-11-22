@@ -163,14 +163,23 @@ const SignIn = () => {
           <button
             type="submit"
             onClick={handleGuestLogin}    
-            className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
-            rounded-lg bg-white flex items-center px-4 text-xs sm:md text-black mt-4 shadow "
+            className="border-0 flex mt-4 items-center active:bg-lightBlue-600 w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
             disabled={currentUser}
           >
             <img className="w-[40px] text-center pr-2 md:pl-1" src={Guest} alt="..."/> 
-            <span className="font-[560] text-[13px] sm:text-base text-[#838C96]">SIGN IN AS GUEST</span>
+            <span className="font-[560] text-[13px] sm:text-sm text-[#838C96]">SIGN IN AS GUEST</span>
           </button>
           <button
+            className="border-0 flex mt-4 items-center active:bg-lightBlue-600 w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+            type="button"
+            disabled={currentUser}
+            onClick={signInWithGoogle}
+          >
+            <span className="hidden md:block">google sign-in</span>
+            <img className="w-[30px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
+            <span className="text-xs md:hidden">sign-in</span>  
+          </button>
+          {/* <button
             type="submit"
             onClick={signInWithGoogle}
             className="w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] 
@@ -179,7 +188,7 @@ const SignIn = () => {
           >
             <img className="w-[40px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
             <span className="font-[560] text-[13px] sm:text-base text-[#4285F4]">SIGNIN WITH GOOGLE</span>
-          </button>
+          </button> */}
           </div>
           <p className="text-[0.9rem] text-[red]">{serverErr}</p>
         </form>
