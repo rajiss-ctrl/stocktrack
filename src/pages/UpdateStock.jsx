@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-
 import db, { storage, useAuth } from "../db/firebase";
 import {
   FaCloudUploadAlt,
@@ -119,10 +118,19 @@ const UpdateStock = ({ handleRestock }) => {
     setData(initialState);
     setFile(null);
 
-    await addDoc(collection(db, "stock"), {
-      user_id: currentUser?.uid,
-      ...data,
-    });
+    // Add timestamp to the data object
+    const timestamp = new Date();  // Current timestamp
+
+    try {
+      await addDoc(collection(db, "stock"), {
+        user_id: currentUser?.uid,
+        timestamp: timestamp,  // Add the timestamp field here
+        ...data,
+      });
+      console.log("Stock added successfully!");
+    } catch (error) {
+      setServerErr("Error adding stock: " + error.message);
+    }
   };
 
   return (

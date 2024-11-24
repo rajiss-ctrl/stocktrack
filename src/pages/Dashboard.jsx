@@ -4,41 +4,47 @@ import CardPageVisits from "../components/Cards/CardPageVisits";
 import CardLineChart from "../components/Cards/CardLineChart";
 import FooterAdmin from "../components/Footers/FooterAdmin";
 
-// components
-
 function Dashboard() {
-const [restock, setRestock] = useState(false)
-const handleRestock = () =>{
-  setRestock(prev => !prev)
-}
-useEffect(() => {
-  document.title = "Dashboard"; // Set your desired page title here
-}, []); // This effect runs only once after the component mounts
+  const [restock, setRestock] = useState(false);
+
+  const handleRestock = () => {
+    setRestock((prev) => !prev);
+  };
+
+  useEffect(() => {
+    document.title = "Dashboard";
+  }, []);
 
   return (
     <>
-    <div className=" md:flex pb-16">
-      <div className="md:w-80 flex-1  md:relative">
-      <Sidebar restock={restock} handleRestock={handleRestock}/>
-      </div>
-    <div className="md:pl-[12.5rem] pr-2 md:w-full md:pt-[5%]">
-        <div className="flex flex-wrap">
-          <div className="w-full md:mb-24 xl:mb-0 ">
+      <div className="flex flex-col md:flex-row bg-gradient-to-r from-gray-100 via-blue-100 to-purple-100 min-h-screen">
+        {/* Sidebar */}
+        <Sidebar restock={restock} handleRestock={handleRestock} />
+
+        {/* Main Content */}
+        <div className="flex-1 md:ml-[20%] py-6 px-3 md:p-6">
+          <h1 className="text-3xl font-semibold text-indigo-800 mb-8">
+            Dashboard
+          </h1>
+
+          {/* Page Visits Card */}
+          <div className="bg-white shadow-lg rounded-lg mb-8 p-6">
             <CardPageVisits handleRestock={handleRestock} restock={restock} />
           </div>
-        </div>
-        {/* <div className="flex flex-wrap"> */}
-          <div className="w-full  md:mb-12 xl:mb-0 ">
-              <CardLineChart />
+
+          {/* Line Chart Card */}
+          <div className="bg-white shadow-lg rounded-lg p-6 mb-28 md:mb-10">
+            <CardLineChart />
           </div>
-        {/* </div> */}
+        </div>
       </div>
-    </div>
-    <div className="md:fixed z-10 bg-slate-50 bottom-0 w-full">
-      <FooterAdmin/>
-    </div>
+
+      {/* Footer */}
+      <div className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-lg fixed bottom-0 w-full">
+        <FooterAdmin />
+      </div>
     </>
   );
 }
 
-export default  Dashboard
+export default Dashboard;

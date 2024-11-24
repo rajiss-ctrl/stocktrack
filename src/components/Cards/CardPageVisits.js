@@ -47,6 +47,16 @@ export default function CardPageVisits({handleRestock,restock}) {
       opacity: 1,
       from: { opacity: 0 },
     });
+
+//     const lowStockAlert = product.filter(item => item.product_Qty < 5);
+//     const lowSalesAlert = product.filter(item => item.product_Qty < 0); // Low sales could be negative stock for simplicity.
+
+// useEffect(() => {
+//   if (lowStockAlert.length > 0 || lowSalesAlert.length > 0) {
+//     alert('Some products have low stock or sales. Consider restocking!');
+//   }
+// }, [lowStockAlert, lowSalesAlert]);
+
   
     return (
       <animated.div
@@ -130,9 +140,11 @@ const handleDeleteItem = async (e,id) => {
   }
 };
 
+const isInventoryTable = currentRoutePath === '/inventorytable';
+
   return (
     <>
-      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2   rounded ${currentRoutePath === '/inventorytable' ? "mt-0 md:min-h-[calc(100vh)]" : "mt-36"}`}>
+      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2   rounded ${isInventoryTable ? "mt-0 md:min-h-[calc(100vh)] " : "mt-36"}`}>
        <div className={`${!restock ? 'hidden' : 'block '}`}>
        <UpdateStock handleRestock={handleRestock} restock={restock}/>
        </div>
