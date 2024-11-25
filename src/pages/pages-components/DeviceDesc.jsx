@@ -1,23 +1,45 @@
-import React from 'react';
+import React from "react";
 import Drownfan from "../../assets/img/drownfan.png";
 import StockTrack from "../../assets/img/stocktrack-ill.png";
 
 const DeviceDesc = () => {
   return (
-    <section className="relative  flex flex-col md:h-[700px] md:flex-row justify-center md:justify-between items-center  bg-[#fafafa] py-14 px-4 md:p-4 lg:p-5 xl:p-10">
-    <div className="hidden lg:block lg:absolute z-30 lg:right-[42%] xl:right-[36%] lg:top-14">
-      <img src={Drownfan} className="rotate-animation-drownfan" alt="...."/>
-    </div>
-      <div className="w-full md:w-[50%] ">
-        <img src={StockTrack} className="w-full" alt="laptop and mobile" />
+    <section className="relative flex flex-col md:flex-row md:h-[700px] justify-center md:justify-between items-center bg-gradient-to-r from-gray-100 via-blue-300 to-purple-400 py-14 px-6 md:py-20 md:px-8 lg:px-16">
+      {/* Rotating Decorative Image */}
+      <div className="hidden lg:block absolute z-30 lg:right-[40%] xl:right-[35%] lg:top-12">
+        <img
+          src={Drownfan}
+          className="rotate-animation-drownfan"
+          alt="Rotating decoration"
+        />
       </div>
-      <div className="w-full md:w-[50%] ">
-       <h3 className="tracking-tight md:tracking-wide lg:tracking-widest text-lg pt-9 md:pt-0 lg:text-xl  font-bold  text-[#252525]">StockTrack: Empowering Your Inventory Management Effortlessly</h3>
-        <p className="tracking-tight md:tracking-wide lg:tracking-widest text-sm pt-2  md:text-base">Revolutionize your inventory control with our state-of-the-art Dashboard. Seamlessly manage stock, track movements, and make informed decisions. A user-friendly interface following the best industrial practices for unparalleled efficiency and success.</p>
+
+      {/* Image Section */}
+      <div className="w-full md:w-[45%] mb-10 md:mb-0">
+        <img
+          src={StockTrack}
+          className="w-full max-w-[90%] mx-auto"
+          alt="Laptop and mobile devices displaying StockTrack"
+        />
+      </div>
+
+      {/* Description Section */}
+      <div className="w-full md:w-[50%] text-center md:text-left">
+        {/* Heading */}
+        <h3 className="tracking-tight md:tracking-wide lg:tracking-widest text-lg md:text-xl lg:text-2xl font-bold text-white">
+          StockTrack: Empowering Your Inventory Management Effortlessly
+        </h3>
+
+        {/* Paragraph */}
+        <p className="tracking-tight md:tracking-wide lg:tracking-widest text-sm md:text-base text-white mt-4">
+          Revolutionize your inventory control with our state-of-the-art
+          Dashboard. Seamlessly manage stock, track movements, and make
+          informed decisions. A user-friendly interface designed with the best
+          industrial practices for unparalleled efficiency and success.
+        </p>
       </div>
     </section>
+  );
+};
 
-  )
-}
-
-export default DeviceDesc
+export default DeviceDesc;

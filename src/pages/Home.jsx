@@ -14,13 +14,13 @@ import DeviceDesc from "./pages-components/DeviceDesc";
 
 
   return (
-    <>
+    <main className="bg-gradient-to-r from-gray-100 via-blue-300 to-purple-400">
       <Navbar fixed />
       <HeroSection/>
       <DashboardDescription/> 
       <DeviceDesc/>  
       <Footer />
-    </>
+    </main>
   );
 }
 export default Home
