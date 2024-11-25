@@ -12,9 +12,6 @@ const HeroSection = () => {
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
 
-
-  
-  // Set loaded to true after a short delay to trigger the animation
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoaded(true);
@@ -39,13 +36,13 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative z-40 bg-[#F6F8F9] pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-14 h-auto overflow-hidden">
+    <section className="relative z-40 bg-gradient-to-b from-[#6b39a8] via-[#8e68bd] to-purple-500 text-white pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-24 h-auto overflow-hidden">
       <div className="hidden lg:block lg:absolute z-30 lg:right-[28%] lg:top-32">
         <img src={HeroGif} className="w-40" alt="..." />
       </div>
       <div className="custom-bg w-full flex items-center justify-center flex-col lg:flex-row lg:justify-between">
         <div className="w-full xl:pl-20 sm:pt-0">
-          <h2 className="tracking-tight md:tracking-wide lg:tracking-widest px-4 sm:px-0 pt-10 sm:pt-0 lg:pl-16 xl:pl-8 xl:pr-10 text-center lg:text-left text-[#46148B] font-bold text-[1.6rem] leading-[2rem] sm:text-3xl md:text-6xl lg:text-4xl xl:text-5xl ">
+          <h2 className="tracking-tight md:tracking-wide lg:tracking-widest px-4 sm:px-0 pt-10 sm:pt-0 lg:pl-16 xl:pl-8 xl:pr-10 text-center lg:text-left text-[#310e63] font-bold text-[1.6rem] leading-[2rem] sm:text-3xl md:text-6xl lg:text-4xl xl:text-5xl ">
             Stock <span className="text-[#86E372]">Tracking</span> Software
           </h2>
           <p className="leading-normal md:leading-relaxed lg:leading-loose px-4 md:px-6 text-lg lg:pl-16 xl:pl-8 lg:pr-0 xl:pr-14 text-center lg:text-left mt-4 md:text-lg tracking-tight md:tracking-wide lg:tracking-widest text-blueGray-500">

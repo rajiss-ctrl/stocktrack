@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { FaBars,FaTimes } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom"; 
-import Google from '../../assets/img/google.svg'
-import Logo from '../../assets/img/stocktrack-logo.png';
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import Google from "../../assets/img/google.svg";
+import Logo from "../../assets/img/stocktrack-logo.png";
 import db, { auth, logOut, useAuth } from "../../db/firebase";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Navbar() {
-  const navigate = useNavigate()
-  const [serverErr, setServerErr] = useState(""); 
+  const navigate = useNavigate();
+  const [serverErr, setServerErr] = useState("");
+  const [navbarOpen, setNavbarOpen] = useState(false);
   const guestEmail = "stocktrack.guest@gmail.com";
   const guestPass = "stocktrack02!";
   const userData = useSelector((store) => store.buz.buzProfileData);
-  console.log(userData);
   const currentUser = useAuth();
-  console.log(currentUser?.email)
+
+  const toggleNavbar = () => {
+    setNavbarOpen((prev) => !prev);
+  };
 
   const signInWithGoogle = async () => {
     const googleProvider = new GoogleAuthProvider();
@@ -43,13 +50,10 @@ export default function Navbar() {
     signInWithEmailAndPassword(auth, guestEmail, guestPass)
       .then((userCredential) => {
         const user = userCredential.user;
-        user && navigate("/dashboard"); 
+        if (user) navigate("/dashboard");
       })
-      .catch((error) => {
-        if (error) {
-          let error = "Internet issues or wrong credentials!";
-          setServerErr(error);
-        }
+      .catch(() => {
+        setServerErr("Internet issues or wrong credentials!");
       });
   };
 
@@ -60,90 +64,102 @@ export default function Navbar() {
       alert(error.message);
     }
   };
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
-  const handleNavbarOpen = ()=>{
-    setNavbarOpen(prev => !prev)
-  }
-  return (
-    <>
-      <nav className="tracking-tight md:tracking-wide lg:tracking-widest top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <Link to="/" className="">
-              <img src={Logo} className="w-12 shadow-2xl" alt="stock track"/>
-            </Link>
-            <button
-              className="cursor-pointer text-sm leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none "
-              type="button"
-              onClick={handleNavbarOpen}
-            >
-              <span className={`${!navbarOpen ? 'block' : 'hidden'}`}>
-                <FaBars/>
-              </span>
-              <span className={`${!navbarOpen ? 'hidden' : 'block'}`}>
-                <FaTimes/>
-              </span>
-             </button>
-          </div>
-          <div
-            className={
-              " lg:flex flex-grow lg:pl-24 xl:pl-40 items-center bg-white lg:bg-opacity-0 lg:shadow-none" +
-              (navbarOpen ? " block" : " hidden")
-            }
-            id="example-navbar-warning"
-          >
-            <ul className="text-sm flex flex-col lg:flex-row md:gap-4 list-none mr-auto">
-              <li className={`hover:text-slate-400  ${currentUser?.email === undefined ? 'mt-6' : "mt-4"} lg:mt-0`}>
-                { currentUser?.email === undefined ?
-                  <Link to='/signinsignup'>Login</Link> :
-                  <button onClick={handleLogout}>Log-out</button>}
-              </li>
-              <li className={`hover:text-slate-400 ${currentUser?.email === undefined && 'mt-6'}  md:mt-0`}>
-                { currentUser?.email === undefined ?
-                  <Link to='/signinsignup'>Sign-up</Link> :
-                  <></>}
-              </li>
-              <li className={`hover:text-slate-400 ${currentUser?.email === undefined ? 'mt-6' : "mt-4"}  lg:mt-0`}>
-                <Link to='/dashboard'>Dashboard</Link>
-              </li>
-            </ul>
-            <div>
-              {
-                currentUser?.email === undefined ?
-                  <div className="mt-6 lg:mt-0 bg-lightBlue-500 flex items-center">
-                  <button
-                    onSubmit={signInWithEmailAndPassword}
-                    className=" active:bg-lightBlue-600 lead-[0.8rem] text-[0.65rem] tracking-tight md:tracking-wide lg:tracking-widest font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0  mb-3 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={handleGuestLogin}
-                  >
-                    Guest
-                  </button>
-                  <button
-                    className="border-0 flex items-center active:bg-lightBlue-600 text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={signInWithGoogle}
-                  >
-                    <span className="hidden md:block">google sign-in</span>
-                    <img className="w-[30px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
-                    <span className="text-xs md:hidden">sign-in</span>  
-                  </button>
-            </div> 
-            :
-                userData.map(user=>
-                <div key={user.id}>
-                  <div className="text-sm mt-3 lg:mt-0">welcome {!user.businessName ? currentUser.email : user.businessName
-                    }
-                  </div>
-                </div >)
 
-              }
+  return (
+    <nav className="fixed top-0 z-50 w-full bg-white shadow-md text-[#2a0e51]">
+      <div className="container mx-auto px-4 flex justify-between items-center py-3">
+        {/* Logo */}
+        <Link to="/" className="flex items-center">
+          <img src={Logo} className="w-14 shadow-2xl" alt="StockTrack Logo" />
+        </Link>
+
+        {/* Navbar Toggle */}
+        <button
+          className="lg:hidden p-2 focus:outline-none"
+          onClick={toggleNavbar}
+          aria-label="Toggle navigation"
+        >
+          {navbarOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        {/* Navbar Links */}
+        <div
+          className={`${
+            navbarOpen ? "block" : "hidden"
+          } lg:flex lg:items-center w-full lg:w-auto`}
+        >
+          <ul className="flex flex-col lg:flex-row lg:gap-6 items-center md:mr-6 text-sm md:text-base">
+            {currentUser?.email ? (
+              <>
+                <li>
+                  <button
+                    className="hover:text-slate-500"
+                    onClick={handleLogout}
+                  >
+                    Log-out
+                  </button>
+                </li>
+                <li>
+                  <Link className="hover:text-slate-500" to="/dashboard">
+                    Dashboard
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link className="hover:text-slate-500" to="/signinsignup">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-slate-500" to="/signinsignup">
+                    Sign-up
+                  </Link>
+                </li>
+                <li>
+                  <Link className={`hover:text-slate-500 ${currentUser?.email === undefined ? "mt-6" : "mt-4"}`} to="/dashboard">
+                    Dasboard
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+
+          {/* Auth Buttons */}
+          {currentUser?.email ? (
+            <div className="mt-4 lg:mt-0">
+              {userData.map((user) => (
+                <p
+                  key={user.id}
+                  className="text-sm text-gray-700 mt-2 lg:mt-0 lg:ml-4"
+                >
+                  Welcome, {user.businessName || currentUser.email}
+                </p>
+              ))}
             </div>
-            
-          </div>
+          ) : (
+            <div className="mt-4 lg:mt-0 flex gap-4">
+              <button
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-sm rounded shadow"
+                onClick={handleGuestLogin}
+              >
+                Guest Login
+              </button>
+              <button
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-sm flex items-center gap-2 rounded shadow"
+                onClick={signInWithGoogle}
+              >
+                <img src={Google} alt="Google" className="w-5" />
+                <span>Google Sign-In</span>
+              </button>
+            </div>
+          )}
         </div>
-        {serverErr}
-      </nav>
-    </>
+      </div>
+      {serverErr && (
+        <p className="text-red-500 text-center mt-2">{serverErr}</p>
+      )}
+    </nav>
   );
 }
