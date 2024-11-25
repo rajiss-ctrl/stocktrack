@@ -31,7 +31,8 @@ const FormInput = (props) => {
              border-b-[1px] border-0          
             outline-none mb-5 rounded
             w-[100%] h-[80%]  
-            text-[#000] text-[14px] lg:text-[18px] 
+            text-[#000] text-[14px] lg:text-[18px]
+            bg-[#eceff1] 
             p-[13px] shadow
             "
       />

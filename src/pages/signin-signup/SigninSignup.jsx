@@ -13,7 +13,7 @@ const SigninSignup = () => {
         setSwitchPage(pre=>!pre)
     }
   return (
-    <div className='bg-[#F3F5F7]'>
+    <div className='bg-gradient-to-r from-blue-700 via-indigo-300 to-purple-400 text-white'>
       <Navbar />
       <div className="sm:relative hero-bg w-full h-screen text-sm md:mb-4 xl:mb-8 flex flex-col justify-center items-center">
       <div className="hidden sm:block sm:absolute top-24 right-24">
@@ -22,12 +22,12 @@ const SigninSignup = () => {
       
       {switchPage ? <SignIn/> : <SignUp/>}
       {switchPage ? 
-         <div className="w-full text-sm flex flex-col justify-between mt-5  px-3 sm:px-32 sm:flex-row">
-            <p className=' text-[#186F4A] underline font-light'><Link to='/reset'>Forget Password?</Link></p>
-            <span className='cursor-pointer  text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Sign up here</span>
+         <div className="w-full text-sm text-white flex flex-col justify-between mt-5  px-3 sm:px-32 sm:flex-row">
+            <p className=' underline font-light'><Link to='/reset'>Forget Password?</Link></p>
+            <span className='cursor-pointer underline font-light' onClick={handlePageSwitch}>Sign up here</span>
           </div> 
         : 
-        <p className='mt-8 text-[#000000]'>
+        <p className='mt-8'>
             <p className='text-[#000000]'>Already have an account <span className='cursor-pointer text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Login</span></p>
           </p>
         }

@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import db, { auth, useAuth } from "../../db/firebase";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-
 import Google from '../../assets/img/google.svg';
 import Guest from '../../assets/img/guest.png';
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FaAt, FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -101,34 +99,34 @@ const SignIn = () => {
   return (
     <main
       id="signup"
-      className="w-full md:w-2/3 h-auto lg:h-96 flex flex-col items-center 
-               justify-center mt-[60px]"
+      className="w-full md:w-2/3  h-auto lg:h-auto flex flex-col items-center justify-center mt-16"
     >
-      <div className="w-[90%] shadow-lg bg-[#eceff1] rounded-sm md:w-[80%] p-[10px] less_sm:p-[20px]">
-        <p className="text-[#000007] leading-6 sm:text-sm">Sign in</p>
+      <div className="w-[90%] md:w-[80%] bg-white shadow-lg rounded-lg p-8">
+        <p className="text-xl font-bold text-[#46158B]">Sign in</p>
         <form
-          className="w-full flex flex-col items-center justify-center mt-[20px]"
+          className="w-full flex flex-col items-center justify-center mt-8"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="shadow py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]">
+          <div className="shadow py-3 mb-5 flex items-center px-3 rounded w-full bg-[#eceff1]">
             <input
               {...register("email")}
               id="email"
               type="email"
-              placeholder={`${currentUser?.email || "Email"}`}
-              className="outline-none bg-white w-full border-0 capitalize"
+              placeholder="Email"
+              className="outline-none bg-[#eceff1] w-full text-lg text-gray-700"
               disabled={currentUser}
             />
             <FaAt className="text-[#888988]" />
           </div>
-          <p className="text-[red] pb-2 text-xs">{errors.email?.message}</p>
-          <div className="shadow py-5 mb-3 flex items-center px-2 rounded w-[100%] bg-white h-[40px]">
+          <p className="text-red-500 text-xs">{errors.email?.message}</p>
+
+          <div className="shadow py-3 mb-5 flex items-center px-3 rounded w-full bg-[#eceff1]">
             <input
               {...register("password")}
               id="password"
               type={`${hidePassword ? "password" : "text"}`}
               placeholder="Password"
-              className="outline-none bg-white w-full border-0 capitalize"
+              className="outline-none bg-[#eceff1] w-full text-lg text-gray-700"
               disabled={currentUser}
             />
             <div onClick={handleShowPassword}>
@@ -140,35 +138,38 @@ const SignIn = () => {
               />
             </div>
           </div>
-          <p className="text-[red] text-xs">{errors.password?.message}</p>
+          <p className="text-red-500 text-xs">{errors.password?.message}</p>
+
           <button
             type="submit"
-            className="w-full shadow h-[40px] less_sm:h-[45px] rounded-lg bg-[#46158B] hover:bg-dark-purp-hover text-sm sm:md text-white mt-4"
+            className="w-full shadow h-[45px] rounded-lg bg-[#46158B] hover:bg-[#3c0d76] text-white text-lg mt-4"
             disabled={currentUser || loading}
           >
             {loading ? "Signing in..." : "SIGN IN"}
           </button>
-          <div className="flex justify-center sm:justify-between flex-col sm:flex-row  w-full">
-          <button
-            type="submit"
-            onClick={handleGuestLogin}    
-            className="border-0 flex mt-4 items-center active:bg-lightBlue-600 w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
-            disabled={currentUser}
-          >
-            <img className="w-[40px] text-center pr-2 md:pl-1" src={Guest} alt="..."/> 
-            <span className="font-[560] text-[13px] sm:text-sm text-[#838C96]">SIGN IN AS GUEST</span>
-          </button>
-          <button
-            className="border-0 flex mt-4 items-center active:bg-lightBlue-600 w-full less_sm:w-[49%] h-[40px] less_sm:h-[45px] text-[0.65rem] leading-[0.8rem] tracking-tight md:tracking-wide lg:tracking-widest md:font-semibold uppercase bg-gray-100 md:bg-white px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
-            type="button"
-            onClick={signInWithGoogle}
-          >
-            <span className="hidden md:block">google sign-in</span>
-            <img className="w-[30px] text-center pr-2 md:pl-1" src={Google} alt="..."/> 
-            <span className="text-xs md:hidden">sign-in</span>  
-          </button>
+
+          <div className="flex justify-center sm:justify-between flex-col sm:flex-row w-full mt-6">
+            <button
+              type="button"
+              onClick={handleGuestLogin}
+              className="w-full sm:w-48 h-[45px] bg-gray-100 rounded-lg text-sm text-[#838C96] flex items-center justify-center shadow-md hover:shadow-lg focus:outline-none transition-all duration-200 mt-3"
+              disabled={currentUser}
+            >
+              <img className="w-10 mr-2" src={Guest} alt="Guest" />
+              SIGN IN AS GUEST
+            </button>
+
+            <button
+              type="button"
+              onClick={signInWithGoogle}
+              className="w-full sm:w-48 h-[45px] bg-white rounded-lg text-sm text-[#838C96] flex items-center justify-center shadow-md hover:shadow-lg focus:outline-none transition-all duration-200 mt-3"
+            >
+              <img className="w-8 mr-2" src={Google} alt="Google" />
+              Google Sign-In
+            </button>
           </div>
         </form>
+        {serverErr && <p className="text-red-500 mt-4 text-center">{serverErr}</p>}
       </div>
     </main>
   );

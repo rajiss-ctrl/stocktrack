@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
 import { addDoc, collection } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-
+import imageCompression from "browser-image-compression"; // For image compression
 import db, { storage, useAuth } from "../db/firebase";
 import {
   FaCloudUploadAlt,
@@ -62,14 +61,14 @@ const UpdateStock = ({ handleRestock }) => {
   const currentUser = useAuth();
   const initialState = {
     product_name: "",
-    product_Qty: Number(),
-    product_Price: Number(),
+    product_Qty: 0,
+    product_Price: 0,
     size: "",
     product_description: "",
   };
 
   const [data, setData] = useState(initialState);
-  const [progress, setProgress] = useState({});
+  const [progress, setProgress] = useState(null);
   const [serverErr, setServerErr] = useState("");
   const [file, setFile] = useState(null);
 
@@ -87,11 +86,13 @@ const UpdateStock = ({ handleRestock }) => {
             setProgress(progress);
           },
           (error) => {
-            setServerErr("Internet Problems");
+            setServerErr("Error uploading file: " + error.message);
+            setProgress(0); // Reset progress on failure
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               setData((prevData) => ({ ...prevData, img: downloadURL }));
+              setProgress(null); // Reset progress on completion
             });
           }
         );
@@ -101,38 +102,56 @@ const UpdateStock = ({ handleRestock }) => {
     uploadFile();
   }, [file]);
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     const selectedFile = e.target.files[0];
     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
     if (selectedFile && allowedExtensions.exec(selectedFile.name)) {
-      setFile(selectedFile);
+      try {
+        if (selectedFile.size > 1 * 1024 * 1024) {
+          alert("Compressing image...");
+          const compressedFile = await imageCompression(selectedFile, {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1024,
+          });
+          setFile(compressedFile);
+        } else {
+          setFile(selectedFile);
+        }
+      } catch (err) {
+        console.error("Error compressing image:", err);
+      }
     } else {
-      alert("Please upload an image file with .jpg, .jpeg, or .png extension.");
-      e.target.value = ""; // Optionally reset the file input
+      alert("Please upload a valid image file (jpg, jpeg, png).");
+      e.target.value = ""; // Optionally reset file input
     }
   };
 
   const handleStock = async (e) => {
     e.preventDefault();
-    setData(initialState);
-    setFile(null);
 
-    // Add timestamp to the data object
-    const timestamp = new Date();  // Current timestamp
+    if (!data.product_name || !data.product_Qty || !data.product_Price || !data.size) {
+      setServerErr("Please fill out all required fields.");
+      return;
+    }
+
+    const timestamp = new Date();
 
     try {
       await addDoc(collection(db, "stock"), {
         user_id: currentUser?.uid,
-        timestamp: timestamp,  // Add the timestamp field here
+        timestamp: timestamp,
         ...data,
       });
-      console.log("Stock added successfully!");
+      setData(initialState);
+      setFile(null);
+      setProgress(null);
+      setServerErr(""); // Clear errors on success
     } catch (error) {
       setServerErr("Error adding stock: " + error.message);
     }
   };
-
+  console.log(inputs);
   return (
     <div className="bg-gradient-to-t from-[rgba(69,69,70,0.4)] to-white-200 bg-clip z-[100000] w-full h-full fixed top-0 right-0">
       <div className="w-full bg-white md:w-[50%] md:shadow mx-auto md:mt-1 rounded p-6">

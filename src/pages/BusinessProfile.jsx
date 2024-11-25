@@ -5,13 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
-// import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import DefaultLogo from '../assets/img/default-logo.png'
+import DefaultLogo from '../assets/img/default-logo.png';
 
 import db, { storage, useAuth } from "../db/firebase";
-import { FaCloudUploadAlt } from "react-icons/fa";
-
+import { FaArrowLeft, FaCloudUploadAlt } from "react-icons/fa";
 
 const schema = yup.object().shape({
   about: yup.string().required("About business field is required"),
@@ -25,12 +23,7 @@ const BusinessProfile = () => {
   const currentUser = useAuth();
   const navigate = useNavigate();
   const userData = useSelector((store) => store.buz.buzProfileData);
-
-  // const user = useSelector((state) => state.user.user);
   const [logo, setLogo] = useState(DefaultLogo);
-  // const [logo, setLogo] = useState(
-  //   "https://www.pesmcopt.com/admin-media/images/default-logo.png"
-  // );
 
   const {
     register,
@@ -40,20 +33,73 @@ const BusinessProfile = () => {
     resolver: yupResolver(schema),
   });
 
-  const handleFileReader = (e) => {
-    e.preventDefault()
-    const reader = new FileReader();
-    if (e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
+  const MAX_FILE_SIZE_MB = 1; // Set maximum file size to 1 MB
+
+const handleFileReader = (e) => {
+  e.preventDefault();
+  const file = e.target.files[0];
+
+  if (file) {
+    const validExtensions = ["image/jpeg", "image/png", "image/jpg"];
+    if (!validExtensions.includes(file.type)) {
+      alert("Invalid file type! Please upload a JPG, JPEG, or PNG image.");
+      e.target.value = null;
+      return;
     }
+
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      alert("File is too large! Please upload an image smaller than 1 MB.");
+      e.target.value = null;
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onload = (readerEvent) => {
-      setLogo(readerEvent.target.result);
+      resizeImage(readerEvent.target.result, file.type, (compressedImage) => {
+        setLogo(compressedImage);
+      });
     };
+  }
+};
+
+// Compress and resize the image using the canvas API
+const resizeImage = (base64Str, mimeType, callback) => {
+  const img = new Image();
+  img.src = base64Str;
+
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    const MAX_WIDTH = 150; // Set a reasonable width for a profile image
+    const MAX_HEIGHT = 150; // Set a reasonable height for a profile image
+
+    let width = img.width;
+    let height = img.height;
+
+    if (width > height) {
+      if (width > MAX_WIDTH) {
+        height = Math.round((height * MAX_WIDTH) / width);
+        width = MAX_WIDTH;
+      }
+    } else {
+      if (height > MAX_HEIGHT) {
+        width = Math.round((width * MAX_HEIGHT) / height);
+        height = MAX_HEIGHT;
+      }
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+
+    const compressedImage = canvas.toDataURL(mimeType, 0.7); // Compress to 70% quality
+    callback(compressedImage);
   };
+};
+
 
   const onSubmit = async (data) => {
-    //setBusinessAddress('');
-    // setBusinessName('');
     navigate("/dashboard");
 
     const docRef = await addDoc(collection(db, "businesses"), {
@@ -67,189 +113,110 @@ const BusinessProfile = () => {
 
     const imageRef = ref(storage, `businesses/${docRef.id}/image`);
 
-    if (
-      logo !== "https://www.pesmcopt.com/admin-media/images/default-logo.png"
-    ) {
+    if (logo !== DefaultLogo) {
       await uploadString(imageRef, logo, "data_url").then(async () => {
         const downloadURL = await getDownloadURL(imageRef);
 
         await updateDoc(doc(db, "businesses", docRef.id), {
           logo: downloadURL,
         });
-
-        //Alerts the user that the process was successful
-        // alert("Congratulations, you've just created a business profile!");
       });
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F3F5F7]">
-      <Link className='absolute hover:shadow-lg top-6 sm:top-6 font-bold border border-slate-700 text-gray-600 shadow-xl bg-transparent text-xs px-3 py-1 rounded-sm sm:rounded-md left-1/2 transform -translate-x-1/2 -translate-y-1/2' to='/dashboard'>Dashboard</Link>
-    
-    <div className={`md:px-12 flex flex-col lg:justify-between lg:flex-row items-center  lg:px-0 ${userData.lenght === 0 ? 'mt-24' :  'mt-8' } lg:mt-0`}>
-      {userData.length === 0 ?
-   
-      <div className="px-0 md:mb-24 lg:mb-0 md:w-full  lg:px-14 lg:w-1/2">
-      <div className="mb-10 lg:mb-6 xl:mb-10 md:px-12 lg:px-0 sm:mb-0 w-full max-h-screen flex flex-col justify-center items-center  sm:shadow sm:bg-[#eceff1] rounded ">
-        <h3 className="text-center mt-5 lg:mt-3 xl:mt-5 font-bold text-sm text-gray-400 mb-6 lg:mb-2 xl:mb-6">
-          Create Business Profile
-        </h3>
-
-      <form className="w-full flex flex-col py-2 px-5" onSubmit={handleSubmit(onSubmit)}>
-        {/* The handleSubmit function sends the form details to Firestore */}
-        <input
-          type="text"
-          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
-          id="businessName"
-          placeholder="Business Name"
-          {...register("businessName")}
-        />
-        {errors?.businessName && (
-          <span className="text-[red]" role="alert">
-            {errors.businessName.message}
-          </span>
-        )}
-        <input
-          type="text"
-          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
-          id="businessType"
-          placeholder="Business Type"
-          {...register("businessType")}
-        />
-        {errors?.businessType && (
-          <span className="text-[red]" role="alert">
-            {errors.businessType.message}
-          </span>
-        )}
-
-        <input
-          type="text"
-          className="py-2 outline-yellow-50 px-4 w-full mb-6 border capitalize rounded"
-          id="businessAddress"
-          placeholder="Business Address"
-          {...register("businessAddress")}
-        />
-        {errors?.businessAddress && (
-          <span className="text-[red]" role="alert">
-            {errors.businessAddress.message}
-          </span>
-        )}
-        <textarea
-          className=" outline-yellow-50 px-4 w-full mb-4 border capitalize rounded"
-          id="about"
-          placeholder="About The Business"
-          {...register("about")}
-        ></textarea>
-        {errors?.about && (
-          <span className="text-[red]" role="alert">
-            {errors.about.message}
-          </span>
-        )}
-        <textarea
-          className=" outline-yellow-50 px-4 w-full mb-4 border capitalize rounded"
-          id="mission"
-          placeholder="Mission"
-          {...register("mission")}
-        ></textarea>
-        {errors?.mission && (
-          <span className="text-[red]" role="alert">
-            {errors.mission.message}
-          </span>
-        )}
-
-        <div className="flex items-center space-x-4 w-full">
-          <div className="flex flex-col  w-1/2 mb-2 pl-16">
-            <img src={logo} alt="Logo" className="shadow-lg w-9 h-9 sm:w-14 sm:h-14 rounded-[50%]"  />
-          </div>
-          <div className="w-full">
-          <label
-            htmlFor="logo"
-            className="w-full flex items-center text-[#46148B] text-xs  px-4 border-0 cursor-pointer"
-          >
-            <FaCloudUploadAlt className="mr-2 text-xs font-bold cursor-pointer" /> Business Logo
+    <div className="min-h-screen bg-gradient-to-r from-gray-100 via-blue-100 to-purple-100 text-white flex flex-col items-center">
+      <Link
+        className="absolute flex items-center gap-2 p-1 rounded-sm shadow-sm text-sm bg-white top-4 left-4 text-black hover:text-gray-200 hover:underline"
+        to="/dashboard"
+      >
+        <span><FaArrowLeft/></span>
+        <span> to Dashboard></span>
+      </Link>
+      <div className="w-full max-w-5xl flex flex-col lg:flex-row items-center lg:items-start gap-8 p-4">
+        <div className="w-full lg:w-1/2 bg-white shadow-lg p-6 rounded-lg text-gray-800">
+          <h2 className="text-lg font-bold mb-4">Create Business Profile</h2>
+          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <input
-              accept="image/*"
-              required
-              // className="opacity-0 absolute cursor-pointer"
-              style={{display:"none"}}
-              type="file"
-              id="logo"
-              {...register("logo")}
-              onChange={handleFileReader}
+              type="text"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="Business Name"
+              {...register("businessName")}
             />
-               {errors.logo && (
-              <span className="text-[red]" role="alert">
-                {errors.logo.message}
-              </span>
+            {errors.businessName && (
+              <p className="text-red-500 text-sm">{errors.businessName.message}</p>
             )}
-          </label>
-        </div>
+            <input
+              type="text"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="Business Type"
+              {...register("businessType")}
+            />
+            <input
+              type="text"
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="Business Address"
+              {...register("businessAddress")}
+            />
+            <textarea
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="About the Business"
+              {...register("about")}
+            ></textarea>
+            <textarea
+              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500"
+              placeholder="Mission"
+              {...register("mission")}
+            ></textarea>
+            <div className="flex items-center gap-4">
+              <img
+                src={logo}
+                alt="Logo Preview"
+                className="w-16 h-16 rounded-full shadow-md"
+              />
+              <label className="flex items-center gap-2 cursor-pointer">
+                <FaCloudUploadAlt size={20} />
+                <span>Upload Logo</span>
+                <input
+                  accept=".jpg,.jpeg,.png" // Restrict to JPG, JPEG, and PNG
+                  required
+                  style={{ display: "none" }}
+                  type="file"
+                  id="logo"
+                  {...register("logo")}
+                  onChange={handleFileReader}
+                />
 
-        </div>
-
-        <button
-          className="hover:bg-dark-purp-hover bg-dark-purple
-                        text-xs text-gray-100 w-full p-[10px] 
-                        md:p-3 rounded mb-2 uppercase"
-          type="submit"
-        >
-          submit
-        </button>
-      </form>
-      </div>
-      </div> 
-        :
-        <div className="px-0 md:mb-24 lg:mb-0 md:w-full  lg:px-5 lg:w-1/2 ">
-        {
-        userData.map((user)=>{
-          return(
-            <div key={user.id} className="flex  bg-transparent w-full pb-5  justify-center items-center flex-col">
-           
-              <div className="text-sm pt-5 flex justify-center items-center flex-col">
-              
-                <article className="pt-5">
-                  <h4 className="leading-normal md:leading-relaxed font-bold text-xl lg:leading-loose text-center pb-2">Our Mission</h4>
-                  <p className="leading-normal  md:leading-relaxed lg:leading-loose sm:mx-4 text-black text-sm px-4 py-2">{user.about}</p>
-                </article>
+              </label>
             </div>
-            </div>
-          )
-        })
-      }
-      </div>
-      }
-      {/* profile */}
-      <div className="px-0 bg-white w-full lg:mb-0  min-h-[300px]  lg:w-1/2 lg:h-screen">
-      {userData.length === 0 ?
-      <div className="mt-16 lg:mt-0 flex justify-center items-center h-full">
-        <h2>BUSINESS PROFILE INFO</h2>
-      </div>
-        :
-          userData.map((user)=>{
-            return(
-              <div key={user.id} className="flex py-16 bg-white w-full   justify-center items-center flex-col">
-               
-                <div className="flex flex-col justify-center items-center"> 
-                  <img src={user.logo} alt="Logo" className=" w-14 h-14 rounded-[50%]"  />
-                  <h1 className="pt-1  text-sm">{user.businessName}</h1>
-                  <p className="text-gray-400 text-xs">{user.businessAddress}.</p>
-                </div>
-                <div className="text-sm pt-5 flex justify-center items-center flex-col">
-                  <h4 className="border border-gray-400 px-4 py-2">{user.businessType}</h4>
-                  <article className="pt-5">
-                    <h4 className="leading-normal md:leading-relaxed lg:leading-loose text-center pb-2">About The Business</h4>
-                    <p className="leading-normal md:leading-relaxed lg:leading-loose sm:mx-4 text-gray-500 sm:text-black text-sm sm:text-xs px-4 py-2">{user.about}</p>
-                  </article>
+            <button
+              type="submit"
+              className="w-full text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 py-3 rounded-lg hover:opacity-90 transition"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className="w-full lg:w-1/2 bg-white shadow-lg p-6 rounded-lg text-gray-800">
+          {userData.length === 0 ? (
+            <p className="text-center">No Business Profile Found</p>
+          ) : (
+            userData.map((user) => (
+              <div key={user.id} className="space-y-4">
+                <img
+                  src={user.logo}
+                  alt="Business Logo"
+                  className="w-16 h-16 mx-auto rounded-full shadow-md"
+                />
+                <h3 className="text-center text-lg font-bold">{user.businessName}</h3>
+                <p className="text-center">{user.businessAddress}</p>
+                <h4 className="text-center font-semibold">About the Business</h4>
+                <p className="text-center">{user.about}</p>
               </div>
-
-              </div>
-            )
-          })
-        }
-      
-    </div>
-    </div>
+            ))
+          )}
+        </div>
+      </div>
     </div>
   );
 };
