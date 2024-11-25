@@ -117,27 +117,43 @@ export default function CardLineChart() {
   return (
     <>
       {alertVisible && (
-        <div className="fixed top-0 left-0 right-0 bg-white bg-opacity-75 p-4 z-50">
-          <div className="max-w-lg mx-auto bg-blueGray-950 rounded-lg p-4 shadow-2xl">
-            <h6 className="text-lg font-bold mb-2">
-              Inventory Alert: Limited stock, low sales as of{" "}
-              {new Date().toLocaleString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
-            </h6>
-            <p className="text-sm mb-4">
-              Some of your products have low stock or sales. Please review the inventory.
-            </p>
+        <div className="fixed inset-0 bg-[rgba(25,36,41,0.5)] flex justify-center items-center z-50">
+          <div className="max-w-lg w-full bg-[#1C1C1E] rounded-xl p-6 shadow-xl relative">
+            {/* Close Button */}
             <button
-              className="bg-green-500 text-white px-4 py-2 rounded-md"
+              className="absolute top-3 right-3 text-[#86E372] font-bold hover:underline"
+              onClick={handleCloseAlert}
+              aria-label="Close Alert"
+            >
+              ×
+            </button>
+            {/* Title */}
+            <h6 className="text-lg sm:text-xl font-extrabold text-[#FEBC1F] mb-4 text-center">
+              Inventory Alert: Limited Stock, Low Sales
+            </h6>
+            {/* Date */}
+            <p className="text-sm text-[#7B7B7B] text-center mb-6">
+              As of{" "}
+              {new Date().toLocaleString("en-US", {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              })}
+            </p>
+            {/* Description */}
+            <p className="text-sm text-[#DEDFFB] text-center mb-6">
+              Some of your products have low stock or sales. Please review the
+              inventory to ensure optimal management.
+            </p>
+            {/* Action Button */}
+            <button
+              className="block mx-auto bg-gradient-to-r from-[#02F7A6] to-[#14FFFF] hover:opacity-90 text-white px-6 py-3 rounded-lg shadow-md transition-all duration-300"
               onClick={handleCloseAlert}
             >
-              OK
+              Acknowledge
             </button>
           </div>
         </div>

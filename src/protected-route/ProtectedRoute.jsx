@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
   // const user = useSelector((state) => state.user.user);
   // console.log(user);
 
-  return currentUser === null ? <Navigate to={"/"} /> : <Outlet />;
+  return currentUser === null ? <Navigate to={"/"}/> : <Outlet />;
 };
 
 export default ProtectedRoute;
