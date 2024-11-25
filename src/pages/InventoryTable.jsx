@@ -10,7 +10,7 @@ const InventoryTable = () => {
   
   return (
     <>
-    <div className=' py-10 w-full  md:px-5 lg:px-8'>
+    <div className='bg-gradient-to-r from-gray-100 via-blue-100 to-purple-100 py-10 w-full  md:px-5 lg:px-8'>
       <CardPageVisits/>
     </div>
     </>

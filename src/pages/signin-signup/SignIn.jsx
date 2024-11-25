@@ -78,7 +78,7 @@ const SignIn = () => {
           email: userG.email,
         });
       }
-      navigate("/dashboardtest");
+      userG && navigate("/dashboard");
     } catch (err) {
       alert(err.message);
     }

@@ -144,7 +144,7 @@ const isInventoryTable = currentRoutePath === '/inventorytable';
 
   return (
     <>
-      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full  md:mt-0 mb-2   rounded ${isInventoryTable ? "mt-0 md:min-h-[calc(100vh)] " : "mt-36"}`}>
+      <div className={`relative flex flex-col min-w-0 break-words bg-white w-full md:mt-0 mb-2  rounded ${isInventoryTable ? "mt-0 md:min-h-[calc(100vh)] " : "xl:mt-8"}`}>
        <div className={`${!restock ? 'hidden' : 'block '}`}>
        <UpdateStock handleRestock={handleRestock} restock={restock}/>
        </div>
@@ -188,7 +188,7 @@ const isInventoryTable = currentRoutePath === '/inventorytable';
    
           </div>
           </div>
-        <div className="block w-full overflow-x-auto lg:overflow-x-hidden">
+        <div className="block w-full overflow-x-auto 2xl:overflow-x-hidden">
           {/* Projects table */}
           <table className="items-center w-full h-full bg-transparent border-collapse overflow-hidden">
             <thead>
@@ -295,7 +295,7 @@ const isInventoryTable = currentRoutePath === '/inventorytable';
         </div>
         </div>
      
-          <div className="pl-3 mt-12 sm:pl-0">
+          <div className="pl-3 mt-12 sm:pl-5">
               {currentRoutePath === '/inventorytable' &&
               <button className="outline-transparent border-0 bg-[#46148B] rounded-lg hover:px-5 hover:rounded-xl text-sm py-2 px-3 text-white" onClick={handlePrint}>
                 Print

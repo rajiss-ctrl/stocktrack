@@ -29,13 +29,26 @@ export default function CardLineChart() {
   const threshold = 1000;
 
   // Function to calculate days taken to reach below threshold
-  const calculateDaysToThreshold = (stockDate, qty) => {
-    if (qty <= threshold && stockDate) {
-      const days = formatDistanceToNow(stockDate, { addSuffix: true }); // calculates time passed since stocked date
-      return days;
+  function calculateDaysToThreshold(timestamp, qty) {
+    // Convert Firebase Timestamp to JavaScript Date
+    const stockDate =
+      timestamp && typeof timestamp.toDate === "function" ? timestamp.toDate() : new Date(timestamp);
+  
+    if (!stockDate || isNaN(stockDate.getTime())) {
+      console.warn("Invalid timestamp:", timestamp);
+      return "Invalid Date";
     }
-    return null;
-  };
+  
+    const now = new Date();
+  
+    // Calculate difference in days
+    const differenceInMilliseconds = now - stockDate;
+    const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+  
+    return differenceInDays > 0 ? differenceInDays : 0;
+  }
+  
+  
 
   // Calculate days to threshold for each product
   const daysToThreshold = product.map((item) => calculateDaysToThreshold(item.timestamp ? item.timestamp.toDate() : null, item.product_Qty));
@@ -131,7 +144,7 @@ export default function CardLineChart() {
       )}
 
       <div className="relative flex flex-col min-w-0 break-words w-full md:mb-6 rounded bg-blueGray-700">
-        <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+        <div className="rounded-t mb-0 md:px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-slate-500 text-[14px] md:text-xs mt-6 md:mt-0 kumbh font-bold">
@@ -155,25 +168,35 @@ export default function CardLineChart() {
         </div>
 
         {/* Instruction/Description Section */}
-        <div className="mt-4 p-4 bg-blueGray-800 rounded-xl shadow-md border border-gray-600">
-          <p className="text-white text-sm font-semibold">
-            <span className="text-yellow-400 font-bold">Stock Level:</span>{" "}
-            Stock levels below 1000 units are considered low. <br />
-            <span className="text-yellow-400 font-bold">Sales Level:</span>{" "}
-            Sales levels below 100 units indicate low demand. <br />
-            <span className="text-red-500 font-bold underline">
-              (High sales products signal more stock)
-            </span>
-            <br />
-            <span className="text-teal-400 font-bold">Fast-Moving Products:</span>{" "}
-            Products that reach the 1000 threshold quickly are considered fast-moving. The chart above tracks the{" "}
-            <span className="text-orange-500">days it took</span> to reduce the stock to 1000 units.
-            <br />
-            <span className="text-green-400 font-bold block">
-              Fast-moving products: {fastMovingProductInfo}
-            </span>
-          </p>
-        </div>
+        <ul className="list-disc list-inside text-gray-700 mt-2">
+          {fastMovingProducts.map((item) => {
+            // Safely convert timestamp
+            const stockDate =
+              item.timestamp && typeof item.timestamp.toDate === "function"
+                ? item.timestamp.toDate()
+                : new Date(item.timestamp);
+
+            const days = stockDate && !isNaN(stockDate.getTime())
+              ? calculateDaysToThreshold(stockDate, item.product_Qty)
+              : "N/A";
+
+            return (
+              <li key={item.id} className="mb-1">
+                <span className="text-gray-900 font-bold">{item.product_name}</span> was stocked on{" "}
+                <span className="text-blue-700">
+                  {stockDate && !isNaN(stockDate.getTime())
+                    ? stockDate.toLocaleDateString()
+                    : "Unknown Date"}
+                </span>{" "}
+                and reduced to <span className="text-red-600">1000 units</span> in{" "}
+                <span className="text-red-600">{days} days</span>.
+              </li>
+            );
+          })}
+        </ul>
+
+
+
       </div>
     </>
   );
