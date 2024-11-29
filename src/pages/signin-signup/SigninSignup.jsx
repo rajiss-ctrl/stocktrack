@@ -13,13 +13,9 @@ const SigninSignup = () => {
         setSwitchPage(pre=>!pre)
     }
   return (
-    <div className='bg-gradient-to-r from-blue-700 via-indigo-300 to-purple-400 text-white'>
+    <div className='h-screen lg:h-full bg-gradient-to-r from-blue-700 via-indigo-300 to-purple-400 text-white'>
       <Navbar />
-      <div className="sm:relative w-full h-screen md:h-auto text-sm md:pt-24 xl:mb-8 flex flex-col justify-center items-center">
-      <div className="hidden sm:block sm:absolute top-24 right-24">
-        <img src={Drownfan} alt="drown fan" />
-      </div>
-      
+      <div className="w-full h-screen md:h-auto text-sm md:pt-36 lg:py-24 flex flex-col justify-center items-center">
       {switchPage ? <SignIn/> : <SignUp/>}
       {switchPage ? 
          <div className="w-full text-sm text-white flex flex-col justify-between mt-5  px-3 sm:px-32 sm:flex-row">

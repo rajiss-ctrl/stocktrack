@@ -77,7 +77,7 @@ const SignIn = () => {
   };
 
   return (
-    <main id="signup" className="relative w-full md:w-2/3 flex flex-col items-center justify-center mt-16">
+    <main id="signup" className="relative overflow-hidden w-full md:w-2/3 flex flex-col items-center justify-center mt-16">
       <div className="fixed top-24 z-30 left-1/2 transform -translate-x-1/2 md:hidden">
         <button
           onClick={handleGuestLogin}

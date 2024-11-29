@@ -75,8 +75,8 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white shadow-md text-[#2a0e51]">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center py-3">
-        <div className="flex justify-between items-center w-full md:w-auto">
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center py-3">
+        <div className="flex justify-between items-center w-full lg:w-auto">
                   {/* Logo */}
         <Link to="/" className="flex items-center">
           <img src={Logo} className="w-14 shadow-2xl" alt="StockTrack Logo" />
@@ -98,7 +98,7 @@ export default function Navbar() {
             navbarOpen ? "block" : "hidden"
           } lg:flex lg:items-center w-full lg:w-auto`}
         >
-          <ul className="flex flex-col gap-4 lg:flex-row lg:gap-6 md:items-center mt-4 md:mt-0 md:mr-6 text-sm md:text-base">
+          <ul className="flex flex-col gap-4 lg:flex-row lg:gap-6 lg:items-center mt-4 lg:mt-0 md:mr-6 text-sm md:text-base">
             {currentUser?.email ? (
               <>
                 <li>
