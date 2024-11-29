@@ -105,7 +105,7 @@ const SignUp = () => {
       id="signup"
       className="w-full md:w-2/3 h-auto lg:h-96 flex flex-col items-center justify-center mt-[60px]"
     >
-      <div className="w-[95%] md:w-[80%] p-[20px] rounded-lg shadow-lg bg-white">
+      <div className="w-[95%] md:w-[80%] px-5 pt-6 pb-10 rounded-lg shadow-lg bg-white">
         <p className="text-[#46158B] text-xl font-bold text-center mb-6">
           Sign Up Here
         </p>
@@ -125,7 +125,7 @@ const SignUp = () => {
           ))}
           <button
             type="submit"
-            className="w-full less_sm:w-[50%] h-[45px] mt-4 shadow-lg rounded-lg bg-[#46158B] hover:bg-[#37096e] text-white text-sm transition duration-300"
+            className="w-full less_sm:w-[50%] h-[45px] mt-3 shadow-lg rounded-lg bg-[#46158B] hover:bg-[#37096e] text-white text-sm transition duration-300"
             disabled={currentUser}
           >
             SIGN UP

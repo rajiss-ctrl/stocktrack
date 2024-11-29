@@ -23,7 +23,7 @@ const SigninSignup = () => {
             <span className='cursor-pointer underline font-light' onClick={handlePageSwitch}>Sign up here</span>
           </div> 
         : 
-        <p className='m-3'>
+        <p className='m-8'>
             <p className='text-[#000000]'>Already have an account <span className='cursor-pointer text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Login</span></p>
         </p>
         }
