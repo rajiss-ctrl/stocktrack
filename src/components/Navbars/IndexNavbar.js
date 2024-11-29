@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../../assets/img/google.svg";
@@ -11,9 +11,12 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { setCurrentUser } from "../../features/currentUserSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false);
   const [serverErr, setServerErr] = useState("");
   const [navbarOpen, setNavbarOpen] = useState(false);
   const guestEmail = "stocktrack.guest@gmail.com";
@@ -31,30 +34,35 @@ export default function Navbar() {
       const res = await signInWithPopup(auth, googleProvider);
       const userG = res.user;
 
-      const q = query(collection(db, "users"), where("uid", "==", userG.uid));
-      const docs = await getDocs(q);
-      if (docs.docs.length === 0) {
-        await addDoc(collection(db, "users"), {
-          uid: userG.uid,
-          name: userG.displayName,
-          authProvider: "google",
-          email: userG.email,
-        });
-      }
+      dispatch(setCurrentUser({ uid: userG.uid, email: userG.email }));
+
+      sessionStorage.setItem("currentUser", JSON.stringify({ uid: userG.uid, email: userG.email }));
+
+      navigate("/dashboard");
     } catch (err) {
       alert(err.message);
     }
   };
 
-  const handleGuestLogin = () => {
-    signInWithEmailAndPassword(auth, guestEmail, guestPass)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        if (user) navigate("/dashboard");
-      })
-      .catch(() => {
-        setServerErr("Internet issues or wrong credentials!");
-      });
+  const handleGuestLogin = async() => {
+    setLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, guestEmail, guestPass);
+      const user = userCredential.user;
+
+      // Dispatch the current user to Redux
+      dispatch(setCurrentUser({ uid: user.uid, email: user.email }));
+
+      // Store user in session storage
+      sessionStorage.setItem("currentUser", JSON.stringify({ uid: user.uid, email: user.email }));
+
+      navigate("/dashboard");
+    } catch (err) {
+      setServerErr("Internet issues or wrong credentials!");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleLogout = async () => {

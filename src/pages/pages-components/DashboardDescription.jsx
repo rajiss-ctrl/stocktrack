@@ -26,7 +26,7 @@ const DashboardDescription = () => {
         </div>
       <h2 className="font-extrabold tracking-tight text-center px-6 md:px-20 lg:px-32 text-lg sm:text-xl md:text-2xl lg:text-3xl leading-snug">
         Elevate Efficiency: Redefine{" "}
-        <span className="text-[#86E372] font-bold">Inventory Management</span>{" "}
+        <span className="text-[#1a630a] font-bold">Inventory Management</span>{" "}
         Now!
       </h2>
 

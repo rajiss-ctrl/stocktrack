@@ -15,7 +15,7 @@ const SigninSignup = () => {
   return (
     <div className='bg-gradient-to-r from-blue-700 via-indigo-300 to-purple-400 text-white'>
       <Navbar />
-      <div className="sm:relative hero-bg w-full h-screen text-sm md:mb-4 xl:mb-8 flex flex-col justify-center items-center">
+      <div className="sm:relative w-full h-screen md:h-auto text-sm md:pt-24 xl:mb-8 flex flex-col justify-center items-center">
       <div className="hidden sm:block sm:absolute top-24 right-24">
         <img src={Drownfan} alt="drown fan" />
       </div>
@@ -27,9 +27,9 @@ const SigninSignup = () => {
             <span className='cursor-pointer underline font-light' onClick={handlePageSwitch}>Sign up here</span>
           </div> 
         : 
-        <p className='mt-8'>
+        <p className='m-3'>
             <p className='text-[#000000]'>Already have an account <span className='cursor-pointer text-[#186F4A] underline font-light' onClick={handlePageSwitch}>Login</span></p>
-          </p>
+        </p>
         }
       </div>
         <div className="sm:hidden">

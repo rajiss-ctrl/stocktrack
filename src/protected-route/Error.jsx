@@ -12,7 +12,7 @@ const Error = () => {
   }, [navigate]);
 
   return (
-    <div className="h-screen bg-gradient-to-r from-[#FF6F61] to-[#FF9A8B] text-white flex justify-center items-center p-6">
+    <div className="h-screen bg-gradient-to-r from-[#f98a80] to-[#ff8f7d] text-white flex justify-center items-center p-6">
       <div className="text-center max-w-lg px-4 py-6 bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-blur-md">
         <h1 className="text-4xl font-bold mb-4">Oops! Page Not Found</h1>
         <p className="text-lg mb-6 text-gray-200">

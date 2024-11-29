@@ -4,7 +4,7 @@ import StockTrack from "../../assets/img/stocktrack-ill.png";
 
 const DeviceDesc = () => {
   return (
-    <section className="relative flex flex-col md:flex-row md:h-[700px] justify-center md:justify-between items-center bg-gradient-to-r from-gray-100 via-blue-300 to-purple-400 py-14 px-6 md:py-20 md:px-8 lg:px-16">
+    <section className="relative flex flex-col md:flex-row md:h-[700px] justify-center md:justify-between items-center bg-gradient-to-r from-gray-500 via-indigo-500 to-purple-400 py-14 px-6 md:py-20 md:px-8 lg:px-16">
       {/* Rotating Decorative Image */}
       <div className="hidden lg:block absolute z-30 lg:right-[40%] xl:right-[35%] lg:top-12">
         <img

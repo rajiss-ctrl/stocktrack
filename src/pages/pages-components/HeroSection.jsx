@@ -43,13 +43,13 @@ const HeroSection = () => {
       <div className="custom-bg w-full flex items-center justify-center flex-col lg:flex-row lg:justify-between">
         <div className="w-full xl:pl-20 sm:pt-0">
           <h2 className="tracking-tight md:tracking-wide lg:tracking-widest px-4 sm:px-0 pt-10 sm:pt-0 lg:pl-16 xl:pl-8 xl:pr-10 text-center lg:text-left text-[#310e63] font-bold text-[1.6rem] leading-[2rem] sm:text-3xl md:text-6xl lg:text-4xl xl:text-5xl ">
-            Stock <span className="text-[#86E372]">Tracking</span> Software
+            Stock <span className="text-[#1a630a]">Tracking</span> Software
           </h2>
           <p className="leading-normal md:leading-relaxed lg:leading-loose px-4 md:px-6 text-lg lg:pl-16 xl:pl-8 lg:pr-0 xl:pr-14 text-center lg:text-left mt-4 md:text-lg tracking-tight md:tracking-wide lg:tracking-widest text-blueGray-500">
             Our inventory management system makes it easy to track your stock level, track sales, and make informed business decisions.
           </p>
           <div className="lg:pl-16 xl:pl-8 mt-3 md:mt-6 lg:mt-2 lg:pb-3 xl:p-3 text-center lg:text-left">
-            <button onClick={() => { navigate('/signinsignup') }} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.6rem] px-5 sm:px-6 sm:py-3 rounded-full outline-transparent focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm ease-linear transition-all duration-150">
+            <button onClick={() => { navigate('/signinsignup') }} className="tracking-tight md:tracking-wide lg:tracking-widest get-started text-white font-semibold py-[0.64rem] px-5 sm:px-6 sm:py-3 rounded-full outline-transparent focus:outline-none bg-[#46148B] active:bg-lightBlue-600 uppercase text-xs sm:text-sm ease-linear transition-all duration-150">
               Get started
             </button>
           </div>
