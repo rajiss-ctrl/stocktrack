@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Spinner from '../assets/img/spinner.svg'
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../db/firebase"; // Assuming this is a custom hook to get the user
+import { useAuth } from "../db/firebase"; 
 
 const ProtectedRoute = () => {
   const currentUser = useAuth();

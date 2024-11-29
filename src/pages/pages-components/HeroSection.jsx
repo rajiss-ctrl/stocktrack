@@ -36,7 +36,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative z-40 bg-gradient-to-b from-[#6b39a8] via-[#8e68bd] to-purple-500 text-white pt-16 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-24 h-auto overflow-hidden">
+    <section className="relative z-40 bg-gradient-to-b from-[#6b39a8] via-[#8e68bd] to-purple-500 text-white pt-24 pb-5 md:pb-24 lg:pb-0 md:pt-28 lg:pt-20 xl:pt-24 h-auto overflow-hidden">
       <div className="hidden lg:block lg:absolute z-30 lg:right-[28%] lg:top-32">
         <img src={HeroGif} className="w-40" alt="..." />
       </div>

@@ -3,11 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../features/currentUserSlice";
 import { auth } from "../../db/firebase";
-import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,6 +12,8 @@ import { FaAt, FaEye, FaEyeSlash } from "react-icons/fa";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const guestEmail = "stocktrack.guest@gmail.com";
+  const guestPass = "stocktrack02!";
   const currentUser = useSelector((state) => state.user.currentUser);
   const [serverErr, setServerErr] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -33,6 +31,29 @@ const SignIn = () => {
   const handleShowPassword = () => {
     setHidePassword((prev) => !prev);
   };
+
+
+  const handleGuestLogin = async() => {
+    setLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, guestEmail, guestPass);
+      const user = userCredential.user;
+
+      // Dispatch the current user to Redux
+      dispatch(setCurrentUser({ uid: user.uid, email: user.email }));
+
+      // Store user in session storage
+      sessionStorage.setItem("currentUser", JSON.stringify({ uid: user.uid, email: user.email }));
+
+      navigate("/dashboard");
+    } catch (err) {
+      setServerErr("Internet issues or wrong credentials!");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -56,7 +77,16 @@ const SignIn = () => {
   };
 
   return (
-    <main id="signup" className="w-full md:w-2/3 flex flex-col items-center justify-center mt-16">
+    <main id="signup" className="relative w-full md:w-2/3 flex flex-col items-center justify-center mt-16">
+      <div className="fixed top-24 z-30 left-1/2 transform -translate-x-1/2 md:hidden">
+        <button
+          onClick={handleGuestLogin}
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg animate-bounce hover:scale-105 transition-transform duration-300"
+          onclick="window.location.href='/dashboard'"
+        >
+          Try the Dashboard!
+        </button>
+      </div>
       <div className="w-[90%] md:w-[80%] bg-white shadow-lg rounded-lg p-8">
         <p className="text-xl font-bold text-[#46158B]">Sign in</p>
         <form className="w-full flex flex-col mt-8" onSubmit={handleSubmit(onSubmit)}>

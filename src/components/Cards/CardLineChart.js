@@ -104,10 +104,7 @@ export default function CardLineChart() {
 
   // Calculate fast-moving products for display text
   const fastMovingProducts = product.filter((item) => item.product_Qty <= threshold && item.timestamp);
-  const fastMovingProductInfo = fastMovingProducts.map((item) => {
-    const days = calculateDaysToThreshold(item.timestamp.toDate(), item.product_Qty);
-    return `${item.product_name}: ${days}`;
-  }).join(", ");
+
 
   // Function to close the alert
   const handleCloseAlert = () => {
@@ -205,14 +202,11 @@ export default function CardLineChart() {
                     : "Unknown Date"}
                 </span>{" "}
                 and reduced to <span className="text-red-600">1000 units</span> in{" "}
-                <span className="text-red-600">{days} days</span>.
+                <span className="text-red-600">{days} {days > 1 ? "days" : "day"}</span>.
               </li>
             );
           })}
         </ul>
-
-
-
       </div>
     </>
   );
